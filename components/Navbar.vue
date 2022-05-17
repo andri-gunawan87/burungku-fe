@@ -1,11 +1,6 @@
 <template>
-<div>
-    <v-navigation-drawer
-      v-model="drawer"
-      temporary
-      fixed
-      app
-    >
+  <div>
+    <v-navigation-drawer v-model="drawer" temporary fixed app>
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -23,84 +18,78 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
-      app
-    >
+    <v-app-bar app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <v-menu
-      transition="slide-x-transition"
-      bottom
-      right
-      :offset-y="offset"
-      v-if="isAuthenticated">
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          class="deep-orange"
-          color="primary"
-          dark
-          v-bind="attrs"
-          v-on="on"
+        transition="slide-x-transition"
+        bottom
+        right
+        :offset-y="offset"
+        v-if="isAuthenticated"
+      >
         >
-          User
-        </v-btn>
-      </template>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            class="deep-orange"
+            color="primary"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            User
+          </v-btn>
+        </template>
 
-      <v-list>
-        <v-list-item
-          v-for="(data, i) in loggedInListMenu"
-          :key="i"
-        >
-          <v-list-item-title>{{ data.title }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
+        <v-list>
+          <v-list-item v-for="(data, i) in loggedInListMenu" :key="i">
+            <v-list-item-title>{{ data.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
-</div>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'DefaultLayout',
-  data () {
+  name: "DefaultLayout",
+  data() {
     return {
       clipped: false,
       drawer: false,
       fixed: false,
       items: [
         {
-          icon: 'mdi-home',
-          title: 'Home',
-          to: '/'
+          icon: "mdi-home",
+          title: "Home",
+          to: "/",
         },
         {
-          icon: 'mdi-login',
-          title: 'Login',
-          to: '/account/login'
+          icon: "mdi-login",
+          title: "Login",
+          to: "/account/login",
         },
         {
-          icon: 'mdi-account-plus',
-          title: 'Register',
-          to: '/account/register'
-        }
+          icon: "mdi-account-plus",
+          title: "Register",
+          to: "/account/register",
+        },
       ],
       loggedInListMenu: [
-        { title: 'User',
-          to: '/account/register' },
-        { title: 'Logout',
-        to: '/account/register' },
+        { title: "User", to: "/account/register" },
+        { title: "Logout", to: "/account/register" },
       ],
-      title: 'Kontes Burung',
-      offset: true
-    }
+      title: "Kontes Burung",
+      offset: true,
+    };
   },
 
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser'])
-  }
-}
+    ...mapGetters(["isAuthenticated", "loggedInUser"]),
+  },
+};
 </script>

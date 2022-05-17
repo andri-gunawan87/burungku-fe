@@ -5,12 +5,12 @@
     <v-row justify="center">
       <v-col md="4" justify="center" class="text-center">
         <v-text-field
-      v-model="username"
-      :counter="25"
-      :rules="usernameRules"
-      label="USername"
-      required
-    ></v-text-field>
+          v-model="username"
+          :counter="25"
+          :rules="usernameRules"
+          label="Username"
+          required
+        ></v-text-field>
 
         <v-text-field
           v-model="password"
@@ -32,37 +32,37 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      valid: false,
-      username: '',
-      usernameRules: [
-        v => !!v || 'Username tidak boleh kosong',
-        v => (v && v.length <= 25) || 'Username harus kurang dari 25 huruf',
-      ],
-      password: '',
-      passwordRules: [
-          v => !!v || 'Password tidak boleh kosong.',
-          v => v.length >= 8 || 'Password minimal 8 huruf',
-      ],
-      show: false,
-    }),
+export default {
+  data: () => ({
+    valid: false,
+    username: "",
+    usernameRules: [
+      (v) => !!v || "Username tidak boleh kosong",
+      (v) => (v && v.length <= 25) || "Username harus kurang dari 25 huruf",
+    ],
+    password: "",
+    passwordRules: [
+      (v) => !!v || "Password tidak boleh kosong.",
+      (v) => v.length >= 8 || "Password minimal 8 huruf",
+    ],
+    show: false,
+  }),
 
-    methods: {
-      async login() {
-        try {
-          await this.$auth.loginWith('local', {
-            data: {
+  methods: {
+    async login() {
+      try {
+        await this.$auth.loginWith("local", {
+          data: {
             username: this.username,
-            password: this.password
-            }
-          })
-          this.$router.push('/')
-        } catch (e) {
-          this.error = e.response.data.message
-        }
-      },
-    }
-  }
+            password: this.password,
+          },
+        });
+        this.$router.push("/");
+      } catch (e) {
+        this.error = e.response.data.message;
+      }
+    },
+  },
+};
 </script>
 
