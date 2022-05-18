@@ -64,7 +64,7 @@
                       <v-checkbox
                         :value="(i - 1) * jumlahCol + j"
                         v-model="selected"
-                        :label="(i - 1) * jumlahCol + j"
+                        :label="String((i - 1) * jumlahCol + j)"
                         >{{ (i - 1) * jumlahCol + j }}</v-checkbox
                       >
                     </td>
@@ -87,17 +87,20 @@
           </v-col>
 
           <v-col cols="12" sm="6">
-            <v-list-item-content> Pembayaran </v-list-item-content>
+            <v-list-item-content> Metode Pembayaran </v-list-item-content>
           </v-col>
           <v-col cols="12" sm="6">
-            <v-select :items="pembayaran" label="Sesi" dense></v-select>
+            <v-select :items="pembayaran" label="Metode Pembayaran" dense></v-select>
           </v-col>
         </v-row>
       </v-container>
 
       <v-card-actions class="justify-center">
         <v-btn color="orange" text @click="goToPrev()"> Kembali </v-btn>
-        <v-btn color="orange" text> Booking </v-btn>
+
+        <nuxt-link style="text-decoration: none; color: inherit;" :to="'/user/bookingSuccess'">
+          <v-btn color="orange" text> Booking </v-btn>
+        </nuxt-link>
       </v-card-actions>
     </v-card>
   </div>

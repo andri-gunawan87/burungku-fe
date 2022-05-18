@@ -9,7 +9,7 @@
           @submit.prevent="register"
         >
           <img src="/logo.png" alt="Kontes Burung Logo" class="center" />
-          <h2 class="text-center mt-4">Daftar Akun</h2>
+          <h2 class="text-center mt-4">Daftar Akun Event-Organizer</h2>
           <v-row justify="center">
             <v-col md="10" justify="center" class="text-center">
               <v-text-field
@@ -17,6 +17,13 @@
                 :counter="25"
                 :rules="nameRules"
                 label="Nama"
+                required
+              ></v-text-field>
+
+              <v-text-field
+                v-model="phone"
+                label="No Telephone"
+                type="number"
                 required
               ></v-text-field>
 
@@ -39,17 +46,11 @@
                 @click:append="show = !show"
               ></v-text-field>
 
-          <v-card-actions class="justify-center">
-
-              <v-btn type="submit" color="primary" class="mr-4">
-                Register
-              </v-btn>
-          </v-card-actions>
-          <v-card-actions class="justify-end">
-              <a :href="'/event-org/register'">
-      Daftar sebagai Event-Organizer?
-    </a>
-          </v-card-actions>
+              <v-card-actions class="justify-center">
+                <v-btn type="submit" color="primary" class="mr-4">
+                  Register
+                </v-btn>
+              </v-card-actions>
             </v-col>
           </v-row>
         </v-form>
@@ -77,6 +78,7 @@ export default {
       (v) => !!v || "Password tidak boleh kosong.",
       (v) => v.length >= 8 || "Password minimal 8 huruf",
     ],
+    phone: "",
     show: false,
   }),
 

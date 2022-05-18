@@ -4,7 +4,7 @@
       :loading="loading"
       class="mx-auto my-12"
       max-width="500"
-      color="cyan lighten-5"
+      color="white"
     >
       <template slot="progress">
         <v-progress-linear
@@ -31,7 +31,9 @@
         Saat Registrasi Ulang di Lokasi
       </v-card-title>
       <v-row class="my-3 py-3" justify-md="center">
-         <v-btn color="primary" elevation="2" >Kembali</v-btn>
+        <nuxt-link style="text-decoration: none; color: inherit;" :to="'/user/my-tiket'">
+          <v-btn color="primary" elevation="2" >Kembali</v-btn>
+        </nuxt-link>
       </v-row>
     </v-card>
   </v-container>
