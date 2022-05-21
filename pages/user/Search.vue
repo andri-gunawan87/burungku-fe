@@ -1,59 +1,57 @@
 <template>
-  <div>
+  <div>    
       <div class="mb-4">
-              <h2 class="text-h5 text-center">
-          Daftar Tiket Saya
-        </h2>
+        <h2 class="text-h5 text-center">Hasil pencarian di lokasi ...</h2>
         <v-divider dark></v-divider>
       </div>
-        
-        <v-container>
+
+      <v-container>
         <v-row>
           <v-col
-            v-for="(data, index) in listTiket"
+            v-for="(data, index) in searchEvents"
             :key="index"
             cols="12"
             sm="12"
             md="6"
           >
-            <TiketCard
+            <SearchCard
           :key="index"
           :data="data"
         />
           </v-col>
         </v-row>
       </v-container>
-  </div>
+        
+    </div>
 </template>
 
 <script>
-import TiketCard from "@/components/Card/TiketCard.vue";
+import SearchCard from "@/components/Card/SearchCard.vue";
 
 export default {
   name: "IndexPage",
   components: {
-    TiketCard,
+    SearchCard,
   },
 
   data: () => ({
-    valid: true,
-    listTiket: [
+    searchEvents: [
       {
         id: 1,
         judul: "Event 1",
-        nomorTiket: "20220516-321-111",
+        lokasi: "Kota Bandung",
         tanggal: "23 Oktober 2022",
       },
       {
         id: 2,
         judul: "Event 2",
-        nomorTiket: "20220516-321-112",
+        lokasi: "Kota Bandung",
         tanggal: "23 Oktober 2022",
       },
       {
         id: 3,
         judul: "Event 3",
-        nomorTiket: "20220516-321-113",
+        lokasi: "Kota Bandung",
         tanggal: "23 Oktober 2022",
       },
     ],
@@ -65,6 +63,7 @@ export default {
         // await this.$axios
         //   .get("/search/?q=" + this.location)
         //   .then((res) => (this.datas = res.data.results));
+        this.isSearchActive = true;
       } catch (e) {
         this.error = e.response.data.message;
       }

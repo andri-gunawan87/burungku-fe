@@ -65,22 +65,26 @@ export default {
         {
           icon: "mdi-home",
           title: "Home",
-          to: "/",
+          to: "/event-org",
+        },
+        {
+          icon: "mdi-home",
+          title: "Create",
+          to: "/event-org/CreateEvent",
         },
         {
           icon: "mdi-login",
-          title: "Login",
-          to: "/account/login",
+          title: "List User",
+          to: "/event-org/ListAllPeserta",
         },
         {
           icon: "mdi-account-plus",
-          title: "Register",
-          to: "/account/register",
+          title: "List Event",
+          to: "/event-org/ListAllEvent",
         },
       ],
       loggedInListMenu: [
         { title: "Profile", to: "/user/Profile" },
-        { title: "My Tiket", to: "/user/my-tiket" },
         { title: "Logout", to: "/account/login" },
       ],
       title: "Kontes Burung",

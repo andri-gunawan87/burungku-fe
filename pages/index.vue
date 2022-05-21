@@ -46,7 +46,7 @@
               ></v-date-picker>
             </v-menu>
           </v-col>
-          <v-btn color="primary" class="mr-4" @click="search"> Cari </v-btn>
+          <v-btn color="primary" class="mr-4" to="/user/search"> Cari </v-btn>
         </v-row>
       </v-form>
     </div>

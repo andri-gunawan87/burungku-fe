@@ -23,7 +23,7 @@
     </v-list-item>
     <v-card-actions
     class="justify-center">
-    <nuxt-link style="text-decoration: none; color: inherit;" :to="'detail-event/' + data.id">
+    <nuxt-link style="text-decoration: none; color: inherit;" :to="'/detail-event/' + data.id">
       <v-btn
         color="orange"
         text
@@ -32,7 +32,7 @@
       </v-btn>
     </nuxt-link>
 
-    <nuxt-link style="text-decoration: none; color: inherit;" :to="'booking/' + data.id">
+    <nuxt-link style="text-decoration: none; color: inherit;" :to="'/booking/' + data.id">
       <v-btn
         color="orange"
         text

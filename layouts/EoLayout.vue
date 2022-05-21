@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <Navbar />
+    <EoNavbar />
     <v-main>
       <v-container>
         <Nuxt />
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'DefaultLayout',
+  name: 'EoLayout',
   data () {
     return {
       
