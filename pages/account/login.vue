@@ -1,9 +1,12 @@
 <template>
+  <v-row align="center" justify="center">
+    <v-col cols="12" sm="12" md="8">
+      <v-card light class="pa-5 ma-5">
   <v-form ref="form" v-model="valid" lazy-validation>
     <img src="/logo.png" alt="Kontes Burung Logo" class="center" />
     <h2 class="text-center mt-4">Masuk</h2>
     <v-row justify="center">
-      <v-col md="4" justify="center" class="text-center">
+      <v-col md="10" justify="center" class="text-center">
         <v-text-field
           v-model="username"
           :counter="25"
@@ -29,6 +32,9 @@
       </v-col>
     </v-row>
   </v-form>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

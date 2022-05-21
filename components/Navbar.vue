@@ -22,14 +22,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-menu
-        transition="slide-x-transition"
-        bottom
-        right
-        :offset-y="offset"
-        v-if="isAuthenticated"
-      >
-        >
+      <v-menu transition="slide-x-transition" bottom right :offset-y="offset">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             class="deep-orange"
@@ -43,7 +36,13 @@
         </template>
 
         <v-list>
-          <v-list-item v-for="(data, i) in loggedInListMenu" :key="i">
+          <v-list-item
+            v-for="(data, i) in loggedInListMenu"
+            :key="i"
+            :to="data.to"
+            router
+            exact
+          >
             <v-list-item-title>{{ data.title }}</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -80,7 +79,7 @@ export default {
         },
       ],
       loggedInListMenu: [
-        { title: "User", to: "/account/register" },
+        { title: "My Tiket", to: "/user/my-tiket" },
         { title: "Logout", to: "/account/register" },
       ],
       title: "Kontes Burung",
