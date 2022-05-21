@@ -31,7 +31,7 @@
         Saat Registrasi Ulang di Lokasi
       </v-card-title>
       <v-row class="my-3 py-3" justify-md="center">
-         <v-btn color="primary" elevation="2" >Kembali</v-btn>
+        <v-btn color="primary" elevation="2" >Kembali</v-btn>
       </v-row>
     </v-card>
   </v-container>
