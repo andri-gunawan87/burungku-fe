@@ -3,16 +3,13 @@
     <div v-if="!isSearchActive">
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-row justify="center">
-          <v-col cols="6" sm="12" md="12" justify="center" class="text-center">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1197183.8373802372!2d-1.9415093691103689!3d6.781986417238027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdb96f349e85efd%3A0xb8d1e0b88af1f0f5!2sKumasi+Central+Market!5e0!3m2!1sen!2sth!4v1532967884907"
-              width="100%"
-              height="400px"
-              frameborder="0"
-              style="border: 0"
-              allowfullscreen
-            ></iframe>
-          </v-col>
+          <v-carousel cycle :show-arrows="false">
+          <v-carousel-item
+            v-for="(item,i) in items"
+            :key="i"
+            :src="item.src"
+          ></v-carousel-item>
+        </v-carousel>
         </v-row>
 
         <v-row align="center" justify="center">
@@ -55,15 +52,11 @@
     </div>
     <div v-else>
       <div class="mb-4">
-              <h2 class="text-h5 text-center">
-          Hasil pencarian di lokasi ...
-        </h2>
+        <h2 class="text-h5 text-center">Hasil pencarian di lokasi ...</h2>
         <v-divider dark></v-divider>
       </div>
-        
-      <v-row
-      align="center"
-      justify="center">
+
+      <v-row align="center" justify="center">
         <SearchCard
           v-for="(data, index) in searchEvents"
           :key="index"
@@ -105,6 +98,20 @@ export default {
         judul: "Event 3",
         lokasi: "Kota Bandung",
         tanggal: "23 Oktober 2022",
+      },
+    ],
+    items: [
+      {
+        src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
+      },
+      {
+        src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+      },
+      {
+        src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+      },
+      {
+        src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
       },
     ],
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
