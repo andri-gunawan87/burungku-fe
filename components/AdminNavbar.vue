@@ -65,22 +65,26 @@ export default {
         {
           icon: "mdi-home",
           title: "Home",
-          to: "/",
+          to: "/admin",
         },
         {
           icon: "mdi-login",
-          title: "Login",
-          to: "/account/login",
+          title: "List User",
+          to: "/admin/ListAllUser",
+        },
+        {
+          icon: "mdi-login",
+          title: "List EO",
+          to: "/admin/ListAllEO",
         },
         {
           icon: "mdi-account-plus",
-          title: "Register",
-          to: "/account/register",
+          title: "List All Event",
+          to: "/admin/ListAllEvent",
         },
       ],
       loggedInListMenu: [
         { title: "Profile", to: "/user/Profile" },
-        { title: "My Tiket", to: "/user/my-tiket" },
         { title: "Logout", to: "/account/login" },
       ],
       title: "Kontes Burung",

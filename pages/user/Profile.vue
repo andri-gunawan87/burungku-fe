@@ -4,6 +4,7 @@
     fluid
     tag="section"
   >
+  
     <v-row justify="center">
       <v-col
         cols="12"

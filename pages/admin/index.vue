@@ -11,7 +11,7 @@
 <script>
 
 export default {
-  layout: "EoLayout",
+  layout: "AdminLayout",
   name: "IndexPage",
   components: {
   },

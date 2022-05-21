@@ -2,36 +2,36 @@
   <v-row align="center" justify="center">
     <v-col cols="12" sm="12" md="8">
       <v-card light class="pa-5 ma-5">
-  <v-form ref="form" v-model="valid" lazy-validation>
-    <img src="/logo.png" alt="Kontes Burung Logo" class="center" />
-    <h2 class="text-center mt-4">Masuk</h2>
-    <v-row justify="center">
-      <v-col md="10" justify="center" class="text-center">
-        <v-text-field
-          v-model="username"
-          :counter="25"
-          :rules="usernameRules"
-          label="Username"
-          required
-        ></v-text-field>
+        <v-form ref="form" v-model="valid" lazy-validation>
+          <img src="/logo.png" alt="Kontes Burung Logo" class="center" />
+          <h2 class="text-center mt-4">Masuk</h2>
+          <v-row justify="center">
+            <v-col md="10" justify="center" class="text-center">
+              <v-text-field
+                v-model="username"
+                :counter="25"
+                :rules="usernameRules"
+                label="Username"
+                required
+              ></v-text-field>
 
-        <v-text-field
-          v-model="password"
-          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="passwordRules"
-          :type="show ? 'text' : 'password'"
-          name="input-10-1"
-          label="Password"
-          hint="At least 8 characters"
-          class="mb-4"
-          counter
-          @click:append="show = !show"
-        ></v-text-field>
+              <v-text-field
+                v-model="password"
+                :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                :rules="passwordRules"
+                :type="show ? 'text' : 'password'"
+                name="input-10-1"
+                label="Password"
+                hint="At least 8 characters"
+                class="mb-4"
+                counter
+                @click:append="show = !show"
+              ></v-text-field>
 
-        <v-btn color="primary" class="mr-4" @click="login"> Login </v-btn>
-      </v-col>
-    </v-row>
-  </v-form>
+              <v-btn color="primary" class="mr-4" @click="login"> Login </v-btn>
+            </v-col>
+          </v-row>
+        </v-form>
       </v-card>
     </v-col>
   </v-row>
