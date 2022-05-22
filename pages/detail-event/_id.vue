@@ -2,7 +2,7 @@
   <div>
     <v-row align="center" justify="center">
       <v-col cols="12" sm="12" md="8">
-        <v-card light class="pa-5 ma-5">
+        <v-card dark class="pa-5 ma-5">
           <v-list-item
           >
             <v-list-item-avatar

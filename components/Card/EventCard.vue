@@ -43,7 +43,7 @@
           <v-card-actions class="justify-center">
             <nuxt-link
               style="text-decoration: none; color: inherit"
-              :to="'/detail-event/' + data.id"
+              :to="'/event-org/detail/' + data.id"
             >
               <v-btn color="orange" text> Detail </v-btn>
             </nuxt-link>

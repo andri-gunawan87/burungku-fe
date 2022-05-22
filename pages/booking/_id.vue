@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card light class="ma-2">
+    <v-card dark class="ma-2">
       <v-list-item class="pa-10">
         <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
         <v-list-item-content>

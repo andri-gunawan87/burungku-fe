@@ -4,7 +4,7 @@
       :loading="loading"
       class="mx-auto my-12"
       max-width="500"
-      color="cyan lighten-5"
+      light 
     >
       <template slot="progress">
         <v-progress-linear
