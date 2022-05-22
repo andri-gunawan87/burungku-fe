@@ -53,6 +53,9 @@
             </v-col>
           </v-row>
         </v-form>
+        <v-btn v-on:click="google" color="primary" class="mr-4">
+                google
+              </v-btn>
       </v-card>
     </v-col>
   </v-row>
@@ -95,6 +98,9 @@ export default {
         this.error = e.response.data.message;
       }
     },
+    google(){
+      this.$auth.loginWith('google');
+    }
   },
 };
 </script>
