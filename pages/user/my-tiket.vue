@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import TiketCard from "@/components/Card/TiketCard.vue";
+import TiketCard from "~/components/Card/TiketCard.vue";
 
 export default {
   name: "IndexPage",
@@ -59,16 +59,16 @@ export default {
     ],
   }),
 
-  methods: {
-    async search() {
-      try {
-        // await this.$axios
-        //   .get("/search/?q=" + this.location)
-        //   .then((res) => (this.datas = res.data.results));
-      } catch (e) {
-        this.error = e.response.data.message;
-      }
-    },
-  },
+  // methods: {
+  //   async search() {
+  //     try {
+  //       // await this.$axios
+  //       //   .get("/search/?q=" + this.location)
+  //       //   .then((res) => (this.datas = res.data.results));
+  //     } catch (e) {
+  //       this.error = e.response.data.message;
+  //     }
+  //   },
+  // },
 };
 </script>

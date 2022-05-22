@@ -1,11 +1,6 @@
 <template>
   <v-container md>
-    <v-card
-      :loading="loading"
-      class="mx-auto my-12"
-      max-width="500"
-      light 
-    >
+    <v-card :loading="loading" class="mx-auto my-12" max-width="500" light>
       <template slot="progress">
         <v-progress-linear
           color="deep-purple"
@@ -17,10 +12,9 @@
       <v-card-title style="justify-content: center; color: #000000"
         >QR Code</v-card-title
       >
-      <v-img
-        position="center"
-        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpngimg.com%2Fuploads%2Fqr_code%2Fqr_code_PNG6.png&f=1&nofb=1"
-      ></v-img>
+      <v-row justify="center">
+        <qrcode-vue :value="value" :size="size" level="H" class="px-2 py-2"></qrcode-vue>
+      </v-row>
     </v-card>
     <v-row>
       <v-col cols="6">
@@ -42,21 +36,25 @@
     </v-row>
     <v-row class="mt-10 mx-5">
       <v-col cols="4">
-        <v-btn block color="yellow darken-4" elevation="6" small >Batalkan Tiket</v-btn>
+        <v-btn block color="yellow darken-4" elevation="6" small
+          >Batalkan Tiket</v-btn
+        >
       </v-col>
       <v-spacer></v-spacer>
       <v-col cols="4">
-        <v-btn block color="primary" elevation="2" small >Kembali</v-btn>
+        <v-btn block color="primary" elevation="2" small>Kembali</v-btn>
       </v-col>
-      
     </v-row>
   </v-container>
 </template>
 <script>
+import QrcodeVue from "qrcode.vue";
 export default {
   data: () => ({
     loading: false,
     selection: 1,
+    value: "https://example.com",
+    size: 150,
   }),
 
   methods: {
@@ -65,6 +63,9 @@ export default {
 
       setTimeout(() => (this.loading = false), 2000);
     },
+  },
+  components: {
+    QrcodeVue,
   },
 };
 </script>
