@@ -66,9 +66,7 @@
                     <v-list-item-title>Edit</v-list-item-title>
                   </v-list-item>
 
-                  <v-list-item
-                    @click="dialog3 = true"
-                  >
+                  <v-list-item @click="dialog3 = true">
                     <v-list-item-title>Cancel</v-list-item-title>
                   </v-list-item>
                 </v-list>
@@ -78,40 +76,22 @@
         </tbody>
       </v-simple-table>
     </material-card>
-    <v-dialog
-      v-model="dialog3"
-      max-width="300"
-    >
+    <v-dialog v-model="dialog3" max-width="300">
       <v-card>
         <v-card-title>
           Are you sure?
 
           <v-spacer />
 
-          <v-icon
-            aria-label="Close"
-            @click="dialog3 = false"
-          >
+          <v-icon aria-label="Close" @click="dialog3 = false">
             mdi-close
           </v-icon>
         </v-card-title>
 
         <v-card-text class="pb-6 pt-12 text-center">
-          <v-btn
-            class="mr-3"
-            text
-            @click="dialog3 = false"
-          >
-            Nevermind
-          </v-btn>
+          <v-btn class="mr-3" text @click="dialog3 = false"> Nevermind </v-btn>
 
-          <v-btn
-            color="success"
-            text
-            @click="dialog3 = false"
-          >
-            Yes
-          </v-btn>
+          <v-btn color="success" text @click="dialog3 = false"> Yes </v-btn>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -160,6 +140,7 @@ export default {
       // ],
       offset: true,
       dialog3: false,
+
       listEvent:[]
 
     };

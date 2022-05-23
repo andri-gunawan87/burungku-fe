@@ -46,10 +46,10 @@ export default {
   // },
 
   axios: {
+    baseURL: "http://127.0.0.1:8080/",
     proxy: true,
     prefix: "/api/"
   },
-
   proxy: {'/api/': { target: 'http://127.0.0.1:8080/', pathRewrite: {'^/api/': ''} }},
 
   auth: {
