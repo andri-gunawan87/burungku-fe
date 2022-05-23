@@ -42,12 +42,13 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
+    baseURL: "http://127.0.0.1:8080/",
     proxy: true,
-    prefix: "/api",
+    prefix: "/api/",
   },
 
   proxy: {
-    "/api": "http://127.0.0.1:5000",
+    "/api/": { target: "http://127.0.0.1:8080", pathRewrite: { "^/api/": "" } },
   },
 
   auth: {

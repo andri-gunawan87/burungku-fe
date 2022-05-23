@@ -57,12 +57,7 @@ export default {
   methods: {
     async login() {
       try {
-        await this.$auth.loginWith("local", {
-          data: {
-            username: this.username,
-            password: this.password,
-          },
-        });
+        await this.$auth.loginWith("google");
         this.$router.push("/");
       } catch (e) {
         this.error = e.response.data.message;
@@ -71,4 +66,3 @@ export default {
   },
 };
 </script>
-
