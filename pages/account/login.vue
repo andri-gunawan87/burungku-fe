@@ -57,11 +57,7 @@ export default {
   methods: {
     async login() {
       try {
-<<<<<<< HEAD
         await this.$auth.loginWith("google");
-=======
-        await this.$auth.loginWith('google');
->>>>>>> 209674734e0923588c386a580f94912765eda43d
         this.$router.push("/");
       } catch (e) {
         this.error = e.response.data.message;
