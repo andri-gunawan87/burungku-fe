@@ -41,15 +41,16 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  // axios: {
+  //   baseURL: "http://127.0.0.1:8080/",
+  // },
+
   axios: {
     baseURL: "http://127.0.0.1:8080/",
     proxy: true,
-    prefix: "/api/",
+    prefix: "/api/"
   },
-
-  proxy: {
-    "/api/": { target: "http://127.0.0.1:8080", pathRewrite: { "^/api/": "" } },
-  },
+  proxy: {'/api/': { target: 'http://127.0.0.1:8080/', pathRewrite: {'^/api/': ''} }},
 
   auth: {
     strategies: {
@@ -58,6 +59,10 @@ export default {
           "209484141957-8cuktphu1efj89gankvflrco5dvigr1m.apps.googleusercontent.com",
         codeChallengeMethod: "",
         responseType: "token id_token",
+        endpoints: {
+          token: 'http://localhost:8000/social-login/google/',
+           userInfo: 'http://localhost:8000/auth/user/'
+          },
       },
       local: {
         endpoints: {
