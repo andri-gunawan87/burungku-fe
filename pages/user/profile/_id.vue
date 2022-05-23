@@ -99,17 +99,17 @@
 
 <script>
 export default {
-  data() {
-    return {
-      profilId: this.$route.params.id,
-      profil: [],
-    };
-  },
-  async fetch() {
-    await this.$axios
-      .get("/profil/" + profilId)
-      .then((res) => (this.profil = res.data));
-    console.log(this.profil);
-  },
+  //get data profil masih error untuk tampilan edit user
+  // data() {
+  //   return {
+  //     profilId: this.$route.params.id,
+  //     profil: [],
+  //   };
+  // },
+  // async fetch() {
+  //   await this.$axios
+  //     .get("/profil/" + profilId)
+  //     .then((res) => (this.profil = res.data));
+  // },
 };
 </script>

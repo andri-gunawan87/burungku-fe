@@ -6,14 +6,7 @@
           <v-card>
             <v-card-text class="text-center">
               <div
-                class="
-                  display-2
-                  font-weight-light
-                  col col-12
-                  text--primary
-                  pa-0
-                  mb-8
-                "
+                class="display-2 font-weight-light col col-12 text--primary pa-0 mb-8"
               >
                 <h5 class="font-weight-light">Detail Event</h5>
               </div>
@@ -133,12 +126,10 @@
                     <v-btn @click="clear"> clear </v-btn>
                   </form>
                 </v-col>
-                
               </v-row>
             </v-card-text>
           </v-card>
         </v-col>
-        
       </v-row>
     </v-container>
   </div>
@@ -165,7 +156,16 @@ export default {
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
     calendar: false,
     watch: false,
+    eventId: this.$route.params.id,
+    eventsEdit: [],
   }),
+
+  async fetch() {
+    await this.$axios
+      .get("/event" + this.eventId)
+      .then((res) => (this.eventsEdit = res.data));
+    console.log(this.eventsEdit);
+  },
 
   methods: {
     clear() {
