@@ -56,13 +56,7 @@
                 </template>
 
                 <v-list>
-<<<<<<< HEAD
                   <v-list-item :to="`/event-org/detail-event/${data.id}`">
-=======
-                  <v-list-item
-                    :to="`/event-org/detail-event/${data.id}`"
-                  >
->>>>>>> 52d2c9ce00a46987ac17cfb120785b4615f4bb67
                     <v-list-item-title>Detail</v-list-item-title>
                   </v-list-item>
 
@@ -145,8 +139,7 @@ export default {
       offset: true,
       dialog3: false,
 
-      listEvent:[]
-
+      listEvent: [],
     };
   },
 
