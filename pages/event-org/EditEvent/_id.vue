@@ -187,7 +187,6 @@
 export default {
   layout: "EoLayout",
   data: () => ({
-    paramId: this.$route.params.id,
     eventName: "",
     date: "",
     description: "",
