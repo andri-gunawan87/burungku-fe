@@ -59,6 +59,10 @@ export default {
           "209484141957-8cuktphu1efj89gankvflrco5dvigr1m.apps.googleusercontent.com",
         codeChallengeMethod: "",
         responseType: "token id_token",
+        endpoints: {
+          token: 'http://localhost:8000/social-login/google/',
+           userInfo: 'http://localhost:8000/auth/user/'
+          },
       },
       local: {
         endpoints: {
