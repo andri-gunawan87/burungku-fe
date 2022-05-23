@@ -166,6 +166,23 @@
             </v-col>
           </v-row>
         </div>
+        <div class="my-3 py-3">
+          <v-row justify="center">
+            <h3>Lomba Populer</h3>
+          </v-row>
+          <v-divider></v-divider>
+        </div>
+        <div class="my-3">
+          <v-carousel hide-delimiters>
+            <v-carousel-item
+              v-for="(data, i) in searchEvents"
+              :key="i"
+              :data="data"
+            >
+              <SearchCard :data="data" />
+            </v-carousel-item>
+          </v-carousel>
+        </div>
       </v-form>
     </div>
     <div v-else>
