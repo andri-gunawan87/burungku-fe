@@ -10,6 +10,7 @@
       class="font-weight-light subtitle-1"
     >
       List daftar semua User
+      {{allUser}}
     </span>
   </section>
     <div class="py-3" />
@@ -156,8 +157,21 @@ export default {
           modal: false
         },
       ],
+      offset: true,
+
+      allUser: []
     };
   },
+
+  async fetch() {
+    await this.$axios
+      .get("/peserta")
+      .then((res) => (this.allUser = res.data));
+  },
+
+  mounted() {
+    console.log(this.allUser)
+  }
 
 
 };

@@ -30,8 +30,8 @@
           <tr v-for="(data, index) in listEvent" :key="index" :data="data">
             <td>{{ data.id }}</td>
             <td>{{ data.judul }}</td>
-            <td>{{ data.tanggal }}</td>
-            <td>{{ data.lokasi }}</td>
+            <td>{{ data.jadwal }}</td>
+            <td>{{ data.jml_tiket }}</td>
             <td class="text-center">
               <span class="red--text">{{ data.pendaftar }}</span
               >/<span class="green--text">{{ data.jumlahKursi }}</span>
@@ -56,11 +56,17 @@
                 </template>
 
                 <v-list>
+<<<<<<< HEAD
                   <v-list-item to="/event-org/detail-event/1">
+=======
+                  <v-list-item
+                    :to="`/event-org/detail-event/${data.id}`"
+                  >
+>>>>>>> 209674734e0923588c386a580f94912765eda43d
                     <v-list-item-title>Detail</v-list-item-title>
                   </v-list-item>
 
-                  <v-list-item to="/event-org/EditEvent/1">
+                  <v-list-item :to="`/event-org/EditEvent/${data.id}`">
                     <v-list-item-title>Edit</v-list-item-title>
                   </v-list-item>
 
@@ -107,38 +113,49 @@ export default {
 
   data() {
     return {
-      listEvent: [
-        {
-          id: 1,
-          judul: "Event 1",
-          nomorTiket: "20220516-321-111",
-          tanggal: "23 Oktober 2022",
-          lokasi: "Bandung",
-          pendaftar: 14,
-          jumlahKursi: 24,
-        },
-        {
-          id: 2,
-          judul: "Event 2",
-          nomorTiket: "20220516-321-112",
-          tanggal: "23 Oktober 2022",
-          lokasi: "Bandung",
-          pendaftar: 20,
-          jumlahKursi: 36,
-        },
-        {
-          id: 3,
-          judul: "Event 3",
-          nomorTiket: "20220516-321-113",
-          tanggal: "23 Oktober 2022",
-          lokasi: "Bandung",
-          pendaftar: 9,
-          jumlahKursi: 25,
-        },
-      ],
+      // listEvent: [
+      //   {
+      //     id: 1,
+      //     judul: "Event 1",
+      //     nomorTiket: "20220516-321-111",
+      //     tanggal: "23 Oktober 2022",
+      //     lokasi: "Bandung",
+      //     pendaftar: 14,
+      //     jumlahKursi: 24,
+      //   },
+      //   {
+      //     id: 2,
+      //     judul: "Event 2",
+      //     nomorTiket: "20220516-321-112",
+      //     tanggal: "23 Oktober 2022",
+      //     lokasi: "Bandung",
+      //     pendaftar: 20,
+      //     jumlahKursi: 36,
+      //   },
+      //   {
+      //     id: 3,
+      //     judul: "Event 3",
+      //     nomorTiket: "20220516-321-113",
+      //     tanggal: "23 Oktober 2022",
+      //     lokasi: "Bandung",
+      //     pendaftar: 9,
+      //     jumlahKursi: 25,
+      //   },
+      // ],
       offset: true,
       dialog3: false,
+<<<<<<< HEAD
+=======
+      listEvent:[]
+
+>>>>>>> 209674734e0923588c386a580f94912765eda43d
     };
+  },
+
+  async fetch() {
+    await this.$axios
+      .get("/event")
+      .then((res) => (this.listEvent = res.data));
   },
 
   methods: {
