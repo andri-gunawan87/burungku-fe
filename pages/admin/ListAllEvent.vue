@@ -55,7 +55,7 @@
                     <v-list-item-title>Detail</v-list-item-title>
                   </v-list-item>
 
-                  <v-list-item to="/admin/EditEvent/1">
+                  <v-list-item :to="'/admin/EditEvent/' + data.id">
                     <v-list-item-title>Edit</v-list-item-title>
                   </v-list-item>
 
@@ -111,7 +111,6 @@ export default {
   },
   async fetch() {
     await this.$axios.get("/event").then((res) => (this.events = res.data));
-    console.log(this.events);
   },
 
   methods: {
