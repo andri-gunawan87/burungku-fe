@@ -15,7 +15,7 @@
                   mb-8
                 "
               >
-                <h5 class="font-weight-light">Create Event</h5>
+                <h5 class="font-weight-light">Edit Event {{datas.judul}}</h5>
               </div>
               <v-row class="text-left">
                 <v-col cols="12">
@@ -187,6 +187,7 @@
 export default {
   layout: "EoLayout",
   data: () => ({
+    datas: [],
     eventName: "",
     date: "",
     description: "",
@@ -195,7 +196,7 @@ export default {
     eventDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
-    eventTime: null,
+    eventTime: "",
     location: "",
     numberOfSession: 0,
     ticketPrice: 0,
@@ -204,17 +205,28 @@ export default {
     eventRules: "",
     calendar: false,
     watch: false,
-    datas: []
+    
   }),
 
   async fetch() {
-    await this.$axios
+    this.datas = await this.$axios
       .get("/jenisBurung")
       .then((res) => (this.birdType = res.data));
       return this.$axios
-      .get("/event/" + this.paramId)
+      .get("/event/" + this.$route.params.id)
       .then((res) => (this.datas = res.data));
   },
+
+  // async asyncData({ $axios }) {
+  //   const [birdTypeRes, datasRes] = await Promise.all([
+  //     $axios.get("/jenisBurung"),
+  //     $axios.get("/event/" + $route.params.id),
+  //   ]);
+  //   return {
+  //     datas: birdTypeRes.data,
+  //     birdType: datasRes.data,
+  //   };
+  // },
 
   methods: {
     clear() {
@@ -224,10 +236,11 @@ export default {
 
     async submit() {
       try {
-        await this.$axios.post("/event/add", {
+        await this.$axios.put("/event/update/" + this.$route.params.id, {
           judul: this.eventName,
           deskripsi: this.description,
-          jadwal: this.datetime,
+          tanggal: this.date,
+          jam: this.eventTime,
           jml_tiket: this.numberOfTicket,
           jml_sesi: this.numberOfSession,
           harga_tiket: this.ticketPrice,
@@ -235,6 +248,8 @@ export default {
           jenisburung_id: this.birdTypeSelect,
           lokasi: this.location,
           jenislomba_id: 1,
+          jml_kol: this.numberOfCol,
+          jml_baris: this.numberOfRow
         });
         this.$router.push("/");
       } catch (e) {
@@ -248,13 +263,22 @@ export default {
     numberOfTicket() {
       return this.numberOfRow * this.numberOfCol;
     },
-    datetime() {
-      return new String(this.date + " " + this.eventTime);
-    },
   },
 
-  mounted() {
+  beforeUpdate() {
     console.log(this.datas)
+    console.log(this.birdType)
+    this.eventName = this.datas.judul
+    this.date = this.datas.tanggal
+    this.description = this.datas.deskripsi
+    this.birdTypeSelect = this.datas.jenisburung_id
+    this.eventTime = this.datas.jam
+    this.location = this.datas.kota
+    this.numberOfSession = this.datas.jml_sesi
+    this.ticketPrice = this.datas.harga_tiket
+    this.eventRules = this.datas.aturan
+    this.numberOfRow = this.datas.jml_baris
+    this.numberOfCol = this.datas.jml_kol
   }
 };
 </script>
