@@ -56,13 +56,7 @@
                 </template>
 
                 <v-list>
-<<<<<<< HEAD
-                  <v-list-item to="/event-org/detail-event/1">
-=======
-                  <v-list-item
-                    :to="`/event-org/detail-event/${data.id}`"
-                  >
->>>>>>> 209674734e0923588c386a580f94912765eda43d
+                  <v-list-item :to="`/event-org/detail-event/${data.id}`">
                     <v-list-item-title>Detail</v-list-item-title>
                   </v-list-item>
 
@@ -144,18 +138,12 @@ export default {
       // ],
       offset: true,
       dialog3: false,
-<<<<<<< HEAD
-=======
-      listEvent:[]
-
->>>>>>> 209674734e0923588c386a580f94912765eda43d
+      listEvent: [],
     };
   },
 
   async fetch() {
-    await this.$axios
-      .get("/event")
-      .then((res) => (this.listEvent = res.data));
+    await this.$axios.get("/event").then((res) => (this.listEvent = res.data));
   },
 
   methods: {
