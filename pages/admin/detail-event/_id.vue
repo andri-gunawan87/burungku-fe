@@ -6,19 +6,9 @@
           <v-card>
             <v-card-text class="text-center">
               <div
-                class="
-                  display-2
-                  font-weight-light
-                  col col-12
-                  text--primary
-                  pa-0
-                  mb-8
-                "
+                class="display-2 font-weight-light col col-12 text--primary pa-0 mb-8"
               >
-                <h5 class="font-weight-light">
-                  List Kursi
-                </h5>
-
+                <h5 class="font-weight-light">List Kursi</h5>
               </div>
 
               <v-simple-table dense>
@@ -46,35 +36,37 @@
           <v-card>
             <v-card-text class="text-center">
               <div
-                class="
-                  display-2
-                  font-weight-light
-                  col col-12
-                  text--primary
-                  pa-0
-                  mb-8
-                "
+                class="display-2 font-weight-light col col-12 text--primary pa-0 mb-8"
               >
-                <h5 class="font-weight-light">
-                  Detail Event
-                </h5>
-
+                <h5 class="font-weight-light">Detail Event</h5>
               </div>
               <v-row class="text-left">
-              <v-col cols="6">
-                <v-list-item-title class="my-2">Tanggal</v-list-item-title>
-                <v-list-item-title class="my-2">Nama</v-list-item-title>
-                <v-list-item-title class="my-2">Jenis Burung</v-list-item-title>
-                <v-list-item-title class="my-2">Lokasi</v-list-item-title>
-                <v-list-item-title class="my-2">Harga</v-list-item-title>
-            </v-col>
-              <v-col cols="6">
-                <v-list-item-title class="my-2">11 Oktober 2022</v-list-item-title>
-                <v-list-item-title class="my-2">Event 1</v-list-item-title>
-                <v-list-item-title class="my-2">Murai</v-list-item-title>
-                <v-list-item-title class="my-2">Bandung</v-list-item-title>
-                <v-list-item-title class="my-2">Rp. 10.000</v-list-item-title>
-            </v-col>
+                <v-col cols="6">
+                  <v-list-item-title class="my-2">Tanggal</v-list-item-title>
+                  <v-list-item-title class="my-2">Nama</v-list-item-title>
+                  <v-list-item-title class="my-2"
+                    >Jenis Burung</v-list-item-title
+                  >
+                  <v-list-item-title class="my-2">Lokasi</v-list-item-title>
+                  <v-list-item-title class="my-2">Harga</v-list-item-title>
+                </v-col>
+                <v-col cols="6">
+                  <v-list-item-title class="my-2">{{
+                    detailEvent.jadwal
+                  }}</v-list-item-title>
+                  <v-list-item-title class="my-2">{{
+                    detailEvent.judul
+                  }}</v-list-item-title>
+                  <v-list-item-title class="my-2">{{
+                    detailEvent.jenisburung_id
+                  }}</v-list-item-title>
+                  <v-list-item-title class="my-2">{{
+                    detailEvent.lokasi_id
+                  }}</v-list-item-title>
+                  <v-list-item-title class="my-2">{{
+                    detailEvent.harga_tiket
+                  }}</v-list-item-title>
+                </v-col>
               </v-row>
             </v-card-text>
           </v-card>
@@ -83,37 +75,27 @@
           <v-card>
             <v-card-text class="text-center">
               <div
-                class="
-                  display-2
-                  font-weight-light
-                  col col-12
-                  text--primary
-                  pa-0
-                  mb-8
-                "
+                class="display-2 font-weight-light col col-12 text--primary pa-0 mb-8"
               >
-                <h5 class="font-weight-light">
-                  List Peserta
-                </h5>
-
+                <h5 class="font-weight-light">List Peserta</h5>
               </div>
-          <v-row>
-            <v-col cols="2" sm="2" md="2">
-              <v-list-item-title>No</v-list-item-title>
-            </v-col>
-            <v-col cols="6" sm="6" md="6">
-              <v-list-item-title>Nama</v-list-item-title>
-            </v-col>
-            <v-col cols="4" sm="4" md="4">
-              <v-list-item-title>Status</v-list-item-title>
-            </v-col>
-          </v-row>
+              <v-row>
+                <v-col cols="2" sm="2" md="2">
+                  <v-list-item-title>No</v-list-item-title>
+                </v-col>
+                <v-col cols="6" sm="6" md="6">
+                  <v-list-item-title>Nama</v-list-item-title>
+                </v-col>
+                <v-col cols="4" sm="4" md="4">
+                  <v-list-item-title>Status</v-list-item-title>
+                </v-col>
+              </v-row>
 
-          <ListPeserta
-            v-for="(data, index) in listPeserta"
-            :key="index"
-            :data="data"
-          />
+              <ListPeserta
+                v-for="(data, index) in listPeserta"
+                :key="index"
+                :data="data"
+              />
             </v-card-text>
           </v-card>
         </v-col>
@@ -172,7 +154,16 @@ export default {
         },
       ],
       nomorPeserta: [14, 9, 2, 19],
+      eventDetail: this.$route.params.id,
+      detailEvent: [],
     };
+  },
+
+  async fetch() {
+    await this.$axios
+      .get("event/" + this.eventDetail)
+      .then((res) => (this.detailEvent = res.data));
+    console.log(this.detailEvent);
   },
 
   props: {

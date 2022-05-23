@@ -19,23 +19,18 @@
           <tr>
             <th>ID</th>
             <th>Nama Event</th>
+            <th>Deskripsi</th>
             <th>Tanggal</th>
-            <th>Lokasi</th>
-            <th class="text-center">Pendaftar</th>
             <th class="text-right">Action</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr v-for="(data, index) in listEvent" :key="index" :data="data">
+          <tr v-for="(data, index) in events" :key="index" :data="data">
             <td>{{ data.id }}</td>
             <td>{{ data.judul }}</td>
-            <td>{{ data.tanggal }}</td>
-            <td>{{ data.lokasi }}</td>
-            <td class="text-center">
-              <span class="red--text">{{ data.pendaftar }}</span
-              >/<span class="green--text">{{ data.jumlahKursi }}</span>
-            </td>
+            <td>{{ data.deskripsi }}</td>
+            <td>{{ data.jadwal }}</td>
             <td class="text-right">
               <v-menu
                 transition="slide-x-transition"
@@ -56,11 +51,11 @@
                 </template>
 
                 <v-list>
-                  <v-list-item to="/admin/detail-event/1">
+                  <v-list-item :to="'detail-event/' + data.id">
                     <v-list-item-title>Detail</v-list-item-title>
                   </v-list-item>
 
-                  <v-list-item to="/admin/EditEvent/1">
+                  <v-list-item :to="'/admin/EditEvent/' + data.id">
                     <v-list-item-title>Edit</v-list-item-title>
                   </v-list-item>
 
@@ -111,40 +106,11 @@ export default {
 
   data() {
     return {
-      listEvent: [
-        {
-          id: 1,
-          judul: "Event 1",
-          nomorTiket: "20220516-321-111",
-          tanggal: "23 Oktober 2022",
-          lokasi: "Bandung",
-          pendaftar: 14,
-          jumlahKursi: 24,
-          modal: false,
-        },
-        {
-          id: 2,
-          judul: "Event 2",
-          nomorTiket: "20220516-321-112",
-          tanggal: "23 Oktober 2022",
-          lokasi: "Bandung",
-          pendaftar: 20,
-          jumlahKursi: 36,
-          modal: false,
-        },
-        {
-          id: 3,
-          judul: "Event 3",
-          nomorTiket: "20220516-321-113",
-          tanggal: "23 Oktober 2022",
-          lokasi: "Bandung",
-          pendaftar: 9,
-          jumlahKursi: 25,
-          modal: false,
-        },
-      ],
-      offset: true,
+      events: [],
     };
+  },
+  async fetch() {
+    await this.$axios.get("/event").then((res) => (this.events = res.data));
   },
 
   methods: {

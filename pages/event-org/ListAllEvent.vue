@@ -56,9 +56,7 @@
                 </template>
 
                 <v-list>
-                  <v-list-item
-                    :to="`/event-org/detail-event/${data.id}`"
-                  >
+                  <v-list-item :to="`/event-org/detail-event/${data.id}`">
                     <v-list-item-title>Detail</v-list-item-title>
                   </v-list-item>
 
@@ -124,15 +122,13 @@ export default {
       // ],
       offset: true,
       dialog3: false,
-      listEvent:[]
 
+      listEvent: [],
     };
   },
 
   async fetch() {
-    await this.$axios
-      .get("/event")
-      .then((res) => (this.listEvent = res.data));
+    await this.$axios.get("/event").then((res) => (this.listEvent = res.data));
   },
 
   methods: {
