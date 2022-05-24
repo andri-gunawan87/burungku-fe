@@ -223,7 +223,8 @@ export default {
         await this.$axios.post("/event/add", {
           judul: this.eventName,
           deskripsi: this.description,
-          jadwal: this.datetime,
+          tanggal: this.date,
+          jam: this.eventTime,
           jml_tiket: this.numberOfTicket,
           jml_sesi: this.numberOfSession,
           harga_tiket: this.ticketPrice,
@@ -231,6 +232,8 @@ export default {
           jenisburung_id: this.birdTypeSelect,
           lokasi: this.location,
           jenislomba_id: 1,
+          jml_kol: this.numberOfCol,
+          jml_baris: this.numberOfRow
         });
         this.$router.push("/");
       } catch (e) {

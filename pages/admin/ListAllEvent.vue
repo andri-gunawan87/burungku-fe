@@ -59,13 +59,13 @@
                     <v-list-item-title>Edit</v-list-item-title>
                   </v-list-item>
 
-                  <v-list-item @click="data.modal = true">
+                  <v-list-item @click="DeleteUser(datas.id, index)">
                     <v-list-item-title>Cancel</v-list-item-title>
                   </v-list-item>
                 </v-list>
               </v-menu>
             </td>
-            <v-dialog v-model="data.modal" max-width="300">
+            <!-- <v-dialog v-model="data.modal" max-width="300">
               <v-card>
                 <v-card-title>
                   Are you sure? {{ data.id }}
@@ -87,7 +87,7 @@
                   </v-btn>
                 </v-card-text>
               </v-card>
-            </v-dialog>
+            </v-dialog> -->
           </tr>
         </tbody>
       </v-simple-table>
@@ -121,6 +121,18 @@ export default {
         //   .then((res) => (this.datas = res.data.results));
       } catch (e) {
         this.error = e.response.data.message;
+      }
+    },
+    DeleteUser(id, index) {
+      if (confirm("Do you really want to delete?")) {
+        axios
+          .delete("/api/artist/" + id)
+          .then((resp) => {
+            this.artists.data.splice(index, 1);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
     },
   },

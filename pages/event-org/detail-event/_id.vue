@@ -24,14 +24,14 @@
               <v-simple-table dense>
                 <template v-slot:default>
                   <tbody>
-                    <tr v-for="i in jumlahRow" :key="i">
-                      <td v-for="j in jumlahCol" :key="j">
+                    <tr v-for="i in datas.jml_baris" :key="i">
+                      <td v-for="j in datas.jml_kol" :key="j">
                         <v-checkbox
-                          :value="(i - 1) * jumlahCol + j"
+                          :value="(i - 1) * datas.jml_kol + j"
                           v-model="nomorPeserta"
-                          :label="String((i - 1) * jumlahCol + j)"
+                          :label="String((i - 1) * datas.jml_kol + j)"
                           readonly
-                          >{{ (i - 1) * jumlahCol + j }}</v-checkbox
+                          >{{ (i - 1) * datas.jml_kol + j }}</v-checkbox
                         >
                       </td>
                     </tr>
@@ -69,11 +69,11 @@
                 <v-list-item-title class="my-2">Harga</v-list-item-title>
             </v-col>
               <v-col cols="6">
-                <v-list-item-title class="my-2">11 Oktober 2022</v-list-item-title>
-                <v-list-item-title class="my-2">Event 1</v-list-item-title>
-                <v-list-item-title class="my-2">Murai</v-list-item-title>
-                <v-list-item-title class="my-2">Bandung</v-list-item-title>
-                <v-list-item-title class="my-2">Rp. 10.000</v-list-item-title>
+                <v-list-item-title class="my-2">{{datas.tanggal}} / {{datas.jam}}</v-list-item-title>
+                <v-list-item-title class="my-2">{{datas.judul}}</v-list-item-title>
+                <v-list-item-title class="my-2">{{datas.jenisburung_id}}</v-list-item-title>
+                <v-list-item-title class="my-2">{{datas.kota}}</v-list-item-title>
+                <v-list-item-title class="my-2">{{datas.harga_tiket}}</v-list-item-title>
             </v-col>
               </v-row>
             </v-card-text>
@@ -137,8 +137,6 @@ export default {
 
   data() {
     return {
-      jumlahCol: 7,
-      jumlahRow: 5,
       selected: [""],
       jenisBurung: ["Foo", "Bar", "Fizz", "Buzz"],
       pembayaran: ["Di tempat", "Transfer"],
@@ -172,7 +170,14 @@ export default {
         },
       ],
       nomorPeserta: [14, 9, 2, 19],
+      datas: []
     };
+  },
+
+  async fetch() {
+    await this.$axios
+      .get("/event/" + this.$route.params.id)
+      .then((res) => (this.datas = res.data));
   },
 
   props: {
