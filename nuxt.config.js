@@ -46,13 +46,13 @@ export default {
   // },
 
   axios: {
-    baseURL: "http://127.0.0.1:8080/",
+    baseURL: "http://127.0.0.1:5000/",
     proxy: true,
     prefix: "/api/",
   },
   proxy: {
     "/api/": {
-      target: "http://127.0.0.1:8080/",
+      target: "http://127.0.0.1:5000/",
       pathRewrite: { "^/api/": "" },
     },
   },
@@ -65,8 +65,8 @@ export default {
         codeChallengeMethod: "",
         responseType: "token id_token",
         endpoints: {
-          token: "http://localhost:8000/social-login/google/",
-          userInfo: "http://localhost:8000/auth/user/",
+          token: "http://localhost:5000/social-login/google/",
+          userInfo: "http://localhost:5000/auth/user/",
         },
       },
       local: {

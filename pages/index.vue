@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container>
     <div v-if="!isSearchActive">
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-row justify="center">
@@ -11,10 +11,10 @@
         </v-row>
 
         <v-row align="center" justify="end" class="mx-2 my-2">
-          <v-col cols="4" sm="6" md="4" lg="4">
+          <v-col sm="12" md="4" lg="4">
             <v-card max-width="100%" class="px-3 py-3">
               <v-row align="center">
-                <v-col cols="5">
+                <v-col sm="12" md="5" lg="5">
                   <v-text-field
                     v-model="location"
                     :counter="25"
@@ -22,7 +22,7 @@
                     required
                   ></v-text-field>
                 </v-col>
-                <v-col cols="5">
+                <v-col sm="12" md="5" lg="5">
                   <v-menu
                     v-model="menu"
                     :close-on-content-click="false"
@@ -47,7 +47,7 @@
                     ></v-date-picker>
                   </v-menu>
                 </v-col>
-                <v-col cols="2" class="">
+                <v-col sm="12" md="5" lg="5" class="">
                   <v-btn small color="primary" elevation="3" @click="search">
                     Cari
                   </v-btn>

@@ -1,14 +1,12 @@
 <template>
-  <v-app dark>
+  <v-app style="background-color: #f5eeeb">
     <Navbar />
     <v-main>
       <v-container fluid>
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer
-      app
-    >
+    <v-footer app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
@@ -16,11 +14,9 @@
 
 <script>
 export default {
-  name: 'DefaultLayout',
-  data () {
-    return {
-      
-    }
-  }
-}
+  name: "DefaultLayout",
+  data() {
+    return {};
+  },
+};
 </script>
