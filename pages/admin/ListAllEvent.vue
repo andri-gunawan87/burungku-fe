@@ -55,7 +55,7 @@
                     <v-list-item-title>Detail</v-list-item-title>
                   </v-list-item>
 
-                  <v-list-item :to="'/admin/EditEvent/' + data.id">
+                  <v-list-item :to="'EditEvent/' + data.id">
                     <v-list-item-title>Edit</v-list-item-title>
                   </v-list-item>
 
