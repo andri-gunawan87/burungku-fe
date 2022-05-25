@@ -4,16 +4,12 @@
       <v-row>
         <v-col cols="12" sm="12" md="12">
           <v-card>
+            <MapBox />
+          </v-card>
+          <v-card>
             <v-card-text class="text-center">
               <div
-                class="
-                  display-2
-                  font-weight-light
-                  col col-12
-                  text--primary
-                  pa-0
-                  mb-8
-                "
+                class="display-2 font-weight-light col col-12 text--primary pa-0 mb-8"
               >
                 <h5 class="font-weight-light">Create Event</h5>
               </div>
@@ -184,8 +180,12 @@
   </div>
 </template>
 <script>
+import MapBox from "@/components/MapBox.vue";
 export default {
   layout: "EoLayout",
+  components: {
+    MapBox,
+  },
   data: () => ({
     eventName: "",
     date: "",
@@ -214,8 +214,8 @@ export default {
 
   methods: {
     clear() {
-      this.birdTypeSelect = ""
-      this.$refs.form.reset()
+      this.birdTypeSelect = "";
+      this.$refs.form.reset();
     },
 
     async submit() {
@@ -233,7 +233,7 @@ export default {
           lokasi: this.location,
           jenislomba_id: 1,
           jml_kol: this.numberOfCol,
-          jml_baris: this.numberOfRow
+          jml_baris: this.numberOfRow,
         });
         this.$router.push("/");
       } catch (e) {
