@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       color="rgba(253, 241, 235, 0.8)"
       v-model="drawer"
       temporary
@@ -23,7 +23,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
     <v-app-bar
       app
       collapse-on-scroll
@@ -31,13 +31,18 @@
       color="rgba(245,238,235,0.5)"
       elevation="0"
     >
-      <v-app-bar-nav-icon
+      <!-- <v-app-bar-nav-icon
         class="hamburger-menu"
         @click.stop="drawer = !drawer"
-      />
+      /> -->
       <v-spacer />
       <v-toolbar-title class="text-title" v-text="title" />
       <v-spacer />
+      <v-btn icon color="#3F3937" class="mx-3" v-bind="attrs" v-on="on">
+        <nuxt-link :to="'/user/my-tiket'">
+          <v-icon>mdi-ticket</v-icon>
+        </nuxt-link>
+      </v-btn>
       <v-menu transition="slide-x-transition" bottom right :offset-y="offset">
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon color="#3F3937" v-bind="attrs" v-on="on">

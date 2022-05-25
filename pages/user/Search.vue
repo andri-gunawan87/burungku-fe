@@ -1,37 +1,33 @@
 <template>
-  <div>    
-      <div class="mb-4">
-        <h2 class="text-h5 text-center">Hasil pencarian di lokasi ...</h2>
-        <v-divider dark></v-divider>
-      </div>
-
-      <v-container>
-        <v-row>
-          <v-col
-            v-for="(data, index) in searchEvents"
-            :key="index"
-            cols="12"
-            sm="12"
-            md="6"
-          >
-            <SearchCard
-          :key="index"
-          :data="data"
-        />
-          </v-col>
-        </v-row>
-      </v-container>
-        
+  <div>
+    <div class="mb-4">
+      <h2 class="text-h5 text-center">Hasil pencarian di lokasi ...</h2>
+      <v-divider dark></v-divider>
     </div>
+
+    <v-container>
+      <v-row>
+        <v-col
+          v-for="(data, index) in searchEvents"
+          :key="index"
+          cols="12"
+          sm="12"
+          md="6"
+        >
+          <EventCard :key="index" :data="data" />
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
-import SearchCard from "@/components/Card/SearchCard.vue";
+import EventCard from "@/components/Card/EventCard.vue";
 
 export default {
   name: "IndexPage",
   components: {
-    SearchCard,
+    EventCard,
   },
 
   data: () => ({
