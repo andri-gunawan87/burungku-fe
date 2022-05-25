@@ -3,7 +3,7 @@
     <section class="mb-12 text-center">
       <h1 class="font-weight-light mb-2 headline" v-text="`Daftar Event`" />
 
-      <span class="font-weight-light subtitle-1"> Table Daftar Event </span>
+      <span class="font-weight-light subtitle-1">Event Tersedia</span>
     </section>
     <div class="py-3" />
 
@@ -18,19 +18,24 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Nama Event</th>
-            <th>Deskripsi</th>
+            <th>Judul</th>
             <th>Tanggal</th>
+            <th class="text-center">Lokasi</th>
+            <th class="text-center">Pendaftar</th>
             <th class="text-right">Action</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr v-for="(data, index) in events" :key="index" :data="data">
+          <tr v-for="(data, index) in listEvent" :key="index" :data="data">
             <td>{{ data.id }}</td>
             <td>{{ data.judul }}</td>
-            <td>{{ data.deskripsi }}</td>
             <td>{{ data.jadwal }}</td>
+            <td>{{ data.jml_tiket }}</td>
+            <td class="text-center">
+              <span class="red--text">{{ data.pendaftar }}</span
+              >/<span class="green--text">{{ data.jumlahKursi }}</span>
+            </td>
             <td class="text-right">
               <v-menu
                 transition="slide-x-transition"
@@ -51,43 +56,20 @@
                 </template>
 
                 <v-list>
-                  <v-list-item :to="'detail-event/' + data.id">
+                  <v-list-item :to="`/event-org/detail-event/${data.id}`">
                     <v-list-item-title>Detail</v-list-item-title>
                   </v-list-item>
 
-                  <v-list-item :to="'EditEvent/' + data.id">
+                  <v-list-item :to="`/event-org/EditEvent/${data.id}`">
                     <v-list-item-title>Edit</v-list-item-title>
                   </v-list-item>
 
-                  <v-list-item @click="DeleteUser(datas.id, index)">
+                  <v-list-item @click="DeleteUser(data.id, index)">
                     <v-list-item-title>Cancel</v-list-item-title>
                   </v-list-item>
                 </v-list>
               </v-menu>
             </td>
-            <!-- <v-dialog v-model="data.modal" max-width="300">
-              <v-card>
-                <v-card-title>
-                  Are you sure? {{ data.id }}
-
-                  <v-spacer />
-
-                  <v-icon aria-label="Close" @click="data.modal = false">
-                    mdi-close
-                  </v-icon>
-                </v-card-title>
-
-                <v-card-text class="pb-6 pt-12 text-center">
-                  <v-btn class="mr-3" text @click="data.modal = false">
-                    Nevermind
-                  </v-btn>
-
-                  <v-btn color="red" text @click="data.modal = false">
-                    Yes
-                  </v-btn>
-                </v-card-text>
-              </v-card>
-            </v-dialog> -->
           </tr>
         </tbody>
       </v-simple-table>
@@ -98,7 +80,7 @@
 import MaterialCard from "../../components/Card/MaterialCard.vue";
 
 export default {
-  layout: "AdminLayout",
+  layout: "EoLayout",
   name: "ListUser",
   components: {
     MaterialCard,
@@ -106,11 +88,44 @@ export default {
 
   data() {
     return {
-      events: [],
+      // listEvent: [
+      //   {
+      //     id: 1,
+      //     judul: "Event 1",
+      //     nomorTiket: "20220516-321-111",
+      //     tanggal: "23 Oktober 2022",
+      //     lokasi: "Bandung",
+      //     pendaftar: 14,
+      //     jumlahKursi: 24,
+      //   },
+      //   {
+      //     id: 2,
+      //     judul: "Event 2",
+      //     nomorTiket: "20220516-321-112",
+      //     tanggal: "23 Oktober 2022",
+      //     lokasi: "Bandung",
+      //     pendaftar: 20,
+      //     jumlahKursi: 36,
+      //   },
+      //   {
+      //     id: 3,
+      //     judul: "Event 3",
+      //     nomorTiket: "20220516-321-113",
+      //     tanggal: "23 Oktober 2022",
+      //     lokasi: "Bandung",
+      //     pendaftar: 9,
+      //     jumlahKursi: 25,
+      //   },
+      // ],
+      offset: true,
+      dialog3: false,
+
+      listEvent: [],
     };
   },
+
   async fetch() {
-    await this.$axios.get("/event").then((res) => (this.events = res.data));
+    await this.$axios.get("/event").then((res) => (this.listEvent = res.data));
   },
 
   methods: {
@@ -123,16 +138,12 @@ export default {
         this.error = e.response.data.message;
       }
     },
-    DeleteUser(id, index) {
+    async DeleteUser(id, index) {
       if (confirm("Do you really want to delete?")) {
-        axios
-          .delete("/api/artist/" + id)
-          .then((resp) => {
-            this.artists.data.splice(index, 1);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        await this.$axios.delete("/event/delete/" + id);
+        window.location.reload(true).catch((error) => {
+          console.log(error);
+        });
       }
     },
   },

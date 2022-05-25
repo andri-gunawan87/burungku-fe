@@ -1,14 +1,12 @@
 <template>
-  <v-app dark>
+  <v-app variant="light">
     <AdminNavbar />
     <v-main>
       <v-container>
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer
-      app
-    >
+    <v-footer app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
@@ -16,11 +14,9 @@
 
 <script>
 export default {
-  name: 'AdminLayout',
-  data () {
-    return {
-      
-    }
-  }
-}
+  name: "AdminLayout",
+  data() {
+    return {};
+  },
+};
 </script>

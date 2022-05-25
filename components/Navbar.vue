@@ -1,6 +1,12 @@
 <template>
   <div>
-    <v-navigation-drawer v-model="drawer" temporary fixed app>
+    <!-- <v-navigation-drawer
+      color="rgba(253, 241, 235, 0.8)"
+      v-model="drawer"
+      temporary
+      fixed
+      app
+    >
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -10,28 +16,37 @@
           exact
         >
           <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon color="#3F3937">{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title class="hamburger-menu" v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    </v-navigation-drawer>
-    <v-app-bar app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="title" />
+    </v-navigation-drawer> -->
+    <v-app-bar
+      app
+      collapse-on-scroll
+      max-width="100%"
+      color="rgba(245,238,235,0.5)"
+      elevation="0"
+    >
+      <!-- <v-app-bar-nav-icon
+        class="hamburger-menu"
+        @click.stop="drawer = !drawer"
+      /> -->
       <v-spacer />
+      <v-toolbar-title class="text-title" v-text="title" />
+      <v-spacer />
+      <v-btn icon color="#3F3937" class="mx-3" v-bind="attrs" v-on="on">
+        <nuxt-link :to="'/user/my-tiket'">
+          <v-icon>mdi-ticket</v-icon>
+        </nuxt-link>
+      </v-btn>
       <v-menu transition="slide-x-transition" bottom right :offset-y="offset">
         <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            class="deep-orange"
-            color="primary"
-            dark
-            v-bind="attrs"
-            v-on="on"
-          >
-            ...
+          <v-btn icon color="#3F3937" v-bind="attrs" v-on="on">
+            <v-icon>mdi-account-outline</v-icon>
           </v-btn>
         </template>
 
@@ -77,13 +92,18 @@ export default {
           title: "Register",
           to: "/account/register",
         },
+        {
+          icon: "mdi-ticket",
+          title: "Tiket",
+          to: "/user/my-tiket",
+        },
       ],
       loggedInListMenu: [
         { title: "Profile", to: "/user/Profile" },
         { title: "My Tiket", to: "/user/my-tiket" },
         { title: "Logout", to: "/account/login" },
       ],
-      title: "Kontes Burung",
+      title: "Lomba Burung",
       offset: true,
     };
   },
