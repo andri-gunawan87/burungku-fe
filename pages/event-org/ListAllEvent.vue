@@ -64,9 +64,7 @@
                     <v-list-item-title>Edit</v-list-item-title>
                   </v-list-item>
 
-                  <v-list-item
-                    @click="DeleteUser(data.id, index)"
-                  >
+                  <v-list-item @click="DeleteUser(data.id, index)">
                     <v-list-item-title>Cancel</v-list-item-title>
                   </v-list-item>
                 </v-list>
@@ -76,7 +74,6 @@
         </tbody>
       </v-simple-table>
     </material-card>
-    
   </v-container>
 </template>
 <script>
@@ -143,12 +140,10 @@ export default {
     },
     async DeleteUser(id, index) {
       if (confirm("Do you really want to delete?")) {
-        await this.$axios
-          .delete("/event/delete/" + id)
-          window.location.reload(true)
-          .catch((error) => {
-            console.log(error);
-          });
+        await this.$axios.delete("/event/delete/" + id);
+        window.location.reload(true).catch((error) => {
+          console.log(error);
+        });
       }
     },
   },
