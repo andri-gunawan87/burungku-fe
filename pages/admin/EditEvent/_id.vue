@@ -8,7 +8,7 @@
               <div
                 class="display-2 font-weight-light col col-12 text--primary pa-0 mb-8"
               >
-                <h5 class="font-weight-light">Edit Event</h5>
+                <h5 class="font-weight-light">Detail Event</h5>
               </div>
               <v-row class="text-left">
                 <v-col cols="12">
@@ -162,45 +162,9 @@ export default {
 
   async fetch() {
     await this.$axios
-      .get("/event/" + this.eventId)
+      .get("/event" + this.eventId)
       .then((res) => (this.eventsEdit = res.data));
     console.log(this.eventsEdit);
-  },
-
-  async submit() {
-    try {
-      await this.$axios.put("/event/update/" + this.$route.params.id, {
-        judul: this.eventName,
-        deskripsi: this.description,
-        tanggal: this.date,
-        jam: this.eventTime,
-        jml_tiket: this.numberOfTicket,
-        jml_sesi: this.numberOfSession,
-        harga_tiket: this.ticketPrice,
-        aturan: this.eventRules,
-        jenisburung_id: this.birdTypeSelect,
-        lokasi: this.location,
-        jenislomba_id: 1,
-      });
-      this.$router.push("/");
-    } catch (e) {
-      this.error = e.response;
-      console.log(this.error);
-    }
-  },
-
-  beforeUpdate() {
-    console.log(this.datas);
-    console.log(this.birdType);
-    this.eventName = this.datas.judul;
-    this.date = this.datas.tanggal;
-    this.description = this.datas.deskripsi;
-    this.birdTypeSelect = this.datas.jenisburung_id;
-    this.eventTime = this.datas.jam;
-    this.location = this.datas.kota;
-    this.numberOfSession = this.datas.jml_sesi;
-    this.ticketPrice = this.datas.harga_tiket;
-    this.eventRules = this.datas.aturan;
   },
 
   methods: {

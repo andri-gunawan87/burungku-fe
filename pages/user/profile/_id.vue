@@ -99,17 +99,18 @@
 
 <script>
 export default {
+  layout: "UserLayout",
   //get data profil masih error untuk tampilan edit user
-  data() {
-    return {
-      profilId: this.$route.params.id,
-      profil: [],
-    };
-  },
-  async fetch() {
-    await this.$axios
-      .get("/profil/" + profilId)
-      .then((res) => (this.profil = res.data));
-  },
+  // data() {
+  //   return {
+  //     profilId: this.$route.params.id,
+  //     profil: [],
+  //   };
+  // },
+  // async fetch() {
+  //   await this.$axios
+  //     .get("/profil/" + profilId)
+  //     .then((res) => (this.profil = res.data));
+  // },
 };
 </script>

@@ -1,8 +1,7 @@
 <template>
   <v-app dark>
-    <AdminNavbar />
     <v-main>
-      <v-container>
+      <v-container fluid>
         <Nuxt />
       </v-container>
     </v-main>
@@ -16,7 +15,7 @@
 
 <script>
 export default {
-  name: 'AdminLayout',
+  name: 'UserLayout',
   data () {
     return {
       

@@ -17,16 +17,12 @@
             <v-row>
               <v-col cols="6">
                 <v-list-item-subtitle>Tanggal</v-list-item-subtitle>
-                <v-list-item-subtitle>Lokasi</v-list-item-subtitle>
-                <v-list-item-subtitle>Biaya</v-list-item-subtitle>
+                <v-list-item-subtitle>Nomor Tiket</v-list-item-subtitle>
               </v-col>
               <v-col cols="6">
                 <v-list-item-subtitle>{{ data.tanggal }} / {{data.jam}}</v-list-item-subtitle>
                 <v-list-item-subtitle>{{
-                  data.kota
-                }}</v-list-item-subtitle>
-                <v-list-item-subtitle>{{
-                  data.harga_tiket
+                  data.nomer_tiket
                 }}</v-list-item-subtitle>
               </v-col>
             </v-row>
@@ -37,17 +33,12 @@
       <v-card-actions class="justify-center">
         <nuxt-link
           style="text-decoration: none; color: inherit"
-          :to="'/user/detail-event/' + data.event_id"
+          :to="'/user/detail-event/' + data.id"
         >
           <v-btn color="orange" text> Detail </v-btn>
         </nuxt-link>
 
-        <nuxt-link
-          style="text-decoration: none; color: inherit"
-          :to="'/user/booking/' + data.event_id"
-        >
-          <v-btn color="orange" text> Booking </v-btn>
-        </nuxt-link>
+        <v-btn color="orange" text> Delete </v-btn>
       </v-card-actions>
     </v-card>
   </div>

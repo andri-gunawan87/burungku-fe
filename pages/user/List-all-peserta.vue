@@ -67,6 +67,7 @@
 import MaterialCard from "../../components/Card/MaterialCard.vue";
 
 export default {
+  layout: "UserLayout",
   name: "IndexPage",
   components: {
     MaterialCard,
