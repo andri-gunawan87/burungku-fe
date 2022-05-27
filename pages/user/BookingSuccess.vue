@@ -43,7 +43,7 @@
       <v-row class="my-3 py-3" justify-md="center">
         <nuxt-link
           style="text-decoration: none; color: inherit"
-          :to="'/user/my-tiket'"
+          :to="'/user/myEvent'"
         >
           <v-btn color="primary" elevation="2">Kembali</v-btn>
         </nuxt-link>
@@ -54,6 +54,7 @@
 <script>
 import QrcodeVue from "qrcode.vue";
 export default {
+  layout: "UserLayout",
   data: () => ({
     loading: false,
     selection: 1,

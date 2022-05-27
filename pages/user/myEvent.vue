@@ -16,7 +16,7 @@
             sm="12"
             md="6"
           >
-            <TiketCard
+            <MyEventCard
           :key="index"
           :data="data"
         />
@@ -27,37 +27,23 @@
 </template>
 
 <script>
-import TiketCard from "~/components/Card/TiketCard.vue";
+import MyEventCard from "~/components/Card/MyEventCard.vue";
 
 export default {
+  layout: "UserLayout",
   name: "IndexPage",
   components: {
-    TiketCard,
+    MyEventCard,
   },
 
   data: () => ({
     valid: true,
-    listTiket: [
-      {
-        id: 1,
-        judul: "Event 1",
-        nomorTiket: "20220516-321-111",
-        tanggal: "23 Oktober 2022",
-      },
-      {
-        id: 2,
-        judul: "Event 2",
-        nomorTiket: "20220516-321-112",
-        tanggal: "23 Oktober 2022",
-      },
-      {
-        id: 3,
-        judul: "Event 3",
-        nomorTiket: "20220516-321-113",
-        tanggal: "23 Oktober 2022",
-      },
-    ],
+    listTiket: [],
   }),
+
+  async fetch() {
+    await this.$axios.get("/bookTiket").then((res) => (this.listTiket = res.data));
+  },
 
   // methods: {
   //   async search() {
@@ -70,5 +56,9 @@ export default {
   //     }
   //   },
   // },
+
+  mounted() {
+    console.log(this.listTiket)
+  }
 };
 </script>

@@ -50,6 +50,7 @@
 <script>
 import QrcodeVue from "qrcode.vue";
 export default {
+  layout: "UserLayout",
   data: () => ({
     loading: false,
     selection: 1,

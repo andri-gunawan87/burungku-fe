@@ -99,6 +99,7 @@
 
 <script>
 export default {
+  layout: "UserLayout",
   //get data profil masih error untuk tampilan edit user
   // data() {
   //   return {

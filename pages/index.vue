@@ -10,52 +10,7 @@
           </v-carousel>
         </v-row>
 
-        <v-row align="center" justify="end" class="mx-2 my-2">
-          <v-col cols="4" sm="6" md="4" lg="4">
-            <v-card max-width="100%" class="px-3 py-3">
-              <v-row align="center">
-                <v-col cols="5">
-                  <v-text-field
-                    v-model="location"
-                    :counter="25"
-                    label="Cari lokasi kontes"
-                    required
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="5">
-                  <v-menu
-                    v-model="menu"
-                    :close-on-content-click="false"
-                    :nudge-right="40"
-                    transition="scale-transition"
-                    offset-y
-                    min-width="auto"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-text-field
-                        v-model="date"
-                        label="Waktu kontes"
-                        prepend-icon="mdi-calendar"
-                        readonly
-                        v-bind="attrs"
-                        v-on="on"
-                      ></v-text-field>
-                    </template>
-                    <v-date-picker
-                      v-model="date"
-                      @input="menu = false"
-                    ></v-date-picker>
-                  </v-menu>
-                </v-col>
-                <v-col cols="2" class="">
-                  <v-btn small color="primary" elevation="3" @click="search">
-                    Cari
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-card>
-          </v-col>
-        </v-row>
+        
         <div class="my-3 py-3">
           <v-row justify="center">
             <h3>Informasi</h3>

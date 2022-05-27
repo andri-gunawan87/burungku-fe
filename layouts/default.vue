@@ -1,16 +1,14 @@
 <template>
-  <v-app dark>
-    <Navbar />
-    <v-main>
+  <v-app >
+    <v-main class="main">
       <v-container fluid>
-        <Nuxt />
+        <v-row justify="center" class="mx-2">
+          <v-col cols="12" sm="8" md="4">
+            <Nuxt />
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
-    <v-footer
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
   </v-app>
 </template>
 

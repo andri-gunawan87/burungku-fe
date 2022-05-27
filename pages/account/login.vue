@@ -1,7 +1,7 @@
 <template>
   <v-row align="center" justify="center">
     <v-col cols="12" sm="12" md="8">
-      <v-card light class="pa-5 ma-5">
+      <v-card dark class="pa-5 ma-5">
         <v-form @submit.prevent="login">
           <img src="/logo.png" alt="Kontes Burung Logo" class="center" />
           <h2 class="text-center mt-4">Masuk</h2>
