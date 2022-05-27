@@ -1,18 +1,10 @@
 <template>
   <v-container id="regular-tables" fluid tag="section">
     <section class="mb-12 text-center">
-    <h1
-      class="font-weight-light mb-2 headline"
-      v-text="`Daftar Peserta`"
-    />
+      <h1 class="font-weight-light mb-2 headline" v-text="`Daftar Peserta`" />
 
-    <span
-      class="font-weight-light subtitle-1"
-    >
-      List daftar semua User
-      {{allUser}}
-    </span>
-  </section>
+      <span class="font-weight-light subtitle-1"> List daftar semua User </span>
+    </section>
     <div class="py-3" />
 
     <material-card
@@ -27,8 +19,7 @@
           <tr>
             <th>ID</th>
             <th>Nama</th>
-            <th>Kota</th>
-            <th>Jumlah Event</th>
+            <th>Email</th>
             <th>Tanggal Join</th>
             <th>Status</th>
             <th class="text-right">Action</th>
@@ -36,16 +27,36 @@
         </thead>
 
         <tbody>
-          <tr v-for="data, index in listPeserta" :key="index" :data="data">
-            <td>{{data.id}}</td>
-            <td>{{data.nama}}</td>
-            <td>Bandung</td>
-            <td>{{data.nomorKursi}}</td>
+          <tr v-for="(data, index) in allUser" :key="index" :data="data">
+            <td>{{ data.id }}</td>
+            <td>{{ data.nama }}</td>
+            <td>{{ data.email }}</td>
+            <td>{{ data.nomorKursi }}</td>
             <td></td>
-            <td class="red--text" v-if="data.statusPembayaran == 'Belum dibayar'">{{data.statusPembayaran}}</td>
-            <td class="secondary--text" v-if="data.statusPembayaran == 'Menunggu konfirmasi'">{{data.statusPembayaran}}</td>
-            <td class="green--text" v-if="data.statusPembayaran == 'Sudah dibayar'">{{data.statusPembayaran}}</td>
-            <td class="primary--text" v-if="data.statusPembayaran == 'On The Spot'">{{data.statusPembayaran}}</td>
+            <td
+              class="red--text"
+              v-if="data.statusPembayaran == 'Belum dibayar'"
+            >
+              {{ data.statusPembayaran }}
+            </td>
+            <td
+              class="secondary--text"
+              v-if="data.statusPembayaran == 'Menunggu konfirmasi'"
+            >
+              {{ data.statusPembayaran }}
+            </td>
+            <td
+              class="green--text"
+              v-if="data.statusPembayaran == 'Sudah dibayar'"
+            >
+              {{ data.statusPembayaran }}
+            </td>
+            <td
+              class="primary--text"
+              v-if="data.statusPembayaran == 'On The Spot'"
+            >
+              {{ data.statusPembayaran }}
+            </td>
             <td class="text-right">
               <v-menu
                 transition="slide-x-transition"
@@ -66,21 +77,15 @@
                 </template>
 
                 <v-list>
-                  <v-list-item
-                    to="/user/Profile"
-                  >
+                  <v-list-item :to="`/user/Profile/${data.id}`">
                     <v-list-item-title>Detail</v-list-item-title>
                   </v-list-item>
 
-                  <v-list-item
-                    to="/user/Profile"
-                  >
+                  <v-list-item :to="`/user/Profile/${data.id}`">
                     <v-list-item-title>Edit</v-list-item-title>
                   </v-list-item>
 
-                  <v-list-item
-                    @click="data.modal = true"
-                  >
+                  <v-list-item @click="data.modal = true">
                     <v-list-item-title>Delete</v-list-item-title>
                   </v-list-item>
                 </v-list>
@@ -116,13 +121,13 @@
   </v-container>
 </template>
 <script>
-import MaterialCard from '../../components/Card/MaterialCard.vue';
+import MaterialCard from "../../components/Card/MaterialCard.vue";
 
 export default {
   layout: "AdminLayout",
   name: "ListPeserta",
   components: {
-    MaterialCard
+    MaterialCard,
   },
 
   data() {
@@ -133,46 +138,43 @@ export default {
           nomorKursi: 14,
           nama: "Fandi",
           statusPembayaran: "Belum dibayar",
-          modal: false
+          modal: false,
         },
         {
           id: 2,
           nomorKursi: 9,
           nama: "Andri",
           statusPembayaran: "Menunggu konfirmasi",
-          modal: false
+          modal: false,
         },
         {
           id: 3,
           nomorKursi: 2,
           nama: "Fandi",
           statusPembayaran: "Sudah dibayar",
-          modal: false
+          modal: false,
         },
         {
           id: 4,
           nomorKursi: 19,
           nama: "Syahrul",
           statusPembayaran: "On The Spot",
-          modal: false
+          modal: false,
         },
       ],
       offset: true,
 
-      allUser: []
+      allUser: [],
     };
   },
 
   async fetch() {
-    await this.$axios
-      .get("/peserta")
-      .then((res) => (this.allUser = res.data));
+    await this.$axios.get("/user").then((res) => (this.allUser = res.data));
+    console.log(this.allUser);
   },
 
   mounted() {
-    console.log(this.allUser)
-  }
-
-
+    console.log(this.allUser);
+  },
 };
 </script>

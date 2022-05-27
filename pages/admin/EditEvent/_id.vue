@@ -156,6 +156,7 @@ export default {
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
     calendar: false,
     watch: false,
+    eventId: this.$route.params.id,
     eventsEdit: [],
   }),
 
@@ -164,6 +165,42 @@ export default {
       .get("/event/" + this.eventId)
       .then((res) => (this.eventsEdit = res.data));
     console.log(this.eventsEdit);
+  },
+
+  async submit() {
+    try {
+      await this.$axios.put("/event/update/" + this.$route.params.id, {
+        judul: this.eventName,
+        deskripsi: this.description,
+        tanggal: this.date,
+        jam: this.eventTime,
+        jml_tiket: this.numberOfTicket,
+        jml_sesi: this.numberOfSession,
+        harga_tiket: this.ticketPrice,
+        aturan: this.eventRules,
+        jenisburung_id: this.birdTypeSelect,
+        lokasi: this.location,
+        jenislomba_id: 1,
+      });
+      this.$router.push("/");
+    } catch (e) {
+      this.error = e.response;
+      console.log(this.error);
+    }
+  },
+
+  beforeUpdate() {
+    console.log(this.datas);
+    console.log(this.birdType);
+    this.eventName = this.datas.judul;
+    this.date = this.datas.tanggal;
+    this.description = this.datas.deskripsi;
+    this.birdTypeSelect = this.datas.jenisburung_id;
+    this.eventTime = this.datas.jam;
+    this.location = this.datas.kota;
+    this.numberOfSession = this.datas.jml_sesi;
+    this.ticketPrice = this.datas.harga_tiket;
+    this.eventRules = this.datas.aturan;
   },
 
   methods: {

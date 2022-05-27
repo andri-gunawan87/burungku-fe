@@ -175,7 +175,7 @@
         <div class="my-3">
           <v-carousel hide-delimiters>
             <v-carousel-item
-              v-for="(data, i) in searchEvents"
+              v-for="(data, i) in allEvent"
               :key="i"
               :data="data"
             >
@@ -193,7 +193,7 @@
 
       <v-row align="center" justify="center">
         <SearchCard
-          v-for="(data, index) in searchEvents"
+          v-for="(data, index) in allEvent"
           :key="index"
           :data="data"
         />
@@ -254,7 +254,12 @@ export default {
       .substr(0, 10),
     menu: false,
     modal: false,
+    allEvent: [],
   }),
+
+  async fetch() {
+    await this.$axios.get("/event").then((res) => (this.allEvent = res.data));
+  },
 
   methods: {
     async search() {

@@ -20,7 +20,14 @@
     </v-navigation-drawer>
     <v-app-bar app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="title" />
+      <!-- <v-toolbar-title v-text="title" /> -->
+      <img
+        src="assets/logo2.jpg"
+        alt="Kontes Burung Logo"
+        class="logo"
+        height="85%"
+        width="17%"
+      />
       <v-spacer />
       <v-menu transition="slide-x-transition" bottom right :offset-y="offset">
         <template v-slot:activator="{ on, attrs }">
@@ -85,6 +92,7 @@ export default {
       ],
       title: "Kontes Burung",
       offset: true,
+      gambar: "static/assets/LOGO 1-02.jpg",
     };
   },
 
@@ -93,3 +101,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.logo {
+  border-radius: 12px;
+}
+</style>
