@@ -18,8 +18,18 @@
                 filled
                 append-icon="Lupa?"
             ></v-text-field>
-            <button class="btn-dark">MASUK</button>
-            <h5 class="daftar">Daftar Akun</h5>
+            <nuxt-link
+                style="text-decoration: none; color: inherit"
+                :to="'/user'"
+            >
+                <button class="btn-dark">MASUK</button>
+            </nuxt-link>
+            <nuxt-link
+                style="text-decoration: none; color: inherit"
+                :to="'/account/register/Account'"
+            >
+                <h5 class="daftar">Daftar Akun</h5>
+            </nuxt-link>
         </center>
     </div>
 </template>

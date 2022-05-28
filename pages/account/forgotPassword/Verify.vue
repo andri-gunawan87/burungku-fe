@@ -19,9 +19,13 @@
                     <h3 class="text-500">Verifikasi Sukses</h3>
                     <img src="/assets/success1.svg" height="20%" width="20%" class="logo-success">
                     <h6 class="text-500">Silakan reset password anda</h6>
+                    <nuxt-link
+                        style="text-decoration: none; color: inherit"
+                        :to="'/account/forgotPassword/ResetPassword'"
+                    >
                     <button class="btn-dark btn-dialog" @click="dialogverifikasi = false">Ok</button>
+                    </nuxt-link>
                 </center>
-          </v-card-actions>
             </v-card>
         </v-dialog>
     </div>

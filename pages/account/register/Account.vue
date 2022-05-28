@@ -34,8 +34,17 @@
         :type="'password'"
         filled
       ></v-text-field>
-      <button class="btn-dark">DAFTAR</button>
-      <h5 class="masuk">Masuk</h5>
+      <nuxt-link
+          :to="'/account/register/OtpV2'"
+        >
+        <button class="btn-dark">DAFTAR</button>
+      </nuxt-link>
+      <nuxt-link
+          style="text-decoration: none; color: inherit"
+          :to="'/account/LoginV2'"
+        >
+        <h5 class="masuk">Masuk</h5>
+      </nuxt-link>
      </center>
   </div>
 </template>

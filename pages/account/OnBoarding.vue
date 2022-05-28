@@ -18,7 +18,11 @@
           <p class="atau">atau</p>
       </center>
       <button class="btn-transparan"><img src="" />MASUK DENGAN EMAIL</button><br/>
-      <button class="btn-dark">DAFTAR DENGAN EMAIL</button> 
+      <nuxt-link
+          :to="'/account/register/Account'"
+        >
+        <button class="btn-dark">DAFTAR DENGAN EMAIL</button> 
+      </nuxt-link>
     </div>
 </div>
 </template>

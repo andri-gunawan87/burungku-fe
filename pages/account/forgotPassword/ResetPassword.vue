@@ -16,6 +16,11 @@
             filled
             class="lupa-input"
         ></v-text-field>
-        <button class="btn-dark kirim">Reset</button>
+        <nuxt-link
+            style="text-decoration: none; color: inherit"
+            :to="'/account/forgotPassword/ResetPasswordSuccess'"
+        >
+            <button class="btn-dark kirim">Reset</button>
+        </nuxt-link>
     </div>
 </template>

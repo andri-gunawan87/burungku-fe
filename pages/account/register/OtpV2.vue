@@ -7,7 +7,12 @@
                 light
                 length="5"
             ></v-otp-input>
-            <v-btn block :disabled="!isActive" class="btn-dark">Verifikasi</v-btn>
+            <nuxt-link
+                style="text-decoration: none; color: inherit"
+                :to="'/account/register/Success'"
+            >
+                <v-btn block :disabled="!isActive" class="btn-dark">Verifikasi</v-btn>
+            </nuxt-link>
         </center>
     </div>
 </template>

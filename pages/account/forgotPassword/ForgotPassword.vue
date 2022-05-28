@@ -10,6 +10,11 @@
             filled
             class="lupa-input"
         ></v-text-field>
-        <button class="btn-dark kirim">Kirim</button>
+        <nuxt-link
+                style="text-decoration: none; color: inherit"
+                :to="'/account/forgotPassword/Verify'"
+            >
+            <button class="btn-dark kirim">Kirim</button>
+        </nuxt-link>
     </div>
 </template>
