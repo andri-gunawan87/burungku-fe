@@ -14,7 +14,7 @@
     <v-row>
       <v-text-field
         outlined
-        label="Prepend inner"
+        label="Cari Lokasi Kontes"
         prepend-inner-icon="mdi-map-marker"
       ></v-text-field>
       <v-col v-for="n in 1" :key="n" cols="12">
@@ -27,13 +27,52 @@
       <v-col cols="3">Lihat Semua</v-col>
     </v-row>
     <v-row>
-      <v-col
-        v-for="(data, index) in listEvent"
-        :key="index"
-        cols="12"
-      >
+      <v-col v-for="(data, index) in listEvent" :key="index" cols="12">
         <EventCard :key="index" :data="data" />
       </v-col>
+    </v-row>
+    <v-row>
+      <v-btn width="100%" height="50px" class="mx-auto mt-3" outlined
+        >Lihat semua Event</v-btn
+      >
+    </v-row>
+    <v-row>
+      <v-col cols="3" class="headline font-weight-bold">FAQ</v-col>
+    </v-row>
+    <v-row>
+      <v-expansion-panels>
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            Apa itu kontes burung?
+            <template v-slot:actions>
+              <v-icon color="primary"> $expand </v-icon>
+            </template>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+
+      <v-expansion-panels class="mt-2">
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            Bagaimana cara kerjanya?
+            <template v-slot:actions>
+              <v-icon color="primary"> $expand </v-icon>
+            </template>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </v-row>
   </div>
 </template>
@@ -41,9 +80,9 @@
 import EventCard from "@/components/Card/EventCard.vue";
 
 export default {
-    components: {
-        EventCard
-    },
+  components: {
+    EventCard,
+  },
 
   data() {
     return {

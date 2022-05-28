@@ -9,6 +9,15 @@
         </v-row>
       </v-container>
     </v-main>
+    <div
+      class="main footer my-auto"
+      height="20px"
+    >
+          <div class="text_center">
+             Kontes Burung <span>&copy; 2022</span>
+          </div>
+      
+    </div>
   </v-app>
 </template>
 

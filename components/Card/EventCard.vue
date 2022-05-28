@@ -1,19 +1,22 @@
 <template>
-<v-row>
-  <v-col cols="4">
-    <img :src="data.gambar" alt="Kontes Burung Logo" class="center" />
-  </v-col>
-  <v-col cols="6">
-    <h1 class="font-weight-light headline" v-text="data.judul" />
-    <v-col cols="4">{{data.tanggal}}</v-col>
-    <v-col cols="6">{{data.lokasi}}</v-col>
-    <h1 class="font-weight-light headline" v-text="data.harga" />
-  </v-col>
-  <v-text-field
-        outlined
-        label="Lihat semua"
-      ></v-text-field>
-</v-row>
+  <v-card light rounded="lg">
+    <v-col>
+      <v-row>
+        <v-col cols="4">
+          <img :src="data.gambar" alt="Kontes Burung Logo" width="100%" />
+        </v-col>
+        <v-col cols="8">
+          <h2 class="font-weight-bold" v-text="data.judul" />
+          <v-row class="">
+            <v-col cols="4">{{ data.tanggal }}</v-col>
+            <v-col cols="8">{{ data.lokasi }}</v-col>
+          </v-row>
+          <h2 class="font-weight-bold" v-text="'Rp. ' + data.harga" />
+        </v-col>
+        <v-btn width="90%" class="mx-auto mb-3" outlined plain>Lihat Detail</v-btn>
+      </v-row>
+    </v-col>
+  </v-card>
 </template>
 
 <script>

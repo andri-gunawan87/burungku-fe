@@ -1,9 +1,40 @@
 .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
-  }
-  .main {
-    background-color: #F5EEEB;
-  }
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.main {
+  background-color: #F5EEEB;
+}
+
+.text_center {
+  text-align: center;
+}
+
+.default_padding {
+  padding: 24px 0px;
+}
+
+.footer {
+  padding: 20px 0;
+}
+
+.remove-padding-col {
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+
+.truncate {
+  display: -webkit-box;
+  max-width: 200px;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.brown_color {
+  background-color: #3F3937;
+  color: #F5EEEB;
+}
