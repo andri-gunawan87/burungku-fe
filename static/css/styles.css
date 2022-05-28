@@ -2,7 +2,7 @@ body {
   background-color: #F5EEEB;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Manrope";
+  font-family: 'Manrope', sans-serif;
   font-weight: 700;
   color: #3F3937;
   font-style: normal;
@@ -10,7 +10,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 44px;
 }
 p {
-  font-family: "Manrope";
+  font-family: 'Manrope', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
@@ -35,6 +35,20 @@ p {
   width: 100%;
   margin-top: 15px;
   color: #F5EEEB;
+  font-family: 'Manrope', sans-serif;
+}
+
+.text-500 {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 34px;
+}
+
+.text {
+  weight: 600;
+  margin-bottom: 20px;
 }
 
 /* ===================================== On Boarding  =====================================*/
@@ -55,14 +69,16 @@ p {
   align-items: center;
   padding: 16px 0px;
   width: 100%;
+  font-family: 'Manrope', sans-serif;
 }
 .atau {
-  font-family: "Manrope";
+  font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
   width: 100%;
+  margin-top: 10px;
 }
 .btn-transparan {
   border: 1px solid #3F3937;
@@ -71,10 +87,70 @@ p {
   align-items: center;
   padding: 16px 0px;
   width: 100%;
+  font-family: 'Manrope', sans-serif;
 }
 .icon-google {
   margin-right : 20px;
 }
-.logo-top {
-  margin: 20px auto;
+
+
+/* ===================================== Register  =====================================*/
+.logo-top{
+  margin: 25px auto 55px;
+}
+.masuk {
+  margin-top: 40px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+.input {
+  background-color: #FFFFFF;
+}
+
+/* ===================================== Success  =====================================*/
+.logo-success {
+  margin: 25px auto;
+}
+/* ===================================== Login  =====================================*/
+.daftar {
+  margin-top: 40px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+/* ===================================== Lupa Password  =====================================*/
+.background {
+  background-color: #FFFFFF;
+  padding: 25px;
+  border-radius: 20px;
+}
+.lupa {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 41px;
+  font-size: 40px;
+  margin: 20px 50px 20px 0;
+}
+.back {
+  margin-top: 20px;
+}
+.text-forgot {
+  margin-bottom: 50px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+}
+.lupa-input {
+  margin-top: 50px;
+}
+.kirim {
+  margin-top: 20px;
+  border-radius: 25px;
+}
+.btn-dialog {
+  width: 75%;
+  margin-bottom: 25px;
 }

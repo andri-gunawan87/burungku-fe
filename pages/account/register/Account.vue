@@ -1,6 +1,42 @@
 <template>
   <div>
-    <img src="/assets/logoTop.svg" height="100px" width="85%" class="logo-top">
+    <center>
+      <img src="/assets/logoTop.svg" height="75px" width="85%" class="logo-top">
+      <v-text-field
+        label="Nama Lengkap"
+        outlined
+        dense
+        width="90%"
+        filled
+      ></v-text-field>
+      <v-text-field
+        label="Nomer Telepon"
+        outlined
+        dense
+        width="90%"
+        filled
+      ></v-text-field>
+      <v-text-field
+        label="Kata Sandi"
+        outlined
+        dense
+        width="90%"
+        :type="'password'"
+        filled
+        :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+        @click:append="show2 = !show2"
+      ></v-text-field>
+      <v-text-field
+        label="Ulangi Kata Sandi"
+        outlined
+        dense
+        width="90%"
+        :type="'password'"
+        filled
+      ></v-text-field>
+      <button class="btn-dark">DAFTAR</button>
+      <h5 class="masuk">Masuk</h5>
+     </center>
   </div>
 </template>
 

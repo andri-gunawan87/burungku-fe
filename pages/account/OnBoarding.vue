@@ -18,7 +18,7 @@
           <p class="atau">atau</p>
       </center>
       <button class="btn-transparan"><img src="" />MASUK DENGAN EMAIL</button><br/>
-      <button class="btn-dark"><label>DAFTAR DENGAN EMAIL</label></button> 
+      <button class="btn-dark">DAFTAR DENGAN EMAIL</button> 
     </div>
 </div>
 </template>
