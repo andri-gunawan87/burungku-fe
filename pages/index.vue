@@ -159,13 +159,11 @@
 
 <script>
 import SearchCard from "@/components/Card/SearchCard.vue";
-
 export default {
   name: "IndexPage",
   components: {
     SearchCard,
   },
-
   data: () => ({
     isSearchActive: false,
     valid: true,
@@ -210,7 +208,6 @@ export default {
     menu: false,
     modal: false,
   }),
-
   methods: {
     async search() {
       try {
