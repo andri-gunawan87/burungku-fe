@@ -7,15 +7,11 @@
           <h2 class="text-center mt-4">Masuk</h2>
           <v-row justify="center">
             <v-col md="10" justify="center" class="text-center">
-              <v-text-field
+              <!-- <v-text-field
                 v-model="username"
                 :counter="25"
                 :rules="usernameRules"
                 label="Username"
-                required
-              ></v-text-field>
-
-              <v-text-field
                 v-model="password"
                 :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                 :rules="passwordRules"
@@ -26,7 +22,7 @@
                 class="mb-4"
                 counter
                 @click:append="show = !show"
-              ></v-text-field>
+              ></v-text-field> -->
 
               <v-btn color="primary" class="mr-4" @click="login"> Login </v-btn>
             </v-col>
