@@ -12,7 +12,7 @@
         <p class="text-boarding text-400">Make payments, transfers, and receive the required information on your finances.</p>
     </div>
     <div class="block-dua">
-      <button class="btn-putih"><img src="/assets/google.png" height=20px width=20px class="icon-google text-600"/>MASUK DENGAN GOOGLE</button>
+      <button class="btn-putih"><img src="/assets/google.png" height=15px width=15px class="icon-google"/><p class="text-600">MASUK DENGAN GOOGLE</p></button>
       
       <center>
           <p class="atau text-600">atau</p>

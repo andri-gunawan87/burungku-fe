@@ -6,7 +6,7 @@
             <img src="/assets/success.svg" height="50%" width="50%" class="logo-success">
             <nuxt-link
                 style="text-decoration: none; color: inherit"
-                :to="'/account/LoginV2'"
+                :to="'/account/login'"
             >
                 <button class="btn-dark">MASUK</button>
             </nuxt-link>
