@@ -41,7 +41,7 @@
       </nuxt-link>
       <nuxt-link
           style="text-decoration: none; color: inherit"
-          :to="'/account/LoginV2'"
+          :to="'/account/login'"
         >
         <h5 class="masuk text-600">Masuk</h5>
       </nuxt-link>

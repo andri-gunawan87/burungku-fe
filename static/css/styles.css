@@ -222,7 +222,8 @@ line-height: 33px;
   font-size: 16px;
   line-height: 22px;
 }
-.v-btn:not(.v-btn--round).v-size--default {
+
+.theme--light.v-btn.v-btn--has-bg {
   background-color: #3f3937 !important;
   border-radius: 8px;
   width: 100%;
