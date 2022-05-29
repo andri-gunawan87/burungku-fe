@@ -1,13 +1,11 @@
 body {
   background-color: #F5EEEB;
 }
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 700;
-  color: #3F3937;
-  font-style: normal;
-  font-size: 32px;
-  line-height: 44px;
+.container {
+  max-width: 480px !important;
+}
+.v-sheet {
+  box-shadow: none !important;
 }
 p {
   font-family: 'Manrope', sans-serif;
@@ -16,6 +14,11 @@ p {
   font-size: 16px;
   line-height: 22px;
   color: rgba(63, 57, 55, 0.8);
+}
+.text_main_color {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  color: rgba(63, 57, 55, 0.8) !important;
 }
 .center {
   display: block;
@@ -43,7 +46,6 @@ p {
 
 .truncate {
   display: -webkit-box;
-  max-width: 200px;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -51,6 +53,10 @@ p {
 
 .brown_color {
   background-color: #3F3937;
+  color: #F5EEEB;
+}
+.home_button_color {
+  background-color: #3F393733 !important;
   color: #F5EEEB;
 }
 
@@ -78,8 +84,15 @@ p {
   line-height: 34px;
 }
 
+.text-800 {
+  font-family: 'Manrope';
+font-style: normal;
+font-weight: 800;
+font-size: 24px;
+line-height: 33px;
+}
+
 .text {
-  weight: 600;
   margin-bottom: 20px;
 }
 
@@ -186,3 +199,116 @@ p {
   width: 75%;
   margin-bottom: 25px;
 }
+/* PaymentCard */
+.PaymentCardBody {
+  display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 16px;
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+.PaymentCardBody-frame2 {
+  display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 12px;
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+}
+.PaymentCardBody-frame3 {
+  display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+}
+.PaymentCardBody-frame3-1 {
+  display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+}
+.PaymentCardBody-frame3-1-1 {
+  display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 16px;
+gap: 8px;
+height: 70px;
+background: rgba(63, 57, 55, 0.15);
+border-radius: 12px;
+}
+.PaymentCardBody-title {
+  width: 157px;
+height: 33px;
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 33px;
+color: #3F3937;
+}
+.PaymentCardBody-btn-text {
+  width: 99px;
+height: 38px;
+
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 19px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #3F3937;
+}
+
+.alert_warning {
+  background-color: #FDF5A6;
+  text-align: center;
+  height: 50px;
+}
+
+.alert_success {
+  background-color: #ACD1AF;
+  text-align: center;
+  height: 50px;
+}
+
+.cancel_button {
+  background-color: transparent !important;
+}
+
+/* .v-btn-toggle {
+  flex-direction: column;
+  display: block !important;
+} */
+
+.v-btn-toggle_bot {
+  flex-direction: column;
+  display: block !important;
+}
+
+.v-btn--plain:not(.v-btn--active):not(.v-btn--loading):not(:focus):not(:hover) .v-btn__content {
+  opacity: 0.62;
+}
+
+.v-btn--active {
+  background-color: #3F3937;
+  color: white !important;
+}
+
+.v-btn--outlined {
+  color: rgba(63, 57, 55, 0.8) !important;
+}
+
+
+
+

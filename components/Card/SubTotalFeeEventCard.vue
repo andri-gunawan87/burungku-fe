@@ -2,15 +2,23 @@
   <v-card light rounded="lg">
     <v-col>
       <v-row>
-        <v-col cols="7" class="pa-5">
-          <h2 class="font-weight-bold text_main_color">{{formatRupiah((data.harga).toString())}}
-        <span
-          class="text-h6 font-weight-light text_main_color"
-        >/ burung</span>
-          </h2>
+        <v-col cols="12" class="px-5">
+          <h2 class="font-weight-bold text_main_color" v-text="'Pembayaran'" />
         </v-col>
-        <v-col cols="5" class="pa-5">
-          <v-btn color="#3F3937"  width="90%" class="mx-auto white--text" :to="'/booking-event'">Pesan Tiket</v-btn>
+
+        <v-col cols="12" class="px-5 pt-0 pb-5">
+          <div class="mb-2">
+            <span class="font-weight-light text_main_color">1x Ticket</span
+            ><span class="font-weight-bold float-right text_main_color"
+              >{{ formatRupiah(data.toString()) }}</span
+            >
+          </div>
+          <div>
+            <span class="font-weight-bold text_main_color">Total Harga</span
+            ><span class="font-weight-bold float-right text_main_color"
+              >{{ formatRupiah(data.toString()) }}</span
+            >
+          </div>
         </v-col>
       </v-row>
     </v-col>
@@ -20,8 +28,14 @@
 <script>
 export default {
   props: {
-    data: {
-    },
+    data: 0,
+  },
+
+  data() {
+    return {
+      checked: false,
+      noKursi: "",
+    };
   },
 
   methods: {
@@ -42,6 +56,5 @@ export default {
       return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "Rp. ";
     },
   },
-
 };
 </script>

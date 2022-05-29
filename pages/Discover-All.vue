@@ -3,12 +3,13 @@
     <v-row>
       <v-col cols="2">
         <v-btn
+        @click="goToPrev()"
               icon
             >
               <v-icon size="32">mdi-chevron-left</v-icon>
             </v-btn>
       </v-col>
-      <v-col cols="8" class="my-auto text_center">
+      <v-col cols="8" class="my-auto text_center text_main_color">
         <h2>Semua Event</h2>
       </v-col>
       <v-col>
@@ -75,6 +76,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    goToPrev() {
+      this.$router.go(-1);
+    },
   },
 };
 </script>
