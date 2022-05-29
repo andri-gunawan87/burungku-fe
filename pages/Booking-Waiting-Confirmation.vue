@@ -53,7 +53,7 @@
             width="100%"
             height="50px"
             class="mx-auto mt-3 home_button_color black--text"
-            :to="'/discover'"
+            :to="'/'"
             >Kembali Ke Beranda</v-btn
           >
         </v-row>

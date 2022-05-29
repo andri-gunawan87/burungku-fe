@@ -1,224 +1,132 @@
 <template>
-  <v-container fluid>
-    <div v-if="!isSearchActive">
-      <v-form ref="form" v-model="valid" lazy-validation>
-        <v-row justify="center">
-          <v-carousel cycle :show-arrows="false">
-            <v-carousel-item v-for="(item, i) in items" :key="i">
-              <v-img contain :src="item.src"> </v-img>
-            </v-carousel-item>
-          </v-carousel>
-        </v-row>
+  <div>
+    <v-row class="pa-3">
+      <v-col cols="2" class="d-flex justify-center align-center">
+          <img src="/assets/ticket-home.svg" height="20px" width="18px" class="mt-2">
+      </v-col>
+      <v-col cols="8" class="d-flex justify-center">
+        <img height="44px" src="/logo1.png" width="auto" alt="Kontes Burung Logo" class=""/>
+      </v-col>
+      <v-col cols="2" class="d-flex justify-center">
+        <img src="/assets/user.svg" height="16px" width="21px" class="mt-3">
+      </v-col>
+    </v-row>
+    <v-row class="pa-3">
+      <v-text-field
+        outlined
+        label="Cari Lokasi Kontes"
+        prepend-inner-icon="mdi-map-marker"
+      ></v-text-field>
+    </v-row>
+    <!-- <v-row>
+      <v-col v-for="n in 1" :key="n" cols="12">
+        <v-card height="200"></v-card
+      ></v-col>
+    </v-row> -->
+    <v-row>
+      <v-col cols="3" class="headline font-weight-bold text_main_color">Event</v-col>
+      <v-spacer></v-spacer>
+      <v-col cols="3"><nuxt-link class="text-decoration-none text_main_color" to="/discover-all">Lihat Semua</nuxt-link></v-col>
+    </v-row>
+    <v-row>
+      <v-col v-for="(data, index) in listEvent" :key="index" cols="12">
+        <EventCard :key="index" :data="data" />
+      </v-col>
+    </v-row>
+    <v-row class="pa-3">
+      <v-btn width="100%" height="50px" class="mx-auto " :to="'/discover-all'" outlined
+        >Lihat semua Event</v-btn
+      >
+    </v-row>
+    <v-row>
+      <v-col cols="3" class="headline font-weight-bold text_main_color">FAQ</v-col>
+    </v-row>
+    <v-row class="pa-3">
+      <v-expansion-panels>
+        <v-expansion-panel>
+          <v-expansion-panel-header class="font-weight-bold text_main_color">
+            Apa itu kontes burung?
+            <template v-slot:actions>
+              <v-icon color="text_main_color"> $expand </v-icon>
+            </template>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content class="text_main_color">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
 
-        
-        <div class="my-3 py-3">
-          <v-row justify="center">
-            <h3>Informasi</h3>
-          </v-row>
-          <v-divider></v-divider>
-        </div>
-        <div class="my-3">
-          <v-row class="py-3">
-            <v-col cols="3" sm="12" md="3" lg="3">
-              <v-card class="mx-2" max-width="100%">
-                <v-img
-                  class="white--text align-end"
-                  height="200px"
-                  src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                >
-                  <v-card-title>Top 10 Australian beaches</v-card-title>
-                </v-img>
-
-                <v-card-subtitle class="pb-0"> Number 10 </v-card-subtitle>
-
-                <v-card-text class="text--primary">
-                  <div>Whitehaven Beach</div>
-
-                  <div>Whitsunday Island, Whitsunday Islands</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-btn color="orange" text> Share </v-btn>
-
-                  <v-btn color="orange" text> Explore </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-            <v-col cols="3" sm="12" md="3" lg="3">
-              <v-card class="mx-2" max-width="100%">
-                <v-img
-                  class="white--text align-end"
-                  height="200px"
-                  src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                >
-                  <v-card-title>Top 10 Australian beaches</v-card-title>
-                </v-img>
-
-                <v-card-subtitle class="pb-0"> Number 10 </v-card-subtitle>
-
-                <v-card-text class="text--primary">
-                  <div>Whitehaven Beach</div>
-
-                  <div>Whitsunday Island, Whitsunday Islands</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-btn color="orange" text> Share </v-btn>
-
-                  <v-btn color="orange" text> Explore </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-            <v-col cols="3" sm="12" md="3" lg="3">
-              <v-card class="mx-2" max-width="100%">
-                <v-img
-                  class="white--text align-end"
-                  height="200px"
-                  src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                >
-                  <v-card-title>Top 10 Australian beaches</v-card-title>
-                </v-img>
-
-                <v-card-subtitle class="pb-0"> Number 10 </v-card-subtitle>
-
-                <v-card-text class="text--primary">
-                  <div>Whitehaven Beach</div>
-
-                  <div>Whitsunday Island, Whitsunday Islands</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-btn color="orange" text> Share </v-btn>
-
-                  <v-btn color="orange" text> Explore </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-            <v-col cols="3" sm="12" md="3" lg="3">
-              <v-card class="mx-2" max-width="100%">
-                <v-img
-                  class="white--text align-end"
-                  height="200px"
-                  src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                >
-                  <v-card-title>Top 10 Australian beaches</v-card-title>
-                </v-img>
-
-                <v-card-subtitle class="pb-0"> Number 10 </v-card-subtitle>
-
-                <v-card-text class="text--primary">
-                  <div>Whitehaven Beach</div>
-
-                  <div>Whitsunday Island, Whitsunday Islands</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-btn color="orange" text> Share </v-btn>
-
-                  <v-btn color="orange" text> Explore </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-          </v-row>
-        </div>
-        <div class="my-3 py-3">
-          <v-row justify="center">
-            <h3>Lomba Populer</h3>
-          </v-row>
-          <v-divider></v-divider>
-        </div>
-        <div class="my-3">
-          <v-carousel hide-delimiters>
-            <v-carousel-item
-              v-for="(data, i) in searchEvents"
-              :key="i"
-              :data="data"
-            >
-              <SearchCard :data="data" />
-            </v-carousel-item>
-          </v-carousel>
-        </div>
-      </v-form>
-    </div>
-    <div v-else>
-      <div class="mb-4">
-        <h2 class="text-h5 text-center">Hasil pencarian di lokasi ...</h2>
-        <v-divider dark></v-divider>
-      </div>
-
-      <v-row align="center" justify="center">
-        <SearchCard
-          v-for="(data, index) in searchEvents"
-          :key="index"
-          :data="data"
-        />
-      </v-row>
-    </div>
-  </v-container>
+      <v-expansion-panels class="mt-2">
+        <v-expansion-panel>
+          <v-expansion-panel-header class="font-weight-bold text_main_color">
+            Bagaimana cara kerjanya?
+            <template v-slot:actions>
+              <v-icon color="primary"> $expand </v-icon>
+            </template>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content class="text_main_color">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+    </v-row>
+  </div>
 </template>
-
 <script>
-import SearchCard from "@/components/Card/SearchCard.vue";
+import EventCard from "@/components/Card/EventCard.vue";
+
 export default {
-  name: "IndexPage",
   components: {
-    SearchCard,
+    EventCard,
   },
-  data: () => ({
-    isSearchActive: false,
-    valid: true,
-    location: "",
-    searchEvents: [
-      {
-        id: 1,
-        judul: "Event 1",
-        lokasi: "Kota Bandung",
-        tanggal: "23 Oktober 2022",
-      },
-      {
-        id: 2,
-        judul: "Event 2",
-        lokasi: "Kota Bandung",
-        tanggal: "23 Oktober 2022",
-      },
-      {
-        id: 3,
-        judul: "Event 3",
-        lokasi: "Kota Bandung",
-        tanggal: "23 Oktober 2022",
-      },
-    ],
-    items: [
-      {
-        src: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.avCzUDIgmLtWe1wb_MTdMgHaEK%26pid%3DApi&f=1",
-      },
-      {
-        src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-      },
-      {
-        src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
-      },
-      {
-        src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
-      },
-    ],
-    date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-      .toISOString()
-      .substr(0, 10),
-    menu: false,
-    modal: false,
-  }),
-  methods: {
-    async search() {
-      try {
-        // await this.$axios
-        //   .get("/search/?q=" + this.location)
-        //   .then((res) => (this.datas = res.data.results));
-        this.isSearchActive = true;
-      } catch (e) {
-        this.error = e.response.data.message;
-      }
-    },
+
+  data() {
+    return {
+      listEvent: [
+        {
+          id: 1,
+          judul: "Lomba Burung Murai",
+          tanggal: "Mei 21",
+          lokasi: "Bandung, Jawa Barat",
+          harga: "200000",
+          gambar:
+            "https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg",
+        },
+        {
+          id: 1,
+          judul: "Lomba Burung Murai",
+          tanggal: "Mei 21",
+          lokasi: "Bandung, Jawa Barat",
+          harga: "200000",
+          gambar:
+            "https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg",
+        },
+        {
+          id: 1,
+          judul: "Lomba Burung Murai",
+          tanggal: "Mei 21",
+          lokasi: "Bandung, Jawa Barat",
+          harga: "200000",
+          gambar:
+            "https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg",
+        },
+        {
+          id: 1,
+          judul: "Lomba Burung Murai",
+          tanggal: "Mei 21",
+          lokasi: "Bandung, Jawa Barat",
+          harga: "200000",
+          gambar:
+            "https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg",
+        },
+      ],
+    };
   },
 };
 </script>
