@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="otp">
     <center>
       <img
         src="/assets/logoTop.svg"
@@ -10,7 +10,7 @@
       <h5 class="text text-600">Masukkan Kode OTP</h5>
       <v-otp-input v-model="otp" :length="length" light></v-otp-input>
    
-          <v-btn block :disabled="!isActive" class="btn-dark" :to="'/account/register/Success'">
+          <v-btn block :disabled="!isActive" :to="'/account/register/Success'">
             Verifikasi
           </v-btn>
   
