@@ -96,7 +96,7 @@ p {
   justify-content: center;
   align-items: center;
   padding: 16px 0px;
-  background: #3f3937;
+  background-color: #3f3937;
   border-radius: 8px;
   width: 100%;
   margin-top: 15px;
@@ -223,7 +223,7 @@ line-height: 33px;
   line-height: 22px;
 }
 
-.theme--light.v-btn.v-btn--has-bg {
+/* .theme--light.v-btn.v-btn--has-bg {
   background-color: #3f3937 !important;
   border-radius: 8px;
   width: 100%;
@@ -232,6 +232,15 @@ line-height: 33px;
   font-family: "Manrope", sans-serif;
   text-decoration: none;
   padding: 16px 0px !important;
+} */
+.otp .theme--light.v-btn.v-btn--has-bg {
+  background-color: #3f3937;
+  padding: 8px 0px;
+  border-radius: 8px;
+  width: 100%;
+  color: #f5eeeb;
+  font-family: "Manrope", sans-serif;
+  text-decoration: none;
 }
 /* ===================================== Lupa Password  =====================================*/
 .background {
