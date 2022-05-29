@@ -16,11 +16,18 @@
                 width="90%"
                 :type="'password'"
                 filled
-                append-icon="Lupa?"
             ></v-text-field>
             <nuxt-link
                 style="text-decoration: none; color: inherit"
-                :to="'/user'"
+                :to="'/account/forgotPassword/ForgotPassword'"
+            >
+                <p style="text-align: right; font-weight: 700; font-size: 16px; line-height: 22px;">
+                    Lupa Password?
+                </p>
+            </nuxt-link>
+            <nuxt-link
+                style="text-decoration: none; color: inherit"
+                :to="'/user/Discover'"
             >
                 <button class="btn-dark">MASUK</button>
             </nuxt-link>
@@ -28,7 +35,7 @@
                 style="text-decoration: none; color: inherit"
                 :to="'/account/register/Account'"
             >
-                <h5 class="daftar">Daftar Akun</h5>
+                <h5 class="daftar text-600">Daftar Akun</h5>
             </nuxt-link>
         </center>
     </div>
