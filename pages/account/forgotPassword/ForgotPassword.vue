@@ -9,7 +9,7 @@
         <h4 class="lupa text-500">Lupa Passwordmu?</h4>
         <p class="text-forgot text-400">Silahkan masukkan nomor telepon anda, untuk menerima kode verifikasi</p>
         <v-text-field
-            label="Nomer Telepon"
+            placeholder="Nomer Telepon"
             prepend-inner-icon="mdi-phone-outline"
             rounded
             filled

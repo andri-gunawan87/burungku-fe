@@ -103,9 +103,11 @@ body {
   border-radius: 8px;
   justify-content: center;
   align-items: center;
-  padding: 16px 0px;
+  padding: 16px 0px 0px;
   width: 100%;
   font-family: 'Manrope', sans-serif;
+  display: flex;
+  align-items: baseline;
 }
 .atau {
   font-family: 'Manrope', sans-serif;
@@ -141,7 +143,7 @@ body {
   font-size: 16px;
   line-height: 22px;
 }
-.input {
+.v-text-field--filled.v-input--dense.v-text-field--outlined > .v-input__control > .v-input__slot, .v-text-field--filled.v-input--dense.v-text-field--outlined.v-text-field--filled > .v-input__control > .v-input__slot {
   background-color: #FFFFFF;
 }
 
@@ -157,6 +159,9 @@ body {
   font-size: 16px;
   line-height: 22px;
 }
+/* .v-text-field--filled.v-input--dense.v-text-field--outlined > .v-input__control > .v-input__slot, .v-text-field--filled.v-input--dense.v-text-field--outlined.v-text-field--filled > .v-input__control > .v-input__slot {
+  background-color: #FFFFFF;
+} */
 /* ===================================== Lupa Password  =====================================*/
 .background {
   background-color: #FFFFFF;
