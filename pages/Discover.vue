@@ -2,13 +2,13 @@
   <div>
     <v-row class="pa-3">
       <v-col cols="2" class="d-flex justify-center align-center">
-        <img src="/assets/ticket-home.svg" height="auto" width="24px">
+          <img src="/assets/ticket-home.svg" height="20px" width="18px" class="mt-2">
       </v-col>
       <v-col cols="8" class="d-flex justify-center">
         <img height="44px" src="/logo1.png" width="auto" alt="Kontes Burung Logo" class=""/>
       </v-col>
       <v-col cols="2" class="d-flex justify-center">
-        <img src="/assets/user.svg" height="auto" width="24px">
+        <img src="/assets/user.svg" height="16px" width="21px" class="mt-3">
       </v-col>
     </v-row>
     <v-row class="pa-3">

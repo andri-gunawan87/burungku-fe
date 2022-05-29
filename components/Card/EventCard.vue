@@ -3,10 +3,14 @@
     <v-col>
       <v-row>
         <div>
+          <nuxt-link to="/detail-event">
           <img class="event_card_img" :src="data.gambar" alt="Kontes Burung Logo" width="100%" />
+          </nuxt-link>
         </div>
         <div class="event_card_detail">
+          <nuxt-link to="/detail-event" class="text-decoration-none">
           <h2 class="text-800 text_main_color" v-text="data.judul" />
+          </nuxt-link>
           <div class="mt-2">
             <span class="text_main_color mr-3 ">{{ data.tanggal }}</span>
             <span class="text_main_color">{{ data.lokasi }}</span>
