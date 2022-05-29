@@ -1,21 +1,21 @@
 <template>
-  <v-card light rounded="lg">
+  <v-card light rounded="lg" class="event_card">
     <v-col>
       <v-row>
-        <v-col cols="4">
-          <img :src="data.gambar" alt="Kontes Burung Logo" width="100%" />
-        </v-col>
-        <v-col cols="8">
+        <div>
+          <img class="event_card_img" :src="data.gambar" alt="Kontes Burung Logo" width="100%" />
+        </div>
+        <div class="event_card_detail">
           <h2 class="text-800 text_main_color" v-text="data.judul" />
-          <v-row class="">
-            <v-col cols="4" class="text_main_color">{{ data.tanggal }}</v-col>
-            <v-col cols="8" class="text_main_color">{{ data.lokasi }}</v-col>
-          </v-row>
-          <h2 class="font-weight-bold text_main_color" v-text="formatRupiah(data.harga)" />
-        </v-col>
+          <div class="mt-2">
+            <span class="text_main_color mr-3 ">{{ data.tanggal }}</span>
+            <span class="text_main_color">{{ data.lokasi }}</span>
+          </div>
+          <h2 class="font-weight-bold text_main_color mt-2" v-text="formatRupiah(data.harga)" />
+        </div>
         <v-btn
-          width="90%"
-          class="mx-auto mb-3"
+          width="100%"
+          class="mx-auto mt-3"
           :to="'/detail-event'"
           outlined
           plain

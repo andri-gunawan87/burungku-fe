@@ -7,6 +7,20 @@ body {
 .v-sheet {
   box-shadow: none !important;
 }
+
+.event_card {
+  padding: 24px !important;
+}
+.event_card_detail {
+  margin-left: 12px;
+}
+.event_card_img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
 p {
   font-family: 'Manrope', sans-serif;
   font-weight: 400;

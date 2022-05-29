@@ -1,13 +1,13 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="2">
+      <v-col cols="1" class="d-flex justify-center align-center">
         <v-icon size="32">mdi-ticket </v-icon>
       </v-col>
-      <v-col cols="1o">
-        <img src="/logo1.png" width="44px" alt="Kontes Burung Logo" class="center" />
+      <v-col cols="1o" class="d-flex justify-center">
+        <img height="44px" src="/logo1.png" width="343px" alt="Kontes Burung Logo" class=""/>
       </v-col>
-      <v-col cols="2">
+      <v-col cols="1" class="d-flex justify-center">
         <v-icon size="32">mdi-account </v-icon>
       </v-col>
     </v-row>
