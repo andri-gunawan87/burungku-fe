@@ -6,7 +6,7 @@
           <img :src="data.gambar" alt="Kontes Burung Logo" class="image-card"/>
         </div>
         <div>
-          <h2 class="text-700 judul-daftar-tiket" v-text="data.judul" style="margin-bottom: 4px;" />
+          <h2 class="text-700 judul-card" v-text="data.judul" style="margin-bottom: 4px;" />
           <v-row class="">
             <v-col cols="1"><img src="/assets/map-pin.svg"></v-col>
             <v-col cols="10" class="text-500 lokasi-daftar-tiket" style="margin-bottom: 12px;">{{ data.lokasi }}</v-col>

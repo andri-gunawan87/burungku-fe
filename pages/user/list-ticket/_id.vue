@@ -1,9 +1,15 @@
 <template>
   <div>
-    <div class="judul">
-      <img src="/assets/back.svg" height="4%" width="4%" class="back" />
-      <h2 class="text-700 text-judul-page">Daftar Tiket</h2>
-    </div>
+    <v-row class="judul mb-4">
+      <v-col cols="2">
+      <v-btn @click="goToPrev()" icon>
+          <v-icon size="32">mdi-chevron-left</v-icon>
+        </v-btn>
+      </v-col>
+      <v-col cols="8" class="my-auto text_center text_main_color">
+      <h2>Daftar Tiket</h2>
+      </v-col>
+    </v-row>
 
     <v-tabs
         v-model="tab"
@@ -95,6 +101,12 @@ export default {
         'Sedang Berlangsung', 'Riwayat',
       ],
     };
+  },
+
+  methods: {
+    goToPrev() {
+      this.$router.go(-1);
+    },
   },
 };
 </script>

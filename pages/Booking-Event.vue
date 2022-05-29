@@ -15,15 +15,17 @@
         <SmallDetailEventCard :data="detail_data" />
       </v-col>
       <v-col cols="12">
-        <ListSessionEventCard :data="detail_data.jam " :showNav.sync="showNav"/>
-      </v-col>
-      <v-col cols="12">
-        <v-row>
-          <v-btn width="90%" height="50px" :to="'/booking-confirmation'" class="mx-auto mt-3 brown_color white--text text-center" outlined
-            >Pesan jadwal pada<br />{{ detail_data.tanggal }} </v-btn
-          >
-        </v-row>
-      </v-col>
+        <ListSessionEventCard :data="detail_data.jam" :showNav.sync="showNav" />
+      </v-col> </v-row
+    ><v-row class="pa-3">
+      <v-btn
+        width="100%"
+        height="50px"
+        :to="'/booking-confirmation'"
+        class="mt-3 brown_color white--text text-center"
+        outlined
+        >Pesan jadwal pada<br />{{ detail_data.tanggal }}
+      </v-btn>
     </v-row>
   </div>
 </template>
@@ -57,7 +59,7 @@ export default {
           "At Mimo I've built the foundations of Mimo brand and Mimo Design System, and now I am making sure everything is inline and looks & feels perfect. From brand, I naturally shifted to product and UX but always keeping eye on UI and all visual elements.",
         ],
       },
-      showNav: ""
+      showNav: "",
     };
   },
   methods: {
@@ -68,8 +70,8 @@ export default {
 
   computed: {
     jamSesi() {
-      return this.showNav.slice(0, 5) + " WIB"
-    }
-  }
+      return this.showNav.slice(0, 5) + " WIB";
+    },
+  },
 };
 </script>

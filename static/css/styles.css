@@ -455,7 +455,7 @@ color: #3F3937;
   background: rgba(63, 57, 55, 0.05);
   border-radius: 8px;
 }
-.judul-daftar-tiket {
+.judul-card {
   font-size: 20px;
   line-height: 27px;
   color: #3f3937;
@@ -480,4 +480,12 @@ color: #3F3937;
 }
 #card .v-card__text {
   padding: 12px !important;
+}
+.v_btn_transparent {
+  background-color: transparent !important;
+}
+.text-card {
+  font-size: 14px;
+  line-height: 19px;
+  color: rgba(63, 57, 55, 0.8);
 }

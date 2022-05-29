@@ -22,15 +22,16 @@
       </v-col>
       <v-col cols="12">
         <PaymentMethodEventCard :data="paymentMethod" />
-      </v-col>
-      <v-col cols="12">
-                <v-row>
-          <v-btn width="90%" height="50px" :to="'/booking-send-payments'" class="mx-auto mt-3 brown_color white--text" outlined
-            >Konfirmasi dan bayar</v-btn
-          >
-        </v-row>
-
-      </v-col>
+      </v-col> </v-row
+    ><v-row class="px-3">
+      <v-btn
+        width="100%"
+        height="50px"
+        :to="'/booking-send-payments'"
+        class="mx-auto mt-3 brown_color white--text"
+        outlined
+        >Konfirmasi dan bayar</v-btn
+      >
     </v-row>
   </div>
 </template>
@@ -72,13 +73,13 @@ export default {
       paymentMethod: {
         onTheSpot: {
           id: 1,
-          detail: "Bayar di tempat (On The Spot)"
+          detail: "Bayar di tempat (On The Spot)",
         },
         transfer: {
           id: 2,
-          detail: "Transfer BANK (Foto Bukti Transfer)"
-        }
-      }
+          detail: "Transfer BANK (Foto Bukti Transfer)",
+        },
+      },
     };
   },
   methods: {
