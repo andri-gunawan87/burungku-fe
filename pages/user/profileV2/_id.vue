@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row class="judul mb-4">
+    <v-row class="mb-4">
       <v-col cols="2">
       <v-btn @click="goToPrev()" icon>
           <v-icon size="32">mdi-chevron-left</v-icon>
