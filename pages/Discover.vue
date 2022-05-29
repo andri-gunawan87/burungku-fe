@@ -1,14 +1,14 @@
 <template>
   <div>
     <v-row class="pa-3">
-      <v-col cols="1" class="d-flex justify-center align-center">
-        <v-icon size="32">mdi-ticket </v-icon>
+      <v-col cols="2" class="d-flex justify-center align-center">
+        <img src="/assets/ticket-home.svg" height="auto" width="24px">
       </v-col>
-      <v-col cols="1o" class="d-flex justify-center">
+      <v-col cols="8" class="d-flex justify-center">
         <img height="44px" src="/logo1.png" width="auto" alt="Kontes Burung Logo" class=""/>
       </v-col>
-      <v-col cols="1" class="d-flex justify-center">
-        <v-icon size="32">mdi-account </v-icon>
+      <v-col cols="2" class="d-flex justify-center">
+        <img src="/assets/user.svg" height="auto" width="24px">
       </v-col>
     </v-row>
     <v-row class="pa-3">
