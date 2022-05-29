@@ -33,6 +33,7 @@
           <v-card
             color="basil"
             flat
+            id="card"
           >
             <v-card-text>
               <v-col v-for="(data, index) in listTiket" :key="index" cols="12">
