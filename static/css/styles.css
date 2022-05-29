@@ -26,8 +26,8 @@ body {
 }
 
 .event_card_img {
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -223,16 +223,6 @@ line-height: 33px;
   line-height: 22px;
 }
 
-/* .theme--light.v-btn.v-btn--has-bg {
-  background-color: #3f3937 !important;
-  border-radius: 8px;
-  width: 100%;
-  margin-top: 15px;
-  color: #f5eeeb;
-  font-family: "Manrope", sans-serif;
-  text-decoration: none;
-  padding: 16px 0px !important;
-} */
 .otp .theme--light.v-btn.v-btn--has-bg {
   background-color: #3f3937;
   padding: 8px 0px;
@@ -465,7 +455,7 @@ color: #3F3937;
   background: rgba(63, 57, 55, 0.05);
   border-radius: 8px;
 }
-.judul-daftar-tiket {
+.judul-card {
   font-size: 20px;
   line-height: 27px;
   color: #3f3937;
@@ -482,6 +472,20 @@ color: #3F3937;
   line-height: 16px;
   color: rgba(60, 60, 67, 0.6);
 }
+.image-card {
+  width:80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+#card .v-card__text {
+  padding: 12px !important;
+}
 .v_btn_transparent {
   background-color: transparent !important;
+}
+.text-card {
+  font-size: 14px;
+  line-height: 19px;
+  color: rgba(63, 57, 55, 0.8);
 }

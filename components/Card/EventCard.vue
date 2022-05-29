@@ -23,6 +23,7 @@
           :to="'/detail-event/' + data.event_id"
           outlined
           plain
+          style="margin-top: 16px;"
           >Lihat Detail</v-btn
         >
       </v-row>

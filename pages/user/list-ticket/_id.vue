@@ -11,23 +11,38 @@
       </v-col>
     </v-row>
 
-    <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
-      <v-tab v-for="item in items" :key="item">
-        {{ item }}
-      </v-tab>
-    </v-tabs>
-
-    <v-tabs-items v-model="tab">
-      <v-tab-item v-for="item in items" :key="item">
-        <v-card color="basil" flat>
-          <v-card-text>
-            <v-col v-for="(data, index) in listTiket" :key="index" cols="12">
-              <TiketCard :key="index" :data="data" />
-            </v-col>
-          </v-card-text>
-        </v-card>
-      </v-tab-item>
-    </v-tabs-items>
+    <v-tabs
+        v-model="tab"
+        background-color="transparent"
+        color="basil"
+        grow
+      >
+        <v-tab
+          v-for="item in items"
+          :key="item"
+        >
+          {{ item }}
+        </v-tab>
+      </v-tabs>
+  
+      <v-tabs-items v-model="tab">
+        <v-tab-item
+          v-for="item in items"
+          :key="item"
+        >
+          <v-card
+            color="basil"
+            flat
+            id="card"
+          >
+            <v-card-text>
+              <v-col v-for="(data, index) in listTiket" :key="index" cols="12">
+                <TiketCard :key="index" :data="data" />
+              </v-col>
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+      </v-tabs-items>
 
     <!-- <nuxt-link
       style="text-decoration: none; color: inherit"
