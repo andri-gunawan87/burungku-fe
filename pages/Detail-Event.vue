@@ -2,11 +2,11 @@
   <div>
     <v-row>
       <v-col cols="2">
-        <v-btn icon>
+        <v-btn icon @click="goToPrev()">
           <v-icon size="32">mdi-chevron-left</v-icon>
         </v-btn>
       </v-col>
-      <v-col cols="8" class="my-auto text_center">
+      <v-col cols="8" class="my-auto text_center text_main_color">
         <h2>Detail Event</h2>
       </v-col>
     </v-row>
@@ -18,7 +18,7 @@
       <RuleEventCard :data="detail_data.aturan" />
       </v-col>
       <v-col cols="12">
-      <PriceEventCard :data="detail_data.harga" />
+      <PriceEventCard :data="detail_data" />
       </v-col>
     </v-row>
   </div>
@@ -51,6 +51,11 @@ export default {
         aturan: ["Hi! I'm Daniel :)", "I am a Senior Brand & Visual designer at Mimo. At least that's what my LinkedIn profile says, but the reality it's a bit broader :)", "At Mimo I've built the foundations of Mimo brand and Mimo Design System, and now I am making sure everything is inline and looks & feels perfect. From brand, I naturally shifted to product and UX but always keeping eye on UI and all visual elements."]
       },
     };
+  },
+  methods: {
+    goToPrev() {
+      this.$router.go(-1);
+    },
   },
 };
 </script>

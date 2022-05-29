@@ -1,54 +1,56 @@
 <template>
   <div>
-    <v-row>
-      <v-col cols="2">
+    <v-row class="pa-3">
+      <v-col cols="1" class="d-flex justify-center align-center">
         <v-icon size="32">mdi-ticket </v-icon>
       </v-col>
-      <v-col cols="1o">
-        <img src="/logo1.png" alt="Kontes Burung Logo" class="center" />
+      <v-col cols="1o" class="d-flex justify-center">
+        <img height="44px" src="/logo1.png" width="auto" alt="Kontes Burung Logo" class=""/>
       </v-col>
-      <v-col cols="2">
+      <v-col cols="1" class="d-flex justify-center">
         <v-icon size="32">mdi-account </v-icon>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="pa-3">
       <v-text-field
         outlined
         label="Cari Lokasi Kontes"
         prepend-inner-icon="mdi-map-marker"
       ></v-text-field>
+    </v-row>
+    <v-row>
       <v-col v-for="n in 1" :key="n" cols="12">
         <v-card height="200"></v-card
       ></v-col>
     </v-row>
     <v-row>
-      <v-col cols="3" class="headline font-weight-bold">Event</v-col>
+      <v-col cols="3" class="headline font-weight-bold text_main_color">Event</v-col>
       <v-spacer></v-spacer>
-      <v-col cols="3">Lihat Semua</v-col>
+      <v-col cols="3"><nuxt-link class="text-decoration-none text_main_color" to="/discover-all">Lihat Semua</nuxt-link></v-col>
     </v-row>
     <v-row>
       <v-col v-for="(data, index) in listEvent" :key="index" cols="12">
         <EventCard :key="index" :data="data" />
       </v-col>
     </v-row>
-    <v-row>
-      <v-btn width="100%" height="50px" class="mx-auto mt-3" outlined
+    <v-row class="pa-3">
+      <v-btn width="100%" height="50px" class="mx-auto " :to="'/discover-all'" outlined
         >Lihat semua Event</v-btn
       >
     </v-row>
     <v-row>
-      <v-col cols="3" class="headline font-weight-bold">FAQ</v-col>
+      <v-col cols="3" class="headline font-weight-bold text_main_color">FAQ</v-col>
     </v-row>
-    <v-row>
+    <v-row class="pa-3">
       <v-expansion-panels>
         <v-expansion-panel>
-          <v-expansion-panel-header>
+          <v-expansion-panel-header class="font-weight-bold text_main_color">
             Apa itu kontes burung?
             <template v-slot:actions>
-              <v-icon color="primary"> $expand </v-icon>
+              <v-icon color="text_main_color"> $expand </v-icon>
             </template>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
+          <v-expansion-panel-content class="text_main_color">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -59,13 +61,13 @@
 
       <v-expansion-panels class="mt-2">
         <v-expansion-panel>
-          <v-expansion-panel-header>
+          <v-expansion-panel-header class="font-weight-bold text_main_color">
             Bagaimana cara kerjanya?
             <template v-slot:actions>
               <v-icon color="primary"> $expand </v-icon>
             </template>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
+          <v-expansion-panel-content class="text_main_color">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

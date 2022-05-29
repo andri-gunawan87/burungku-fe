@@ -2,12 +2,12 @@
   <div>
     <v-row>
       <v-col cols="2">
-        <v-btn icon>
+        <v-btn @click="goToPrev()" icon>
           <v-icon size="32">mdi-close</v-icon>
         </v-btn>
       </v-col>
-      <v-col cols="8" class="my-auto text_center">
-        <h2>Konfirmasi & Bayar</h2>
+      <v-col cols="8" class="my-auto text_center text_main_color">
+        <h2>Pesan Tiket</h2>
       </v-col>
     </v-row>
     <v-row>
@@ -15,12 +15,12 @@
         <SmallDetailEventCard :data="detail_data" />
       </v-col>
       <v-col cols="12">
-        <ScheduleEventCard :data="detail_data.jam" />
+        <ListSessionEventCard :data="detail_data.jam " :showNav.sync="showNav"/>
       </v-col>
       <v-col cols="12">
         <v-row>
-          <v-btn width="90%" height="50px" class="mx-auto mt-3 brown_color white--text" outlined
-            >Pesan jadwal pada<br />{{ detail_data.tanggal }}</v-btn
+          <v-btn width="90%" height="50px" :to="'/booking-confirmation'" class="mx-auto mt-3 brown_color white--text text-center" outlined
+            >Pesan jadwal pada<br />{{ detail_data.tanggal }} </v-btn
           >
         </v-row>
       </v-col>
@@ -29,12 +29,12 @@
 </template>
 <script>
 import SmallDetailEventCard from "@/components/Card/SmallDetailEventCard.vue";
-import ScheduleEventCard from "@/components/Card/ScheduleEventCard.vue";
+import ListSessionEventCard from "@/components/Card/ListSessionEventCard.vue";
 
 export default {
   components: {
     SmallDetailEventCard,
-    ScheduleEventCard,
+    ListSessionEventCard,
   },
 
   data() {
@@ -57,7 +57,19 @@ export default {
           "At Mimo I've built the foundations of Mimo brand and Mimo Design System, and now I am making sure everything is inline and looks & feels perfect. From brand, I naturally shifted to product and UX but always keeping eye on UI and all visual elements.",
         ],
       },
+      showNav: ""
     };
   },
+  methods: {
+    goToPrev() {
+      this.$router.go(-1);
+    },
+  },
+
+  computed: {
+    jamSesi() {
+      return this.showNav.slice(0, 5) + " WIB"
+    }
+  }
 };
 </script>

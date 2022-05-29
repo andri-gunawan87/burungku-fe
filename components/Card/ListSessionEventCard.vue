@@ -3,15 +3,26 @@
     <v-col>
       <v-row>
         <v-col cols="12" class="pa-5">
-          <h2 class="font-weight-bold" v-text="'Pilih Sesi'" /> 
+          <h2 class="font-weight-bold text_main_color" v-text="'Pilih Sesi'" />
         </v-col>
       </v-row>
-          <div v-for="(data, index) in data" :key="index" :data="data">
-              <v-btn v-model="noKursi" :value="data" width="100%" @click="checked = !checked" class="mx-auto mb-3" :class="{'': checked, 'brown_color white--text': !checked}" outlined plain><span>{{index + 1}}</span><v-spacer></v-spacer><span>{{data}}</span></v-btn>
-          </div>
-          <label>
-   </label>
+      <v-btn-toggle v-model="toggle_exclusive" mandatory class="v-btn-toggle_bot">
+        <div v-for="(data, index) in data" :key="index" :data="data">
+          <v-btn
+            :value="data"
+            width="100%"
+            class="mx-auto mb-3 text_main_color"
+            plain
+            @click="returnJam()"
+            ><span>{{ index + 1 }}</span
+            ><v-spacer></v-spacer><span>{{ data }}</span></v-btn
+          >
+        </div>
+      </v-btn-toggle>
 
+      <!-- <v-col cols="12" class="text-center">
+        Model: {{ toggle_exclusive }}
+      </v-col> --> 
     </v-col>
   </v-card>
 </template>
@@ -19,13 +30,19 @@
 <script>
 export default {
   props: {
-    data: 0
+    data: 0,
   },
 
   data() {
     return {
       checked: false,
-      noKursi: ""
+      toggle_exclusive: [],
+    };
+  },
+
+  methods: {
+    returnJam() {
+      this.$emit('update:showNav', this.toggle_exclusive)
     }
   }
 };
