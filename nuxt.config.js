@@ -3,8 +3,8 @@ import colors from "vuetify/es5/util/colors";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "%s - burungku-FE",
-    title: "burungku-FE",
+    // titleTemplate: "%s - Lomba Burung",
+    title: "Lomba Burung",
     htmlAttrs: {
       lang: "en",
     },
