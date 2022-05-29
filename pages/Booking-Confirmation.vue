@@ -72,11 +72,11 @@ export default {
       paymentMethod: {
         onTheSpot: {
           id: 1,
-          detail: "(On The Spot)"
+          detail: "Bayar di tempat (On The Spot)"
         },
         transfer: {
           id: 2,
-          detail: "(Foto Bukti Transfer)"
+          detail: "Transfer BANK (Foto Bukti Transfer)"
         }
       }
     };

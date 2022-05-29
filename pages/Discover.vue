@@ -1,22 +1,24 @@
 <template>
   <div>
-    <v-row>
+    <v-row class="pa-3">
       <v-col cols="1" class="d-flex justify-center align-center">
         <v-icon size="32">mdi-ticket </v-icon>
       </v-col>
       <v-col cols="1o" class="d-flex justify-center">
-        <img height="44px" src="/logo1.png" width="343px" alt="Kontes Burung Logo" class=""/>
+        <img height="44px" src="/logo1.png" width="auto" alt="Kontes Burung Logo" class=""/>
       </v-col>
       <v-col cols="1" class="d-flex justify-center">
         <v-icon size="32">mdi-account </v-icon>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="pa-3">
       <v-text-field
         outlined
         label="Cari Lokasi Kontes"
         prepend-inner-icon="mdi-map-marker"
       ></v-text-field>
+    </v-row>
+    <v-row>
       <v-col v-for="n in 1" :key="n" cols="12">
         <v-card height="200"></v-card
       ></v-col>
@@ -31,15 +33,15 @@
         <EventCard :key="index" :data="data" />
       </v-col>
     </v-row>
-    <v-row>
-      <v-btn width="100%" height="50px" class="mx-auto mt-3" :to="'/discover-all'" outlined
+    <v-row class="pa-3">
+      <v-btn width="100%" height="50px" class="mx-auto " :to="'/discover-all'" outlined
         >Lihat semua Event</v-btn
       >
     </v-row>
     <v-row>
       <v-col cols="3" class="headline font-weight-bold text_main_color">FAQ</v-col>
     </v-row>
-    <v-row>
+    <v-row class="pa-3">
       <v-expansion-panels>
         <v-expansion-panel>
           <v-expansion-panel-header class="font-weight-bold text_main_color">

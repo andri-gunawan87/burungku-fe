@@ -1,9 +1,11 @@
 body {
   background-color: #F5EEEB;
 }
+
 .container {
   max-width: 480px !important;
 }
+
 .v-sheet {
   box-shadow: none !important;
 }
@@ -11,12 +13,25 @@ body {
 .event_card {
   padding: 24px !important;
 }
+.payment_method {
+  display: inline-block !important;
+    height: 82px !important;
+    white-space: normal !important;
+    text-align: center;
+    padding: 16px;
+}
+
 .event_card_detail {
   margin-left: 12px;
 }
+
 .event_card_img {
-  width: 120px;
+  width: auto;
   height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.detail_event_card_img {
   object-fit: cover;
   border-radius: 8px;
 }

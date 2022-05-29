@@ -2,12 +2,12 @@
   <v-card light rounded="lg">
     <v-col>
       <v-row>
-        <v-col cols="12" class="pa-5">
-          <img :src="data.gambar" alt="Kontes Burung Logo" width="100%" />
+        <v-col cols="12" class="px-4 pt-6">
+          <img class="detail_event_card_img" :src="data.gambar" alt="Kontes Burung Logo" width="100%" />
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" class="pa-5">
+        <v-col cols="12" class="px-4">
           <h2 class="font-weight-bold text_main_color" v-text="data.judul" />
         </v-col>
       </v-row>
