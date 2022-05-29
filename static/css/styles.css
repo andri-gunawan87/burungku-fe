@@ -1,5 +1,5 @@
 body {
-  background-color: #F5EEEB;
+  background-color: #f5eeeb;
 }
 .center {
   display: block;
@@ -34,48 +34,48 @@ body {
 }
 
 .brown_color {
-  background-color: #3F3937;
-  color: #F5EEEB;
+  background-color: #3f3937;
+  color: #f5eeeb;
 }
 
 .main {
-  background-color: #F5EEEB;
+  background-color: #f5eeeb;
 }
 .btn-dark {
   justify-content: center;
   align-items: center;
   padding: 16px 0px;
-  background: #3F3937;
+  background: #3f3937;
   border-radius: 8px;
   width: 100%;
   margin-top: 15px;
-  color: #F5EEEB;
-  font-family: 'Manrope', sans-serif;
+  color: #f5eeeb;
+  font-family: "Manrope", sans-serif;
   text-decoration: none;
 }
 
 .text-400 {
-  font-family: 'Manrope';
+  font-family: "Manrope";
   font-style: normal;
   font-weight: 400;
 }
 .text-500 {
-  font-family: 'Manrope';
+  font-family: "Manrope";
   font-style: normal;
   font-weight: 500;
 }
 .text-600 {
-  font-family: 'Manrope';
+  font-family: "Manrope";
   font-style: normal;
   font-weight: 600;
 }
 .text-700 {
-  font-family: 'Manrope';
+  font-family: "Manrope";
   font-style: normal;
   font-weight: 700;
 }
 .text-800 {
-  font-family: 'Manrope';
+  font-family: "Manrope";
   font-style: normal;
   font-weight: 800;
 }
@@ -83,13 +83,12 @@ body {
 .text {
   font-size: 24px;
   line-height: 33px;
-  color: #3F3937;
+  color: #3f3937;
 }
-
 
 /* ===================================== On Boarding  =====================================*/
 .block-satu {
-  margin :50px 10px;
+  margin: 50px 10px;
   padding-right: 70px;
 }
 .text-boarding {
@@ -99,18 +98,18 @@ body {
   margin: 0 auto;
 }
 .btn-putih {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 8px;
   justify-content: center;
   align-items: center;
   padding: 16px 0px 0px;
   width: 100%;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   display: flex;
   align-items: baseline;
 }
 .atau {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -119,21 +118,20 @@ body {
   margin-top: 10px;
 }
 .btn-transparan {
-  border: 1px solid #3F3937;
+  border: 1px solid #3f3937;
   border-radius: 8px;
   justify-content: center;
   align-items: center;
   padding: 16px 0px;
   width: 100%;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
 }
 .icon-google {
-  margin-right : 20px;
+  margin-right: 20px;
 }
 
-
 /* ===================================== Register  =====================================*/
-.logo-top{
+.logo-top {
   margin: 25px auto 55px;
 }
 .masuk {
@@ -143,8 +141,13 @@ body {
   font-size: 16px;
   line-height: 22px;
 }
-.v-text-field--filled.v-input--dense.v-text-field--outlined > .v-input__control > .v-input__slot, .v-text-field--filled.v-input--dense.v-text-field--outlined.v-text-field--filled > .v-input__control > .v-input__slot {
-  background-color: #FFFFFF;
+.v-text-field--filled.v-input--dense.v-text-field--outlined
+  > .v-input__control
+  > .v-input__slot,
+.v-text-field--filled.v-input--dense.v-text-field--outlined.v-text-field--filled
+  > .v-input__control
+  > .v-input__slot {
+  background-color: #ffffff;
 }
 
 /* ===================================== Success  =====================================*/
@@ -159,12 +162,19 @@ body {
   font-size: 16px;
   line-height: 22px;
 }
-/* .v-text-field--filled.v-input--dense.v-text-field--outlined > .v-input__control > .v-input__slot, .v-text-field--filled.v-input--dense.v-text-field--outlined.v-text-field--filled > .v-input__control > .v-input__slot {
-  background-color: #FFFFFF;
-} */
+.v-btn:not(.v-btn--round).v-size--default {
+  background-color: #3f3937 !important;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 15px;
+  color: #f5eeeb;
+  font-family: "Manrope", sans-serif;
+  text-decoration: none;
+  padding: 16px 0px !important;
+}
 /* ===================================== Lupa Password  =====================================*/
 .background {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 25px;
   border-radius: 20px;
 }
@@ -208,7 +218,7 @@ body {
 .text-judul-page {
   font-size: 24px;
   line-height: 33px;
-  color: #3F3937;
+  color: #3f3937;
   padding-top: 15px;
   margin: 20px 25px;
 }
@@ -217,14 +227,14 @@ body {
   padding: 16px;
   gap: 16px;
   margin: 16px 5px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 12px;
 }
 .sub-judul {
   font-size: 20px;
   line-height: 27px;
   text-transform: uppercase;
-  color: #3F3937;
+  color: #3f3937;
   margin-bottom: 4px;
 }
 .desk-sub-judul {
@@ -248,13 +258,13 @@ body {
 .isi-label {
   font-size: 16px;
   line-height: 22px;
-  color: #3F3937;
+  color: #3f3937;
   margin: 12px 0;
 }
 .keluar {
   font-size: 16px;
   line-height: 22px;
-  color: #D83D0E;
+  color: #d83d0e;
   margin: 9px auto;
   font-size: 17px;
 }
@@ -262,7 +272,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 16px 8px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 8px;
 }
 .btn-riwayat {
@@ -275,13 +285,13 @@ body {
 .judul-daftar-tiket {
   font-size: 20px;
   line-height: 27px;
-  color: #3F3937;
+  color: #3f3937;
   margin-bottom: 4px;
 }
 .lokasi-daftar-tiket {
   font-size: 14px;
   line-height: 19px;
-  color: #3F3937;
+  color: #3f3937;
   margin-bottom: 12px;
 }
 .tgl-daftar-tiket {

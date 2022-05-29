@@ -2,7 +2,7 @@
     <div class="background">
         <nuxt-link
                 style="text-decoration: none; color: inherit"
-                :to="'/account/LoginV2'"
+                :to="'/account/login'"
             >
         <img src="/assets/back.svg" height="4%" width="4%" class="back">
         </nuxt-link>
