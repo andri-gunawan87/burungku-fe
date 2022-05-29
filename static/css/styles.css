@@ -1,7 +1,6 @@
 body {
   background-color: #F5EEEB;
 }
-<<<<<<< HEAD
 .container {
   max-width: 480px !important;
 }
@@ -21,8 +20,6 @@ p {
   font-style: normal;
   color: rgba(63, 57, 55, 0.8) !important;
 }
-=======
->>>>>>> c9f86adef50773d8db4c77607aaac7bff80f7436
 .center {
   display: block;
   margin-left: auto;
@@ -114,13 +111,10 @@ line-height: 33px;
 }
 
 .text {
-<<<<<<< HEAD
   margin-bottom: 20px;
-=======
   font-size: 24px;
   line-height: 33px;
   color: #3F3937;
->>>>>>> c9f86adef50773d8db4c77607aaac7bff80f7436
 }
 
 
@@ -227,7 +221,6 @@ line-height: 33px;
   width: 75%;
   margin-bottom: 25px;
 }
-<<<<<<< HEAD
 /* PaymentCard */
 .PaymentCardBody {
   display: flex;
@@ -341,7 +334,6 @@ color: #3F3937;
 
 
 
-=======
 
 /* ===================================== Profil  =====================================*/
 .judul {
@@ -436,4 +428,3 @@ color: #3F3937;
   line-height: 16px;
   color: rgba(60, 60, 67, 0.6);
 }
->>>>>>> c9f86adef50773d8db4c77607aaac7bff80f7436
