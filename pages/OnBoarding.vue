@@ -40,6 +40,7 @@
 
 <script>
 export default {
+  
   methods: {
     async login() {
       try {

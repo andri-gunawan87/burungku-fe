@@ -80,6 +80,7 @@
 </template>
 <script>
 import EventCard from "@/components/Card/EventCard.vue";
+import { async } from "q";
 
 export default {
   components: {
@@ -88,6 +89,7 @@ export default {
 
   data() {
     return {
+      user: null,
       listEvent: [
         {
           id: 1,
@@ -127,6 +129,11 @@ export default {
         },
       ],
     };
+  },
+
+  middleware: 'auth',
+  async fetch() {
+    this.user = await this.$axios.get("http://127.0.0.1:5000/auth/user/")
   },
 };
 </script>
