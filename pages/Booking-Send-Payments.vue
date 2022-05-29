@@ -26,30 +26,26 @@
       <v-col cols="12">
         <InputPaymentEventCard :data="paymentMethod" />
       </v-col>
-      <v-col cols="12">
-        <v-row>
+    </v-row>
+        <v-row class="px-3">
           <v-btn
-            width="90%"
+            width="100%"
             height="50px"
-            class="mx-auto mt-3 cancel_button red--text"
+            class="mx-auto mt-3 cancel_button red--text v_btn_transparent"
             elevation="0"
             @click="cancelbooking = true"
             >Batalkan Pemesanan</v-btn
           >
         </v-row>
-      </v-col>
-      <v-col cols="12">
-        <v-row>
+        <v-row class="px-3">
           <v-btn
-            width="90%"
+            width="100%"
             height="50px"
             class="mx-auto mt-3 brown_color white--text"
             outlined
             :to="'/booking-waiting-confirmation'"
             >Kirim Bukti Pembayaran</v-btn
           >
-        </v-row>
-      </v-col>
     </v-row>
     <v-dialog v-model="cancelbooking" max-width="300">
         <v-card>

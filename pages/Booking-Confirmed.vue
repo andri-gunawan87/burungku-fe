@@ -27,10 +27,10 @@
       <v-col cols="12">
         <PaymentProofEventCard :data="paymentInfo" />
       </v-col>
-      <v-col cols="12">
-        <v-row>
+    </v-row>
+        <v-row class="px-3">
           <v-btn
-            width="90%"
+            width="100%"
             height="50px"
             class="mx-auto mt-3 cancel_button red--text"
             elevation="0"
@@ -38,24 +38,20 @@
             >Batalkan Pemesanan</v-btn
           >
         </v-row>
-      </v-col>
-      <v-col cols="12">
-        <v-row>
+        <v-row class="px-3">
           <v-btn
-            width="90%"
+            width="100%"
             height="50px"
             class="mx-auto mt-3 home_button_color black--text"
             :to="'/discover'"
             >Kembali Ke Beranda</v-btn
           >
         </v-row>
-      </v-col>
-      <v-col cols="12">
-        <v-row>
+        <v-row class="px-3">
           <v-dialog v-model="dialog" width="500">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                width="90%"
+                width="100%"
                 height="50px"
                 class="mx-auto mt-3 brown_color white--text"
                 outlined
@@ -67,7 +63,6 @@
             <QrCodeEventCard :data="paymentInfo" />
           </v-dialog>
         </v-row>
-      </v-col>
       <v-dialog v-model="cancelbooking" max-width="300">
         <v-card>
           <v-card-title>
@@ -89,7 +84,6 @@
           </v-card-text>
         </v-card>
       </v-dialog>
-    </v-row>
   </div>
 </template>
 <script>

@@ -2,15 +2,15 @@
   <v-card light rounded="lg">
     <v-col>
       <v-row>
-        <v-col cols="7" class="pa-5">
+        <v-col cols="7" class="pa-5 d-flex my-auto">
           <h2 class="font-weight-bold text_main_color">{{formatRupiah((data.harga).toString())}}
         <span
           class="text-h6 font-weight-light text_main_color"
         >/ burung</span>
           </h2>
         </v-col>
-        <v-col cols="5" class="pa-5">
-          <v-btn color="#3F3937"  width="90%" class="mx-auto white--text" :to="'/booking-event'">Pesan Tiket</v-btn>
+        <v-col cols="5" class="pa-5 d-flex justify-center">
+          <v-btn color="#3F3937"  width="100%" class="mt-0 white--text" :to="'/booking-event'">Pesan Tiket</v-btn>
         </v-col>
       </v-row>
     </v-col>

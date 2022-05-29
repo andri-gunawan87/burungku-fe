@@ -3,7 +3,7 @@
     <v-col>
       <v-row>
         <v-col cols="12" class="pa-5">
-          <img :src="data.gambar" alt="Kontes Burung Logo" width="100%" />
+          <img class="detail_event_card_img" :src="data.gambar" alt="Kontes Burung Logo" width="100%" />
         </v-col>
       </v-row>
       <v-row>

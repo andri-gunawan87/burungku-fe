@@ -15,7 +15,7 @@
             >
             <v-spacer></v-spacer>
             <v-col cols="5" class="text-right">
-                <nuxt-link class="font-weight-bold text-decoration-none text_main_color" v-if="data.isbooking" to="/user/booking-event"
+                <nuxt-link class="font-weight-bold text-decoration-none text_main_color" v-if="data.isbooking" to="/booking-event"
                   >ubah</nuxt-link
               ></v-col
             >
@@ -29,7 +29,7 @@
             >
             <v-spacer></v-spacer>
             <v-col cols="5" class="text-right font-weight-bold">
-                <nuxt-link class="font-weight-bold text-decoration-none text_main_color" v-if="data.isbooking" to="/user/booking-event"
+                <nuxt-link class="font-weight-bold text-decoration-none text_main_color" v-if="data.isbooking" to="/booking-event"
                   >ubah</nuxt-link
               ></v-col
             >

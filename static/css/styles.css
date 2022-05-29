@@ -473,3 +473,6 @@ color: #3F3937;
   line-height: 16px;
   color: rgba(60, 60, 67, 0.6);
 }
+.v_btn_transparent {
+  background-color: transparent !important;
+}

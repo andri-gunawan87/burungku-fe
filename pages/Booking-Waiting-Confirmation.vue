@@ -27,10 +27,10 @@
       <v-col cols="12">
         <PaymentProofEventCard :data="paymentInfo" />
       </v-col>
-      <v-col cols="12">
-        <v-row>
+    </v-row>
+        <v-row class="px-3">
           <v-btn
-            width="90%"
+            width="100%"
             height="50px"
             class="mx-auto mt-3 cancel_button red--text"
             elevation="0"
@@ -38,11 +38,9 @@
             >Batalkan Pemesanan</v-btn
           >
         </v-row>
-      </v-col>
-      <v-col cols="12">
-        <v-row>
+        <v-row class="px-3">
           <v-btn
-            width="90%"
+            width="100%"
             height="50px"
             class="mx-auto mt-3 brown_color white--text"
             outlined
@@ -50,19 +48,15 @@
             >Cek Status Permintaan</v-btn
           >
         </v-row>
-      </v-col>
-      <v-col cols="12">
-        <v-row>
+        <v-row class="px-3">
           <v-btn
-            width="90%"
+            width="100%"
             height="50px"
             class="mx-auto mt-3 home_button_color black--text"
             :to="'/discover'"
             >Kembali Ke Beranda</v-btn
           >
         </v-row>
-      </v-col>
-    </v-row>
     <v-dialog v-model="cancelbooking" max-width="300">
         <v-card>
           <v-card-title>
