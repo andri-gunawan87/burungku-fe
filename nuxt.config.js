@@ -70,8 +70,8 @@ export default {
         codeChallengeMethod: "",
         responseType: "token id_token",
         endpoints: {
-          token: "http://localhost:8000/social-login/google/",
-          userInfo: "http://localhost:8000/auth/user/",
+          token: "http://127.0.0.1:5000/social-login/google/",
+          userInfo: "http://127.0.0.1:5000/auth/user/",
         },
       },
       local: {
