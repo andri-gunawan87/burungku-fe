@@ -27,7 +27,7 @@
             </nuxt-link>
             <nuxt-link
                 style="text-decoration: none; color: inherit"
-                :to="'/user/Discover'"
+                :to="'/Discover'"
             >
                 <button class="btn-dark">MASUK</button>
             </nuxt-link>
