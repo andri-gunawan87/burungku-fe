@@ -1,8 +1,8 @@
 <template>
     <div class="background">
         <img src="/assets/back.svg" height="4%" width="4%" class="back">
-        <h4 class="lupa">Kode Verifikasi</h4>
-        <p class="text-forgot">Masukkan 4-digit kode verifikasi yang dikirim ke nomor anda</p>
+        <h4 class="text-500 lupa">Kode Verifikasi</h4>
+        <p class="text-500 text-forgot">Masukkan 4-digit kode verifikasi yang dikirim ke nomor anda</p>
         <v-otp-input
             light
             length="5"

@@ -1,7 +1,7 @@
 <template>
     <div class="background">
         <img src="/assets/back.svg" height="4%" width="4%" class="back">
-        <h4 class="lupa">Reset Password</h4>
+        <h4 class="text-500 lupa">Reset Password</h4>
         <v-text-field
             label="Password Baru"
             prepend-inner-icon="mdi-key-outline"

@@ -43,7 +43,7 @@
           style="text-decoration: none; color: inherit"
           :to="'/account/LoginV2'"
         >
-        <h5 class="masuk">Masuk</h5>
+        <h5 class="masuk text-600">Masuk</h5>
       </nuxt-link>
      </center>
   </div>
