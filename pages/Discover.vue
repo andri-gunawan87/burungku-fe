@@ -8,7 +8,7 @@
         <img height="44px" src="/logo1.png" width="auto" alt="Kontes Burung Logo" class=""/>
       </v-col>
       <v-col cols="2" class="d-flex justify-center">
-        <img src="/assets/user.svg" height="16px" width="21px" class="mt-3">
+          <img src="/assets/user.svg" height="16px" width="21px" class="mt-3">
       </v-col>
     </v-row>
     <v-row class="pa-3">
@@ -129,11 +129,6 @@ export default {
         },
       ],
     };
-  },
-
-  middleware: 'auth',
-  async fetch() {
-    this.user = await this.$axios.get("http://127.0.0.1:5000/auth/user/")
   },
 };
 </script>

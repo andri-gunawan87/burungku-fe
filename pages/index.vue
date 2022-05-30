@@ -10,9 +10,12 @@
         <img height="44px" src="/logo1.png" width="auto" alt="Kontes Burung Logo" class=""/>
       </v-col>
       <v-col cols="2" class="d-flex justify-center">
+        <button @click="cekLogin()">
+        
         <nuxt-link to="/user/profilev2">
         <img src="/assets/user.svg" height="16px" width="21px" class="mt-3">
         </nuxt-link>
+        </button>
       </v-col>
     </v-row>
     <v-row class="pa-3">
@@ -131,6 +134,17 @@ export default {
         },
       ],
     };
+  },
+
+  methods: {
+    async cekLogin() {
+      const cekLogin = await localStorage.getItem('auth._token.google');
+      if (cekLogin == null) {
+        this.$router.push("/onboarding");
+      } else {
+        this.$router.push("/user/profilev2");
+      }
+    }
   },
 };
 </script>
