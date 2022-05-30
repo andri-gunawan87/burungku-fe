@@ -53,12 +53,14 @@ export default {
 
   axios: {
     baseURL: "https://api.lombaburung.com/",
+    // baseURL: "http://127.0.0.1:5000/",
     proxy: true,
     prefix: "/api/",
   },
   proxy: {
     "/api/": {
       target: "https://api.lombaburung.com/",
+      // target: "http://127.0.0.1:5000/",
       pathRewrite: { "^/api/": "" },
     },
   },

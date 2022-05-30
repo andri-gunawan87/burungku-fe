@@ -40,19 +40,6 @@
 
 <script>
 export default {
-  
-  data() {
-    return {
-      events: [],
-    };
-  },
-
-  methods: {
-    async fetch() {
-      await this.$axios.get("/event").then((res) => (this.events = res.data));
-      console.log(this.events);
-    },
-    
     async login() {
       try {
         await this.$auth.loginWith("google");
@@ -61,6 +48,5 @@ export default {
         this.error = e.response.data.message;
       }
     },
-  },
 };
 </script>
