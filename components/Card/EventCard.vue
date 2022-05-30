@@ -12,7 +12,7 @@
           <h2 class="text-800 text_main_color" v-text="data.nama_event" />
           </nuxt-link>
           <div class="mt-2">
-            <span class="text_main_color mr-3 ">{{ data.tgl }}</span>
+            <span class="text_main_color mr-3 ">{{ $moment(data.tgl_lomba).locale('id').format("MMM Do") }}</span>
             <span class="text_main_color">{{ data.kota }}</span>
           </div>
           <h2 class="font-weight-bold text_main_color mt-2" v-text="formatRupiah((data.harga).toString())" />
@@ -32,12 +32,20 @@
 </template>
 
 <script>
+import 'moment/locale/id';
 export default {
   props: {
     data: {
       type: Object,
     },
     img: ""
+  },
+
+  buildModules: [
+    '@nuxtjs/moment'
+  ],
+  moment: {
+    locales: ['idn']
   },
 
   methods: {
