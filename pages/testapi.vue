@@ -12,7 +12,6 @@ export default {
     async fetch() {
       await this.$axios.get("/event").then((res) => (this.events = res));
       console.log("hasil : "+ this.events);
-      console.log("test");
     },
 }
 </script>
