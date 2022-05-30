@@ -16,7 +16,7 @@
       </v-col>
 
       <v-col cols="12">
-        <SmallDetailEventCard :data="detail_data" />
+        <SmallDetailEventCard :data="eventdata" />
       </v-col>
       <v-col cols="12">
         <ScheduleEventCard :data="detail_data" />
@@ -135,6 +135,8 @@ export default {
           id: 2,
           detail: "(Foto Bukti Transfer)",
         },
+
+        eventdata:[],
       },
 
       paymentInfo: {
@@ -151,6 +153,15 @@ export default {
     goToPrev() {
       this.$router.go(-1);
     },
+    async loadApi() {
+      const response = await this.$axios.get("/event/"+ this.$route.params.id);
+      this.eventdata = response.data;
+    }
+  },
+
+  mounted() {
+    this.loadApi();
+    console.log(this.eventdata);
   },
 };
 </script>

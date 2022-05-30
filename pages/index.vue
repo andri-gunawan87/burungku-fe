@@ -182,12 +182,10 @@ export default {
       this.events = response.data;
     },
   },
-
-  // async fetch() {
-  //   await this.$axios.get("/event").then((res) => (this.events = res.data));
-  // },
+  
   mounted() {
     this.loadApi();
+    console.log(this.events);
   },
 };
 </script>

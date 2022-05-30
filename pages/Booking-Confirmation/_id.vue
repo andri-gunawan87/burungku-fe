@@ -7,36 +7,46 @@
         </v-btn>
       </v-col>
       <v-col cols="8" class="my-auto text_center text_main_color">
-        <h2>Pesan Tiket</h2>
+        <h2>Konfirmasi & Bayar</h2>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12">
-        <SmallDetailEventCard :data="detail_data" />
+        <SmallDetailEventCard :data="eventdata" />
       </v-col>
       <v-col cols="12">
-        <ListSessionEventCard :data="detail_data.jam" :showNav.sync="showNav" />
+        <ScheduleEventCard :data="detail_data" />
+      </v-col>
+      <v-col cols="12">
+        <SubTotalFeeEventCard :data="detail_data.harga" />
+      </v-col>
+      <v-col cols="12">
+        <PaymentMethodEventCard :data="paymentMethod" />
       </v-col> </v-row
-    ><v-row class="pa-3">
+    ><v-row class="px-3">
       <v-btn
         width="100%"
         height="50px"
-        :to="'/booking-confirmation'"
-        class="mt-3 brown_color white--text text-center"
+        :to="'/booking-send-payments/' + eventdata.id"
+        class="mx-auto mt-3 brown_color white--text"
         outlined
-        >Pesan jadwal pada<br />{{ detail_data.tanggal }}
-      </v-btn>
+        >Konfirmasi dan bayar</v-btn
+      >
     </v-row>
   </div>
 </template>
 <script>
 import SmallDetailEventCard from "@/components/Card/SmallDetailEventCard.vue";
-import ListSessionEventCard from "@/components/Card/ListSessionEventCard.vue";
+import ScheduleEventCard from "@/components/Card/ScheduleEventCard.vue";
+import SubTotalFeeEventCard from "@/components/Card/SubTotalFeeEventCard.vue";
+import PaymentMethodEventCard from "@/components/Card/PaymentMethodEventCard.vue";
 
 export default {
   components: {
     SmallDetailEventCard,
-    ListSessionEventCard,
+    ScheduleEventCard,
+    SubTotalFeeEventCard,
+    PaymentMethodEventCard,
   },
 
   data() {
@@ -58,20 +68,33 @@ export default {
           "I am a Senior Brand & Visual designer at Mimo. At least that's what my LinkedIn profile says, but the reality it's a bit broader :)",
           "At Mimo I've built the foundations of Mimo brand and Mimo Design System, and now I am making sure everything is inline and looks & feels perfect. From brand, I naturally shifted to product and UX but always keeping eye on UI and all visual elements.",
         ],
+        isbooking: true,
       },
-      showNav: "",
+      paymentMethod: {
+        onTheSpot: {
+          id: 1,
+          detail: "Bayar di tempat (On The Spot)",
+        },
+        transfer: {
+          id: 2,
+          detail: "Transfer BANK (Foto Bukti Transfer)",
+        },
+      },
+      eventdata:[],
     };
   },
   methods: {
     goToPrev() {
       this.$router.go(-1);
     },
+    async loadApi() {
+      const response = await this.$axios.get("/event/"+ this.$route.params.id);
+      this.eventdata = response.data;
+    }
   },
 
-  computed: {
-    jamSesi() {
-      return this.showNav.slice(0, 5) + " WIB";
-    },
+  mounted() {
+    this.loadApi();
   },
 };
 </script>

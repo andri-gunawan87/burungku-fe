@@ -16,7 +16,7 @@
       </v-col>
 
       <v-col cols="12">
-        <SmallDetailEventCard :data="detail_data" />
+        <SmallDetailEventCard :data="eventdata" />
       </v-col>
       <v-col cols="12">
         <ScheduleEventCard :data="detail_data" />
@@ -44,7 +44,7 @@
             height="50px"
             class="mx-auto mt-3 brown_color white--text"
             outlined
-            :to="'/booking-confirmed'"
+            :to="'/booking-confirmed/' + eventdata.id"
             >Cek Status Permintaan</v-btn
           >
         </v-row>
@@ -134,12 +134,22 @@ export default {
       },
 
       cancelbooking: false,
+      eventdata: [],
     };
   },
   methods: {
     goToPrev() {
       this.$router.go(-1);
     },
+
+    async loadApi() {
+      const response = await this.$axios.get("/event/"+ this.$route.params.id);
+      this.eventdata = response.data;
+    },
   },
+
+  mounted() {
+    this.loadApi();
+  }
 };
 </script>

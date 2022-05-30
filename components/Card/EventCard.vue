@@ -13,14 +13,14 @@
           </nuxt-link>
           <div class="mt-2">
             <span class="text_main_color mr-3 ">{{ $moment(data.tgl_lomba).locale('id').format("MMM Do") }}</span>
-            <span class="text_main_color">{{ data.kota }}</span>
+            <span class="text_main_color">{{ data.kota }}, {{ data.provinsi }}</span>
           </div>
           <h2 class="font-weight-bold text_main_color mt-2" v-text="formatRupiah((data.harga).toString())" />
         </div>
         <v-btn
           width="100%"
           class="mx-auto mt-3"
-          :to="'/detail-event/' + data.event_id"
+          :to="'/detail-event/' + data.id"
           outlined
           plain
           style="margin-top: 16px;"

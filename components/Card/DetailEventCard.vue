@@ -24,7 +24,7 @@
           <v-icon>mdi-calendar-range </v-icon>
         </v-col>
         <v-col cols="10" class="remove-padding-col px-5 text_main_color"
-          >{{ $moment(data.tgl_lomba).format("dddd, MMMM Do YYYY") }}
+          >{{ $moment(data.tgl_lomba).format("dddd, Do MMMM YYYY") }}
         </v-col>
         <v-col cols="2" class="remove-padding-col px-5">
           <v-icon>mdi-clock-time-three </v-icon>
@@ -36,7 +36,7 @@
             :data="data"
             class="text_main_color"
           >
-            {{ i }}
+            {{ i.jam_start }} - {{ i.jam_end }}
           </div>
         </v-col>
         <v-col cols="2" class="remove-padding-col px-5">
@@ -49,7 +49,7 @@
           <v-icon>mdi-ticket </v-icon>
         </v-col>
         <v-col cols="10" class="remove-padding-col px-5 text_main_color"
-          >{{ data.jml_tiket }}
+          >{{ data.jml_tiket }} Tiket
         </v-col>
       </v-row>
       <v-row>

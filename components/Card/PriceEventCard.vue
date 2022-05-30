@@ -3,14 +3,16 @@
     <v-col>
       <v-row>
         <v-col cols="7" class="pa-5 d-flex my-auto">
-          <h2 class="font-weight-bold text_main_color">{{formatRupiah((data.harga).toString())}}
+          <!-- <h2 class="font-weight-bold text_main_color">{{formatRupiah((data.harga).toString())}}</h2> -->
+          <h2 class="font-weight-bold text_main_color" v-text="formatRupiah((data.harga).toString())" />
+        <h2>
         <span
           class="text-h6 font-weight-light text_main_color"
         >/ burung</span>
-          </h2>
+        </h2>
         </v-col>
         <v-col cols="5" class="pa-5 d-flex justify-center">
-          <v-btn color="#3F3937"  width="100%" class="mt-0 white--text" :to="'/booking-event'">Pesan Tiket</v-btn>
+          <v-btn color="#3F3937"  width="100%" class="mt-0 white--text" :to="'/booking-event/' + data.id">Pesan Tiket</v-btn>
         </v-col>
       </v-row>
     </v-col>

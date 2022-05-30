@@ -18,7 +18,7 @@
       <RuleEventCard :data="eventdata.aturan" />
       </v-col>
       <v-col cols="12">
-      <!-- <PriceEventCard :data="eventdata" /> -->
+      <PriceEventCard :data="eventdata" />
       </v-col>
     </v-row>
   </div>
@@ -50,8 +50,8 @@ export default {
         deskripsi:"Hi! I'm Daniel :) \n I am a Senior Brand & Visual designer at Mimo. At least that's what my LinkedIn profile says, but the reality it's a bit broader :) \n \n At Mimo I've built the foundations of Mimo brand and Mimo Design System, and now I am making sure everything is inline and looks & feels perfect. From brand, I naturally shifted to product and UX but always keeping eye on UI and all visual elements. ",
         aturan: ["Hi! I'm Daniel :)", "I am a Senior Brand & Visual designer at Mimo. At least that's what my LinkedIn profile says, but the reality it's a bit broader :)", "At Mimo I've built the foundations of Mimo brand and Mimo Design System, and now I am making sure everything is inline and looks & feels perfect. From brand, I naturally shifted to product and UX but always keeping eye on UI and all visual elements."]
       },
+          img:"https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg",
           eventdata: [],
-          img:"https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg"
 
     };
   },
@@ -59,14 +59,19 @@ export default {
     goToPrev() {
       this.$router.go(-1);
     },
+
+    async loadApi() {
+      const response = await this.$axios.get("/event/"+ this.$route.params.id);
+      this.eventdata = response.data;
+    },
   },
 
-    async fetch() {
-    await this.$axios.get("/event/" + this.$route.params.id).then((res) => (this.eventdata = res.data));
-  },
-
+  // async fetch() {
+  //     await this.$axios.get("/event/"+ this.$route.params.id).then((res) => (this.events = res.data));
+  //     console.log("hasil : "+ this.events);
+  //   },
   mounted() {
-    console.log(this.eventdata)
+    this.loadApi();
   }
 
 };
