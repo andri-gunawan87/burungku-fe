@@ -3,18 +3,33 @@
     <v-row class="pa-3">
       <v-col cols="2" class="d-flex justify-center align-center">
         <nuxt-link to="/user/list-ticket">
-          <img src="/assets/ticket-home.svg" height="20px" width="18px" class="mt-2">
+          <img
+            src="/assets/ticket-home.svg"
+            height="20px"
+            width="18px"
+            class="mt-2"
+          />
         </nuxt-link>
       </v-col>
       <v-col cols="8" class="d-flex justify-center">
-        <img height="44px" src="/logo1.png" width="auto" alt="Kontes Burung Logo" class=""/>
+        <img
+          height="44px"
+          src="/logo1.png"
+          width="auto"
+          alt="Kontes Burung Logo"
+          class=""
+        />
       </v-col>
       <v-col cols="2" class="d-flex justify-center">
         <button @click="cekLogin()">
-        
-        <nuxt-link to="/user/profilev2">
-        <img src="/assets/user.svg" height="16px" width="21px" class="mt-3">
-        </nuxt-link>
+          <nuxt-link to="/user/profilev2">
+            <img
+              src="/assets/user.svg"
+              height="16px"
+              width="21px"
+              class="mt-3"
+            />
+          </nuxt-link>
         </button>
       </v-col>
     </v-row>
@@ -31,22 +46,37 @@
       ></v-col>
     </v-row> -->
     <v-row>
-      <v-col cols="3" class="headline font-weight-bold text_main_color">Event</v-col>
+      <v-col cols="3" class="headline font-weight-bold text_main_color"
+        >Event</v-col
+      >
       <v-spacer></v-spacer>
-      <v-col cols="3"><nuxt-link class="text-decoration-none text_main_color" to="/discover-all">Lihat Semua</nuxt-link></v-col>
+      <v-col cols="3"
+        ><nuxt-link
+          class="text-decoration-none text_main_color"
+          to="/discover-all"
+          >Lihat Semua</nuxt-link
+        ></v-col
+      >
     </v-row>
     <v-row>
       <v-col v-for="(data, index) in events" :key="index" cols="12">
-        <EventCard :key="index" :data="data" :img="img"/>
+        <EventCard :key="index" :data="data" :img="img" />
       </v-col>
     </v-row>
     <v-row class="pa-3">
-      <v-btn width="100%" height="50px" class="mx-auto " :to="'/discover-all'" outlined
+      <v-btn
+        width="100%"
+        height="50px"
+        class="mx-auto"
+        :to="'/discover-all'"
+        outlined
         >Lihat semua Event</v-btn
       >
     </v-row>
     <v-row>
-      <v-col cols="3" class="headline font-weight-bold text_main_color">FAQ</v-col>
+      <v-col cols="3" class="headline font-weight-bold text_main_color"
+        >FAQ</v-col
+      >
     </v-row>
     <v-row class="pa-3">
       <v-expansion-panels>
@@ -134,25 +164,26 @@ export default {
         },
       ],
       events: [],
-      img: "https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg"
+      img: "https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg",
     };
   },
 
   methods: {
     async cekLogin() {
-      const cekLogin = await localStorage.getItem('auth._token.google');
+      const cekLogin = await localStorage.getItem("auth._token.google");
       if (cekLogin == null) {
         this.$router.push("/onboarding");
       } else {
         this.$router.push("/user/profilev2");
       }
-    }
+    },
   },
+
   async fetch() {
     await this.$axios.get("/event").then((res) => (this.events = res.data));
   },
   mounted() {
-    console.log(this.events)
-  }
+    console.log(this.events);
+  },
 };
 </script>
