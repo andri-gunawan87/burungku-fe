@@ -61,15 +61,24 @@ export default {
       dataEvent: []
     }},
 
-  async fetch() {
-    await this.$axios
-      .get("/event/" + this.$route.params.id)
-      .then((res) => (this.dataEvent = res.data));
+  // async fetch() {
+  //   await this.$axios
+  //     .get("/event/" + this.$route.params.id)
+  //     .then((res) => (this.dataEvent = res.data));
+  // },
+
+  mounted() {
+    this.loadApi();
   },
 
   methods: {
     goToPrev() {
       this.$router.go(-1);
+    },
+
+    async loadApi() {
+      const response = await this.$axios.get("/event" + this.$route.params.id);
+      this.events = response.data;
     },
   },
 };

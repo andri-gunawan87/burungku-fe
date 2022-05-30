@@ -22,7 +22,7 @@
       </v-col>
       <v-col cols="2" class="d-flex justify-center">
         <button @click="cekLogin()">
-          <nuxt-link to="/user/profilev2">
+          <nuxt-link to="#">
             <img
               src="/assets/user.svg"
               height="16px"
@@ -177,13 +177,17 @@ export default {
         this.$router.push("/user/profilev2");
       }
     },
+    async loadApi() {
+      const response = await this.$axios.get("/event");
+      this.events = response.data;
+    },
   },
 
-  async fetch() {
-    await this.$axios.get("/event").then((res) => (this.events = res.data));
-  },
+  // async fetch() {
+  //   await this.$axios.get("/event").then((res) => (this.events = res.data));
+  // },
   mounted() {
-    console.log(this.events);
+    this.loadApi();
   },
 };
 </script>

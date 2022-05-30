@@ -53,15 +53,17 @@ export default {
 
   axios: {
     baseURL: "https://api.lombaburung.com/",
-    proxy: true,
-    prefix: "/api/",
+    // baseURL: "http://127.0.0.1:5000/",
+    // proxy: true,
+    // prefix: "/api/",
   },
-  proxy: {
-    "/api/": {
-      target: "https://api.lombaburung.com/",
-      pathRewrite: { "^/api/": "" },
-    },
-  },
+  // proxy: {
+  //   "/api/": {
+  //     target: "https://api.lombaburung.com/",
+  //     // target: "http://127.0.0.1:5000/",
+  //     pathRewrite: { "^/api/": "" },
+  //   },
+  // },
 
   auth: {
     strategies: {

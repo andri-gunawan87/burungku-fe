@@ -1,5 +1,11 @@
 <template>
   <div>
+    <nuxt-link
+                style="text-decoration: none; color: inherit"
+                :to="'/'"
+            >
+        <img src="/assets/back.svg" height="4%" width="4%" class="back">
+      </nuxt-link>
     <div class="block-satu">
       <img
         src="/logo.png"
@@ -40,19 +46,6 @@
 
 <script>
 export default {
-  
-  data() {
-    return {
-      events: [],
-    };
-  },
-
-  methods: {
-    async fetch() {
-      await this.$axios.get("/event").then((res) => (this.events = res.data));
-      console.log(this.events);
-    },
-    
     async login() {
       try {
         await this.$auth.loginWith("google");
@@ -61,6 +54,5 @@ export default {
         this.error = e.response.data.message;
       }
     },
-  },
 };
 </script>
