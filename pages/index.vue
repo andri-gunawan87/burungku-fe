@@ -36,8 +36,8 @@
       <v-col cols="3"><nuxt-link class="text-decoration-none text_main_color" to="/discover-all">Lihat Semua</nuxt-link></v-col>
     </v-row>
     <v-row>
-      <v-col v-for="(data, index) in listEvent" :key="index" cols="12">
-        <EventCard :key="index" :data="data" />
+      <v-col v-for="(data, index) in events" :key="index" cols="12">
+        <EventCard :key="index" :data="data" :img="img"/>
       </v-col>
     </v-row>
     <v-row class="pa-3">
@@ -133,6 +133,8 @@ export default {
             "https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg",
         },
       ],
+      events: [],
+      img: "https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg"
     };
   },
 
@@ -146,5 +148,11 @@ export default {
       }
     }
   },
+  async fetch() {
+    await this.$axios.get("/event").then((res) => (this.events = res.data));
+  },
+  mounted() {
+    console.log(this.events)
+  }
 };
 </script>

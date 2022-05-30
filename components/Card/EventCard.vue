@@ -4,23 +4,23 @@
       <v-row>
         <div>
           <nuxt-link to="/detail-event">
-          <img class="event_card_img" :src="data.gambar" alt="Kontes Burung Logo" />
+          <img class="event_card_img" :src="img" alt="Kontes Burung Logo" width="100%" />
           </nuxt-link>
         </div>
         <div class="event_card_detail">
           <nuxt-link to="/detail-event" class="text-decoration-none">
-          <h2 class="text-700 text_main_color judul-card" v-text="data.judul" style="margin-bottom: 8px;"/>
+          <h2 class="text-800 text_main_color" v-text="data.nama_event" />
           </nuxt-link>
-          <div style="margin-bottom: 8px;">
-            <span class="text-500 text_main_color mr-3 text-card">{{ data.tanggal }}</span>
-            <span class="text-500 text_main_color text-card">{{ data.lokasi }}</span>
+          <div class="mt-2">
+            <span class="text_main_color mr-3 ">{{ data.tgl }}</span>
+            <span class="text_main_color">{{ data.kota }}</span>
           </div>
-          <h2 class="text-700 font-weight-bold text_main_color judul-card" v-text="formatRupiah(data.harga)" style="margin-bottom: 0px;"/>
+          <h2 class="font-weight-bold text_main_color mt-2" v-text="formatRupiah((data.harga).toString())" />
         </div>
         <v-btn
           width="100%"
-          class="mx-auto"
-          :to="'/detail-event'"
+          class="mx-auto mt-3"
+          :to="'/detail-event/' + data.event_id"
           outlined
           plain
           style="margin-top: 16px;"
@@ -37,6 +37,7 @@ export default {
     data: {
       type: Object,
     },
+    img: ""
   },
 
   methods: {

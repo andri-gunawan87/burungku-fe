@@ -1,92 +1,73 @@
 <template>
   <div>
-    <v-row align="center" justify="center">
-      <v-col cols="12" sm="12" md="8">
-        <v-card dark class="pa-5 ma-5">
-          <v-list-item>
-            <v-list-item-avatar
-              tile
-              size="80"
-              color="grey"
-            ></v-list-item-avatar>
-            <v-list-item-content>
-              <v-list-item-title class="text-h5 mb-1">
-                {{ event.judul }}
-              </v-list-item-title>
-              <v-list-item-subtitle>{{ event.deskripsi }}</v-list-item-subtitle>
-            </v-list-item-content>
-            <!-- <v-list-item-content>
-              <v-list-item-title class="text-h5 mb-1"> </v-list-item-title>
-              <v-list-item-subtitle
-                >: {{ event.deskripsi }}</v-list-item-subtitle
-              >
-            </v-list-item-content> -->
-          </v-list-item>
-
-          <v-list-item class="ma-5">
-            <v-list-item-content>
-              <v-list-item-title class="mb-2">Jenis Event</v-list-item-title>
-              <v-list-item-title class="mb-2">Tanggal</v-list-item-title>
-              <v-list-item-title class="mb-2">Jam</v-list-item-title>
-              <v-list-item-title class="mb-2">Lokasi</v-list-item-title>
-              <v-list-item-title class="mb-2">Jumlah Tiket</v-list-item-title>
-              <v-list-item-title class="mb-2">Jumlah Sesi</v-list-item-title>
-              <v-list-item-title class="mb-2">Harga Tiket</v-list-item-title>
-              <v-list-item-title class="mb-2">Aturan Even</v-list-item-title>
-            </v-list-item-content>
-            <v-list-item-content>
-              <v-list-item-title class="mb-2"
-                >: {{ event.jenislomba_id }}</v-list-item-title
-              >
-              <v-list-item-title class="mb-2"
-                >: {{ event.jadwal }}</v-list-item-title
-              >
-              <v-list-item-title class="mb-2"
-                >: {{ event.jadwal }}</v-list-item-title
-              >
-              <v-list-item-title class="mb-2"
-                >: {{ event.lokasi_id }}</v-list-item-title
-              >
-              <v-list-item-title class="mb-2"
-                >: {{ event.jml_tiket }}</v-list-item-title
-              >
-              <v-list-item-title class="mb-2"
-                >: {{ event.jml_sesi }}</v-list-item-title
-              >
-              <v-list-item-title class="mb-2"
-                >: {{ event.harga_tiket }}</v-list-item-title
-              >
-              <v-list-item-title class="mb-2"
-                >: {{ event.aturan }}</v-list-item-title
-              >
-            </v-list-item-content>
-          </v-list-item>
-          <v-card-actions class="justify-center">
-            <v-btn color="orange" text @click="goToPrev()"> Kembali </v-btn>
-          </v-card-actions>
-        </v-card>
-        <v-divider dark inset></v-divider>
+    <v-row>
+      <v-col cols="2">
+        <v-btn icon @click="goToPrev()">
+          <v-icon size="32">mdi-chevron-left</v-icon>
+        </v-btn>
+      </v-col>
+      <v-col cols="8" class="my-auto text_center text_main_color">
+        <h2>Detail Event</h2>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+      <DetailEventCard :data="eventdata" :img="img"/>
+      </v-col>
+      <v-col cols="12">
+      <RuleEventCard :data="eventdata.aturan" />
+      </v-col>
+      <v-col cols="12">
+      <PriceEventCard :data="eventdata" />
       </v-col>
     </v-row>
   </div>
 </template>
-
 <script>
-export default {
-  data: () => ({
-    event: [],
-  }),
+import DetailEventCard from "@/components/Card/DetailEventCard.vue";
+import RuleEventCard from "@/components/Card/RuleEventCard.vue";
+import PriceEventCard from "@/components/Card/PriceEventCard.vue";
 
-  async fetch() {
-    await this.$axios
-      .get("/event/" + this.$route.params.id)
-      .then((res) => (this.event = res.data));
-    console.log(this.event);
+export default {
+  components: {
+    DetailEventCard,
+    RuleEventCard,
+    PriceEventCard,
+  },
+
+  data() {
+    return {
+      detail_data: {
+        id: 1,
+        judul: "Lomba Burung Murai",
+        tanggal: "Kamis, 12 Mei 2022",
+        jam: ["10:00-12:00", "13:00-14:00"],
+        lokasi: "Bandung, Jawa Barat",
+        jumlah_tiket: 20,
+        harga: 200000,
+        gambar:
+          "https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg",
+        deskripsi:"Hi! I'm Daniel :) \n I am a Senior Brand & Visual designer at Mimo. At least that's what my LinkedIn profile says, but the reality it's a bit broader :) \n \n At Mimo I've built the foundations of Mimo brand and Mimo Design System, and now I am making sure everything is inline and looks & feels perfect. From brand, I naturally shifted to product and UX but always keeping eye on UI and all visual elements. ",
+        aturan: ["Hi! I'm Daniel :)", "I am a Senior Brand & Visual designer at Mimo. At least that's what my LinkedIn profile says, but the reality it's a bit broader :)", "At Mimo I've built the foundations of Mimo brand and Mimo Design System, and now I am making sure everything is inline and looks & feels perfect. From brand, I naturally shifted to product and UX but always keeping eye on UI and all visual elements."]
+      },
+          eventdata: [],
+          img:"https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg"
+
+    };
   },
   methods: {
     goToPrev() {
       this.$router.go(-1);
     },
   },
+
+    async fetch() {
+    await this.$axios.get("/event/" + this.$route.params.id).then((res) => (this.eventdata = res.data));
+  },
+
+  mounted() {
+    console.log(this.eventdata)
+  }
+
 };
 </script>

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <v-row class="judul mb-4">
+    <v-row class="mb-4">
       <v-col cols="2">
-      <v-btn @click="goToPrev()" icon>
+        <v-btn @click="goToPrev()" icon>
           <v-icon size="32">mdi-chevron-left</v-icon>
         </v-btn>
       </v-col>
       <v-col cols="8" class="my-auto text_center text_main_color">
-      <h2>Daftar Tiket</h2>
+        <h2>Daftar Tiket</h2>
       </v-col>
     </v-row>
 
@@ -71,7 +71,6 @@
     >
       <button class="btn-riwayat">Riwayat</button>
     </nuxt-link> -->
-    
   </div>
 </template>
 
@@ -97,9 +96,7 @@ export default {
         },
       ],
       tab: null,
-      items: [
-        'Sedang Berlangsung', 'Riwayat',
-      ],
+      items: ["Sedang Berlangsung", "Riwayat"],
     };
   },
 
