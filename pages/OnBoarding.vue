@@ -1,5 +1,11 @@
 <template>
   <div>
+    <nuxt-link
+                style="text-decoration: none; color: inherit"
+                :to="'/'"
+            >
+        <img src="/assets/back.svg" height="4%" width="4%" class="back">
+      </nuxt-link>
     <div class="block-satu">
       <img
         src="/logo.png"
