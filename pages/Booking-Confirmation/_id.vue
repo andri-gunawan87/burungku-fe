@@ -17,12 +17,14 @@
       <v-col cols="12">
         <ScheduleEventCard :data="detail_data" />
       </v-col>
-      <v-col cols="12">
+      <!-- ======== Pembayaran ======== -->
+      <!-- <v-col cols="12">
         <SubTotalFeeEventCard :data="detail_data.harga" />
-      </v-col>
+      </v-col> -->
       <v-col cols="12">
         <PaymentMethodEventCard :data="paymentMethod" />
-      </v-col> </v-row
+      </v-col> 
+      </v-row
     ><v-row class="px-3">
       <v-btn
         width="100%"

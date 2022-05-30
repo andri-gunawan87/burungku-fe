@@ -9,9 +9,9 @@
           />
         </v-col>
 
-        <!-- <v-col cols="12" class="px-5 pt-0 pb-5">
+        <v-col cols="12" class="px-5 pt-0 pb-5">
           <v-row>
-            <v-col cols="6"
+            <v-col cols="12"
               ><v-btn
                 width="100%"
                 class="mx-auto py-10 brown_color white--text"
@@ -19,17 +19,19 @@
                 >Bayar di tempat<br />{{ data.onTheSpot.detail }}</v-btn
               ></v-col
             >
-            <v-col cols="6"
+            <!-- <v-col cols="6"
               ><v-btn
                 width="100%"
                 class="mx-auto py-10 brown_color white--text"
                 outlined
                 >Transfer BANK<br />{{ data.transfer.detail }}</v-btn
               ></v-col
-            >
+            > -->
           </v-row>
-        </v-col> -->
-        <v-btn-toggle v-model="toggle_exclusive" mandatory>
+        </v-col>
+
+        <!-- ====== Button pembayaran Perulangan ===== -->
+        <!-- <v-btn-toggle v-model="toggle_exclusive" mandatory>
           <v-row class="ma-5">
             <v-col
               cols="6"
@@ -46,7 +48,7 @@
               >
             </v-col>
           </v-row>
-        </v-btn-toggle>
+        </v-btn-toggle> -->
       </v-row>
     </v-col>
   </v-card>
