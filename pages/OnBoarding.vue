@@ -52,6 +52,7 @@ export default {
       await this.$axios.get("/event").then((res) => (this.events = res.data));
       console.log(this.events);
     },
+    
     async login() {
       try {
         await this.$auth.loginWith("google");
