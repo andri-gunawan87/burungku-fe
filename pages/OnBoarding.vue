@@ -31,7 +31,8 @@
         <p class="text-600">MASUK DENGAN GOOGLE</p>
       </button>
 
-      <center>
+      <!-- ===== Login Metode Lain ===== -->
+      <!-- <center>
         <p class="atau text-600">atau</p>
       </center>
       <button class="btn-transparan text-600">
@@ -39,13 +40,14 @@
       ><br />
       <nuxt-link :to="'/account/register/Account'">
         <button class="btn-dark">DAFTAR DENGAN EMAIL</button>
-      </nuxt-link>
+      </nuxt-link> -->
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  methods: {
     async login() {
       try {
         await this.$auth.loginWith("google");
@@ -54,5 +56,6 @@ export default {
         this.error = e.response.data.message;
       }
     },
+  }
 };
 </script>
