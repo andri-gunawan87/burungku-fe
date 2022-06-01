@@ -65,6 +65,7 @@ export default {
   //   },
   // },
 
+  
   auth: {
     strategies: {
       google: {
@@ -73,7 +74,7 @@ export default {
         codeChallengeMethod: "",
         responseType: "token id_token",
         endpoints: {
-          token: "https://api.lombaburung.com//social-login/google/",
+          token: "https://api.lombaburung.com/social-login/google/",
           userInfo: "https://api.lombaburung.com//auth/user/",
         },
       },
