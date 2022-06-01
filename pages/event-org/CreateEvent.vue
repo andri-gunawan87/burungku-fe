@@ -24,7 +24,7 @@
                 <v-col cols="12">
                   <form @submit.prevent="submit" ref="form">
                     <v-row>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="eventName"
                           :counter="25"
@@ -32,6 +32,26 @@
                           required
                           filled
                         ></v-text-field>
+                        <v-textarea
+                              v-model="description"
+                              auto-grow
+                              label="Deskripsi"
+                              filled
+                            ></v-textarea>
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col cols="6">
+                        <v-select
+                          v-model="lokasiSelect"
+                          :items="list_lokasi"
+                          :item-text="'nama'"
+                          :item-value="'id'"
+                          label="Lokasi Event"
+                          data-vv-name="select.nama"
+                          required
+                          filled
+                        ></v-select>
                         <v-menu
                           v-model="calendar"
                           :close-on-content-click="false"
@@ -106,13 +126,14 @@
                             @input="calendarEndReg = false"
                           ></v-date-picker>
                         </v-menu>
+                            <v-text-field
+                              v-model="numberOfTicket"
+                              label="Jumlah Kursi"
+                              readonly
+                              filled
+                            ></v-text-field>
 
-                        <v-text-field
-                          v-model="location"
-                          label="Lokasi Event"
-                          required
-                          filled
-                        ></v-text-field>
+                        
                       </v-col>
 
                       <v-col cols="6">
@@ -226,33 +247,29 @@
                     </v-row>
                     <v-row>
                       <v-col cols="6">
-                        <v-row>
-                          <v-col cols="6">
-                            <v-text-field
-                              v-model="numberOfTicket"
-                              label="Jumlah Kursi"
-                              readonly
-                              filled
-                            ></v-text-field>
-                          </v-col>
-                          <v-col cols="6">
-                            <v-text-field
-                              v-model="numberOfSession"
-                              label="Jumlah Sesi"
-                              type="number"
-                              required
-                              filled
-                            ></v-text-field>
-                          </v-col>
-                          <v-col cols="12">
-                            <v-textarea
-                              v-model="description"
-                              auto-grow
-                              label="Deskripsi"
-                              filled
-                            ></v-textarea>
-                          </v-col>
-                        </v-row>
+                        <div
+                          class="
+                            display-2
+                            font-weight-light
+                            col col-12
+                            text--primary
+                            pa-0
+                            mb-8
+                            text-center
+                          "
+                        >
+                          <h6 class="font-weight-light">List Sesi</h6>
+                        </div>
+
+                        <v-text-field
+                          v-for="(data, index) in list_sesi"
+                          :key="index"
+                          v-model="data[index]"
+                          :label="'Sesi ' + ++index"
+                        ></v-text-field>
+                        <v-btn color="orange text-right" text @click="add_sesi">
+                          Tambah Sesi
+                        </v-btn>  
                       </v-col>
                       <v-col cols="6">
                         <div
@@ -339,12 +356,18 @@ export default {
     watchStartReg: false,
     watchEndReg: false,
     jml_aturan: [{}],
+    list_sesi: [{}],
+    list_lokasi: [],
+    lokasiSelect: ""
   }),
 
   async fetch() {
     await this.$axios
       .get("/jenisBurung")
-      .then((res) => (this.birdType = res.data));
+      .then((res) => (this.birdType = res.data))
+      return this.$axios
+      .get("/lokasi")
+      .then((res) => (this.list_lokasi = res.data))
   },
 
   methods: {
@@ -355,6 +378,10 @@ export default {
 
     add_rule() {
       this.jml_aturan.push({});
+    },
+
+    add_sesi() {
+      this.list_sesi.push({});
     },
 
     async submit() {
