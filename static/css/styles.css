@@ -2,7 +2,7 @@ body {
   background-color: #f5eeeb;
 }
 
-.container {
+.container_mobile {
   max-width: 480px !important;
 }
 
