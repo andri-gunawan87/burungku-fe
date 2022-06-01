@@ -3,8 +3,7 @@
     <v-col>
       <v-row>
         <v-col cols="7" class="pa-5 d-flex my-auto">
-          <!-- <h2 class="font-weight-bold text_main_color">{{formatRupiah((data.harga).toString())}}</h2>
-          <h2 class="font-weight-bold text_main_color" v-text="formatRupiah((data.harga).toString())" /> -->
+          <h2 class="font-weight-bold text_main_color" v-text="formatRupiah(String(data))" />
         <h2>
         <span
           class="text-h6 font-weight-light text_main_color"
@@ -25,8 +24,10 @@
 export default {
   props: {
     data: {
+      type: BigInt,
     },
   },
+
 
   methods: {
     async cekLogin() {

@@ -18,7 +18,7 @@
       <RuleEventCard :data="eventdata.aturan" />
       </v-col>
       <v-col cols="12">
-      <PriceEventCard :data="eventdata" />
+      <PriceEventCard :data="eventdata.harga" />
       </v-col>
     </v-row>
   </div>
