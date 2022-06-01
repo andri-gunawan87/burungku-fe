@@ -37,8 +37,8 @@
                     <v-row>
                       <v-col cols="6">
                         <v-select
-                          v-model="birdTypeSelect"
-                          :items="birdType"
+                          v-model="kotaSelect"
+                          :items="listKota"
                           :item-text="'nama'"
                           :item-value="'id'"
                           label="Kota/Kabupaten"
@@ -53,7 +53,7 @@
                           filled
                         ></v-text-field>
                         <v-textarea
-                          v-model="locationaddress"
+                          v-model="locationAddress"
                           auto-grow
                           label="Alamat"
                           filled
@@ -62,8 +62,8 @@
 
                       <v-col cols="6">
                         <v-select
-                          v-model="birdTypeSelect"
-                          :items="birdType"
+                          v-model="provinsiSelect"
+                          :items="listProvinsi"
                           :item-text="'nama'"
                           :item-value="'id'"
                           label="Provinsi"
@@ -107,14 +107,19 @@ export default {
     locationAddress: "",
     locationLong: "",
     locationAlt: "",
-    birdType: [],
-    birdTypeSelect: "",
+    listKota: [],
+    kotaSelect: "",
+    listProvinsi: [],
+    provinsiSelect: "",
   }),
 
   async fetch() {
     await this.$axios
-      .get("/jenisBurung")
-      .then((res) => (this.birdType = res.data));
+      .get("/lokasi/kota")
+      .then((res) => (this.listKota = res.data))
+      return this.$axios 
+      .get("/lokasi/provinsi")
+      .then((res) => (this.listProvinsi = res.data))
   },
 
   methods: {
@@ -122,29 +127,23 @@ export default {
       this.birdTypeSelect = "";
       this.$refs.form.reset();
     },
-    // async submit() {
-    //   try {
-    //     await this.$axios.post("/event/add", {
-    //       judul: this.eventName,
-    //       deskripsi: this.description,
-    //       tanggal: this.date,
-    //       jam: this.eventTime,
-    //       jml_tiket: this.numberOfTicket,
-    //       jml_sesi: this.numberOfSession,
-    //       harga_tiket: this.ticketPrice,
-    //       aturan: this.eventRules,
-    //       jenisburung_id: this.birdTypeSelect,
-    //       lokasi: this.location,
-    //       jenislomba_id: 1,
-    //       jml_kol: this.numberOfCol,
-    //       jml_baris: this.numberOfRow,
-    //     });
-    //     this.$router.push("/");
-    //   } catch (e) {
-    //     this.error = e.response;
-    //     console.log(this.error);
-    //   }
-    // },
+    async submit() {
+      try {
+        await this.$axios.post("/lokasi/add", {
+          nama: this.locationName,
+          alamat: this.locationAddress,
+          kota_id: this.kotaSelect,
+          provinsi_id: this.provinsiSelect,
+          longitut: this.locationLong,
+          latitut: this.locationAlt,
+
+        });
+        this.$router.push("/event-org");
+      } catch (e) {
+        this.error = e.response;
+        console.log(this.error);
+      }
+    },
   },
 };
 </script>
