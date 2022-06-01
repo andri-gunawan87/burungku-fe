@@ -18,7 +18,7 @@
                   mb-8
                 "
               >
-                <h5 class="font-weight-light">Create Event</h5>
+                <h5 class="font-weight-light">Create Event{{lokasiSelect}}</h5>
               </div>
               <v-row class="text-left">
                 <v-col cols="12">
@@ -129,7 +129,6 @@
                             <v-text-field
                               v-model="numberOfTicket"
                               label="Jumlah Kursi"
-                              readonly
                               filled
                             ></v-text-field>
 
@@ -266,6 +265,7 @@
                           :key="index"
                           v-model="data[index]"
                           :label="'Sesi ' + ++index"
+                          filled
                         ></v-text-field>
                         <v-btn color="orange text-right" text @click="add_sesi">
                           Tambah Sesi
@@ -287,10 +287,11 @@
                         </div>
 
                         <v-text-field
-                          v-for="(data, index) in jml_aturan"
+                          v-for="(data, index) in list_aturan"
                           :key="index"
                           v-model="data[index]"
                           :label="'Aturan ' + ++index"
+                          filled
                         ></v-text-field>
                         <v-btn color="orange text-right" text @click="add_rule">
                           Tambah Aturan
@@ -325,7 +326,7 @@ export default {
     dateStartReg: "",
     dateEndReg: "",
     description: "",
-    birdType: [],
+    // birdType: [],
     birdTypeSelect: "",
     eventDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
@@ -355,20 +356,35 @@ export default {
     watch: false,
     watchStartReg: false,
     watchEndReg: false,
-    jml_aturan: [{}],
+    list_aturan: [{}],
     list_sesi: [{}],
-    list_lokasi: [],
-    lokasiSelect: ""
+    // list_lokasi: [],
+    lokasiSelect: "",
+    numberOfTicket: 0
   }),
 
-  async fetch() {
-    await this.$axios
-      .get("/jenisBurung")
-      .then((res) => (this.birdType = res.data))
-      return this.$axios
-      .get("/lokasi")
-      .then((res) => (this.list_lokasi = res.data))
-  },
+  // async fetch() {
+  //   await this.$axios
+  //     .get("/jenisBurung")
+  //     .then((res) => (this.birdType = res.data))
+  //     return this.$axios
+  //     .get("/lokasi")
+  //     .then((res) => (this.list_lokasi = res.data)) 
+  // },
+
+  async asyncData ({ $axios }) {
+  const [birdTypeRes, listLokasiRes, eventIdRes] = await Promise.all([ 
+    $axios.get('/jenisBurung'),
+    $axios.get('/lokasi'),
+    $axios.get('/event/get/id'),
+  ])
+
+  return {
+    birdType: birdTypeRes.data,
+    list_lokasi: listLokasiRes.data,
+    event_id: eventIdRes.data,
+  }
+},
 
   methods: {
     clear() {
@@ -377,7 +393,7 @@ export default {
     },
 
     add_rule() {
-      this.jml_aturan.push({});
+      this.list_aturan.push({});
     },
 
     add_sesi() {
@@ -387,21 +403,27 @@ export default {
     async submit() {
       try {
         await this.$axios.post("/event/add", {
-          judul: this.eventName,
+          id: this.event_id,
+          nama: this.eventName,
           deskripsi: this.description,
-          tanggal: this.date,
+          tgl: this.date,
           jam: this.eventTime,
           jml_tiket: this.numberOfTicket,
           jml_sesi: this.numberOfSession,
-          harga_tiket: this.ticketPrice,
-          aturan: this.eventRules,
+          harga: this.ticketPrice,
+          aturan: this.list_aturan,
           jenisburung_id: this.birdTypeSelect,
-          lokasi: this.location,
-          jenislomba_id: 1,
-          jml_kol: this.numberOfCol,
-          jml_baris: this.numberOfRow,
+          lokasi: this.lokasiSelect,
+          tgl_start: this.dateStartReg,
+          tgl_end: this.dateEndReg,
+          jam_start: this.eventTimeStartReg,
+          jam_end: this.eventTimeEndReg
         });
-        this.$router.push("/");
+        await this.$axios.post("/event/elok/add", {
+          lokasi_id: this.lokasiSelect,
+          event_id: this.event_id
+          });
+        this.$router.push("/event-org/");
       } catch (e) {
         this.error = e.response;
         console.log(this.error);
@@ -410,9 +432,6 @@ export default {
   },
 
   computed: {
-    numberOfTicket() {
-      return this.numberOfRow * this.numberOfCol;
-    },
     datetime() {
       return new String(this.date + " " + this.eventTime);
     },
