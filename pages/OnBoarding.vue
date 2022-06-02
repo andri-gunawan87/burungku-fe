@@ -1,10 +1,7 @@
 <template>
   <div>
-    <nuxt-link
-                style="text-decoration: none; color: inherit"
-                :to="'/'"
-            >
-        <img src="/assets/back.svg" height="4%" width="4%" class="back">
+      <nuxt-link style="text-decoration: none; color: inherit" :to="'/'">
+        <img src="/assets/back.svg" height="4%" width="4%" class="back" />
       </nuxt-link>
     <div class="block-satu">
       <img
@@ -56,6 +53,6 @@ export default {
         this.error = e.response.data.message;
       }
     },
-  }
+  },
 };
 </script>

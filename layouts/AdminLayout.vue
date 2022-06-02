@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <AdminNavbar />
-    <v-main>
+    <v-main class="main">
       <v-container>
         <Nuxt />
       </v-container>
