@@ -18,7 +18,7 @@
                   mb-8
                 "
               >
-                <h5 class="font-weight-light">Create Event{{lokasiSelect}}</h5>
+                <h5 class="font-weight-light">Create Event</h5>
               </div>
               <v-row class="text-left">
                 <v-col cols="12">
@@ -263,7 +263,7 @@
                         <v-text-field
                           v-for="(data, index) in list_sesi"
                           :key="index"
-                          v-model="data[index]"
+                          v-model="data.value"
                           :label="'Sesi ' + ++index"
                           filled
                         ></v-text-field>
@@ -289,12 +289,12 @@
                         <v-text-field
                           v-for="(data, index) in list_aturan"
                           :key="index"
-                          v-model="data[index]"
+                          v-model="data.value"
                           :label="'Aturan ' + ++index"
                           filled
                         ></v-text-field>
                         <v-btn color="orange text-right" text @click="add_rule">
-                          Tambah Aturan
+                          Tambah Aturan{{list_aturan}}
                         </v-btn>
                       </v-col>
                     </v-row>

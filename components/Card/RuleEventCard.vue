@@ -8,9 +8,9 @@
       </v-row>
       <v-row>
         <v-col cols="12" class="remove-padding-col px-5 pb-5">
-          <!-- <li class="remove-padding-col mx-4 text_main_color" v-for="(i, index) in data" :key="index" :data="data">
+          <div class="remove-padding-col mx-4 text_main_color" v-for="(i, index) in data" :key="index" :data="data">
           {{i}}
-          </li> -->
+          </div>
           {{ data }}
         </v-col>
       </v-row>
@@ -23,8 +23,9 @@
 <script>
 export default {
   props: {
-    data: [],
-    
+    data: {
+      type: Object
+    },
   },
 };
 </script>
