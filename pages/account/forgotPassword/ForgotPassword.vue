@@ -2,14 +2,14 @@
     <div class="background">
         <nuxt-link
                 style="text-decoration: none; color: inherit"
-                :to="'/account/LoginV2'"
+                :to="'/account/login'"
             >
         <img src="/assets/back.svg" height="4%" width="4%" class="back">
         </nuxt-link>
         <h4 class="lupa text-500">Lupa Passwordmu?</h4>
         <p class="text-forgot text-400">Silahkan masukkan nomor telepon anda, untuk menerima kode verifikasi</p>
         <v-text-field
-            label="Nomer Telepon"
+            placeholder="Nomer Telepon"
             prepend-inner-icon="mdi-phone-outline"
             rounded
             filled

@@ -3,8 +3,8 @@ import colors from "vuetify/es5/util/colors";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "%s - burungku-FE",
-    title: "burungku-FE",
+    // titleTemplate: "%s - Lomba Burung",
+    title: "Lomba Burung",
     htmlAttrs: {
       lang: "en",
     },
@@ -43,6 +43,7 @@ export default {
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
     "@nuxtjs/auth-next",
+    "@nuxtjs/moment",
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -51,17 +52,20 @@ export default {
   // },
 
   axios: {
-    baseURL: "http://127.0.0.1:5000/",
+    // baseURL: "https://api.lombaburung.com/",
+    // baseURL: "http://127.0.0.1:5000/",
     proxy: true,
     prefix: "/api/",
   },
   proxy: {
     "/api/": {
-      target: "http://127.0.0.1:5000/",
+      target: "https://api.lombaburung.com/",
+      // target: "http://127.0.0.1:5000/",
       pathRewrite: { "^/api/": "" },
     },
   },
 
+  
   auth: {
     strategies: {
       google: {
@@ -70,8 +74,8 @@ export default {
         codeChallengeMethod: "",
         responseType: "token id_token",
         endpoints: {
-          token: "http://localhost:8000/social-login/google/",
-          userInfo: "http://localhost:8000/auth/user/",
+          token: "https://api.lombaburung.com/social-login/google/",
+          userInfo: "https://api.lombaburung.com//auth/user/",
         },
       },
       local: {

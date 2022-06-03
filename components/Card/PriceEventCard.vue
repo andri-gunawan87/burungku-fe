@@ -2,15 +2,18 @@
   <v-card light rounded="lg">
     <v-col>
       <v-row>
-        <v-col cols="7" class="pa-5">
-          <h2 class="font-weight-bold text_main_color">{{formatRupiah((data.harga).toString())}}
+        <v-col cols="7" class="pa-5 d-flex my-auto">
+          <h2 class="font-weight-bold text_main_color" v-text="formatRupiah(String(data))" />
+        <h2>
         <span
           class="text-h6 font-weight-light text_main_color"
         >/ burung</span>
-          </h2>
+        </h2>
         </v-col>
-        <v-col cols="5" class="pa-5">
-          <v-btn color="#3F3937"  width="90%" class="mx-auto white--text" :to="'/booking-event'">Pesan Tiket</v-btn>
+        <v-col cols="5" class="pa-5 d-flex justify-center">
+          <button @click="cekLogin()">
+            <v-btn color="#3F3937"  width="100%" class="mt-0 white--text">Pesan Tiket</v-btn>
+          </button>
         </v-col>
       </v-row>
     </v-col>
@@ -21,10 +24,21 @@
 export default {
   props: {
     data: {
+      type: BigInt,
     },
   },
 
+
   methods: {
+    async cekLogin() {
+      const cekLogin = await localStorage.getItem("auth._token.google");
+      if (cekLogin == null) {
+        this.$router.push("/onboarding");
+      } else {
+        this.$router.push("'/booking-event/'"+ data.id);
+      }
+    },
+
     formatRupiah(angka) {
       var prefix = "Rp. ";
       var number_string = angka.replace(/[^,\d]/g, "").toString(),

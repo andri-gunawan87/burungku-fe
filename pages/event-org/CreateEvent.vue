@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container fluid>
+    <v-container>
       <v-row>
         <v-col cols="12" sm="12" md="12">
           <v-card>
@@ -9,7 +9,14 @@
           <v-card>
             <v-card-text class="text-center">
               <div
-                class="display-2 font-weight-light col col-12 text--primary pa-0 mb-8"
+                class="
+                  display-2
+                  font-weight-light
+                  col col-12
+                  text--primary
+                  pa-0
+                  mb-8
+                "
               >
                 <h5 class="font-weight-light">Create Event</h5>
               </div>
@@ -17,7 +24,7 @@
                 <v-col cols="12">
                   <form @submit.prevent="submit" ref="form">
                     <v-row>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="eventName"
                           :counter="25"
@@ -25,6 +32,26 @@
                           required
                           filled
                         ></v-text-field>
+                        <v-textarea
+                              v-model="description"
+                              auto-grow
+                              label="Deskripsi"
+                              filled
+                            ></v-textarea>
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col cols="6">
+                        <v-select
+                          v-model="lokasiSelect"
+                          :items="list_lokasi"
+                          :item-text="'nama'"
+                          :item-value="'id'"
+                          label="Lokasi Event"
+                          data-vv-name="select.nama"
+                          required
+                          filled
+                        ></v-select>
                         <v-menu
                           v-model="calendar"
                           :close-on-content-click="false"
@@ -50,12 +77,62 @@
                           ></v-date-picker>
                         </v-menu>
 
-                        <v-text-field
-                          v-model="location"
-                          label="Lokasi Event"
-                          required
-                          filled
-                        ></v-text-field>
+                        <v-menu
+                          v-model="calendarStartReg"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          transition="scale-transition"
+                          offset-y
+                          min-width="auto"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="dateStartReg"
+                              label="Tanggal Mulai Pendaftaran"
+                              prepend-icon="mdi-calendar"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                              filled
+                            ></v-text-field>
+                          </template>
+                          <v-date-picker
+                            v-model="dateStartReg"
+                            @input="calendarStartReg = false"
+                          ></v-date-picker>
+                        </v-menu>
+
+                        <v-menu
+                          v-model="calendarEndReg"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          transition="scale-transition"
+                          offset-y
+                          min-width="auto"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="dateEndReg"
+                              label="Tanggal Akhir Pendaftaran"
+                              prepend-icon="mdi-calendar"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                              filled
+                            ></v-text-field>
+                          </template>
+                          <v-date-picker
+                            v-model="dateEndReg"
+                            @input="calendarEndReg = false"
+                          ></v-date-picker>
+                        </v-menu>
+                            <v-text-field
+                              v-model="numberOfTicket"
+                              label="Jumlah Kursi"
+                              filled
+                            ></v-text-field>
+
+                        
                       </v-col>
 
                       <v-col cols="6">
@@ -100,6 +177,64 @@
                           ></v-time-picker>
                         </v-menu>
 
+                        <v-menu
+                          ref="menu"
+                          v-model="watchStartReg"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          transition="scale-transition"
+                          offset-y
+                          max-width="290px"
+                          min-width="290px"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="eventTimeStartReg"
+                              label="Jam Mulai Pendaftaran"
+                              prepend-icon="mdi-clock-time-four-outline"
+                              readonly
+                              filled
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-time-picker
+                            v-if="watchStartReg"
+                            v-model="eventTimeStartReg"
+                            format="24hr"
+                            full-width
+                            @click:minute="$refs.menu.save(eventTimeStartReg)"
+                          ></v-time-picker> </v-menu
+                        ><v-menu
+                          ref="menu"
+                          v-model="watchEndReg"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          transition="scale-transition"
+                          offset-y
+                          max-width="290px"
+                          min-width="290px"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="eventTimeEndReg"
+                              label="Jam Akhir Pendaftaran"
+                              prepend-icon="mdi-clock-time-four-outline"
+                              readonly
+                              filled
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-time-picker
+                            v-if="watchEndReg"
+                            v-model="eventTimeEndReg"
+                            format="24hr"
+                            full-width
+                            @click:minute="$refs.menu.save(eventTimeEndReg)"
+                          ></v-time-picker>
+                        </v-menu>
+
                         <v-text-field
                           v-model="ticketPrice"
                           label="Harga Tiket"
@@ -110,58 +245,57 @@
                       </v-col>
                     </v-row>
                     <v-row>
-                      <v-col cols="3">
-                        <v-text-field
-                          v-model="numberOfCol"
-                          label="Jumlah Kolom"
-                          type="number"
-                          filled
-                          required
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="3">
-                        <v-text-field
-                          v-model="numberOfRow"
-                          label="Jumlah Baris"
-                          type="number"
-                          filled
-                          required
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="3">
-                        <v-text-field
-                          v-model="numberOfTicket"
-                          label="Jumlah Kursi"
-                          readonly
-                          filled
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="3">
-                        <v-text-field
-                          v-model="numberOfSession"
-                          label="Jumlah Sesi"
-                          type="number"
-                          required
-                          filled
-                        ></v-text-field>
-                      </v-col>
-
                       <v-col cols="6">
-                        <v-textarea
-                          v-model="description"
-                          auto-grow
-                          label="Deskripsi"
-                          filled
-                        ></v-textarea>
-                      </v-col>
+                        <div
+                          class="
+                            display-2
+                            font-weight-light
+                            col col-12
+                            text--primary
+                            pa-0
+                            mb-8
+                            text-center
+                          "
+                        >
+                          <h6 class="font-weight-light">List Sesi</h6>
+                        </div>
 
-                      <v-col cols="6">
-                        <v-textarea
-                          v-model="eventRules"
-                          auto-grow
-                          label="Aturan"
+                        <v-text-field
+                          v-for="(data, index) in list_sesi"
+                          :key="index"
+                          v-model="data.value"
+                          :label="'Sesi ' + ++index"
                           filled
-                        ></v-textarea>
+                        ></v-text-field>
+                        <v-btn color="orange text-right" text @click="add_sesi">
+                          Tambah Sesi
+                        </v-btn>  
+                      </v-col>
+                      <v-col cols="6">
+                        <div
+                          class="
+                            display-2
+                            font-weight-light
+                            col col-12
+                            text--primary
+                            pa-0
+                            mb-8
+                            text-center
+                          "
+                        >
+                          <h6 class="font-weight-light">List Aturan</h6>
+                        </div>
+
+                        <v-text-field
+                          v-for="(data, index) in list_aturan"
+                          :key="index"
+                          v-model="data.value"
+                          :label="'Aturan ' + ++index"
+                          filled
+                        ></v-text-field>
+                        <v-btn color="orange text-right" text @click="add_rule">
+                          Tambah Aturan{{list_aturan}}
+                        </v-btn>
                       </v-col>
                     </v-row>
                     <v-card-actions class="justify-center">
@@ -189,13 +323,27 @@ export default {
   data: () => ({
     eventName: "",
     date: "",
+    dateStartReg: "",
+    dateEndReg: "",
     description: "",
-    birdType: [],
+    // birdType: [],
     birdTypeSelect: "",
     eventDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
+    eventDateStartReg: new Date(
+      Date.now() - new Date().getTimezoneOffset() * 60000
+    )
+      .toISOString()
+      .substr(0, 10),
+    eventDateEndReg: new Date(
+      Date.now() - new Date().getTimezoneOffset() * 60000
+    )
+      .toISOString()
+      .substr(0, 10),
     eventTime: null,
+    eventTimeStartReg: null,
+    eventTimeEndReg: null,
     location: "",
     numberOfSession: 0,
     ticketPrice: 0,
@@ -203,14 +351,40 @@ export default {
     numberOfCol: 0,
     eventRules: "",
     calendar: false,
+    calendarStartReg: false,
+    calendarEndReg: false,
     watch: false,
+    watchStartReg: false,
+    watchEndReg: false,
+    list_aturan: [{}],
+    list_sesi: [{}],
+    // list_lokasi: [],
+    lokasiSelect: "",
+    numberOfTicket: 0
   }),
 
-  async fetch() {
-    await this.$axios
-      .get("/jenisBurung")
-      .then((res) => (this.birdType = res.data));
-  },
+  // async fetch() {
+  //   await this.$axios
+  //     .get("/jenisBurung")
+  //     .then((res) => (this.birdType = res.data))
+  //     return this.$axios
+  //     .get("/lokasi")
+  //     .then((res) => (this.list_lokasi = res.data)) 
+  // },
+
+  async asyncData ({ $axios }) {
+  const [birdTypeRes, listLokasiRes, eventIdRes] = await Promise.all([ 
+    $axios.get('/jenisBurung'),
+    $axios.get('/lokasi'),
+    $axios.get('/event/get/id'),
+  ])
+
+  return {
+    birdType: birdTypeRes.data,
+    list_lokasi: listLokasiRes.data,
+    event_id: eventIdRes.data,
+  }
+},
 
   methods: {
     clear() {
@@ -218,24 +392,38 @@ export default {
       this.$refs.form.reset();
     },
 
+    add_rule() {
+      this.list_aturan.push({});
+    },
+
+    add_sesi() {
+      this.list_sesi.push({});
+    },
+
     async submit() {
       try {
         await this.$axios.post("/event/add", {
-          judul: this.eventName,
+          id: this.event_id,
+          nama: this.eventName,
           deskripsi: this.description,
-          tanggal: this.date,
+          tgl: this.date,
           jam: this.eventTime,
           jml_tiket: this.numberOfTicket,
           jml_sesi: this.numberOfSession,
-          harga_tiket: this.ticketPrice,
-          aturan: this.eventRules,
+          harga: this.ticketPrice,
+          aturan: this.list_aturan,
           jenisburung_id: this.birdTypeSelect,
-          lokasi: this.location,
-          jenislomba_id: 1,
-          jml_kol: this.numberOfCol,
-          jml_baris: this.numberOfRow,
+          lokasi: this.lokasiSelect,
+          tgl_start: this.dateStartReg,
+          tgl_end: this.dateEndReg,
+          jam_start: this.eventTimeStartReg,
+          jam_end: this.eventTimeEndReg
         });
-        this.$router.push("/");
+        await this.$axios.post("/event/elok/add", {
+          lokasi_id: this.lokasiSelect,
+          event_id: this.event_id
+          });
+        this.$router.push("/event-org/");
       } catch (e) {
         this.error = e.response;
         console.log(this.error);
@@ -244,9 +432,6 @@ export default {
   },
 
   computed: {
-    numberOfTicket() {
-      return this.numberOfRow * this.numberOfCol;
-    },
     datetime() {
       return new String(this.date + " " + this.eventTime);
     },

@@ -15,7 +15,7 @@
             plain
             @click="returnJam()"
             ><span>{{ index + 1 }}</span
-            ><v-spacer></v-spacer><span>{{ data }}</span></v-btn
+            ><v-spacer></v-spacer><span>{{ data.jam_start }} - {{ data.jam_end }}</span></v-btn
           >
         </div>
       </v-btn-toggle>
@@ -30,7 +30,7 @@
 <script>
 export default {
   props: {
-    data: 0,
+    data: Object,
   },
 
   data() {
