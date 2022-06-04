@@ -19,8 +19,15 @@ export default {
   name: 'EoLayout',
   data () {
     return {
-      
+      // token: localStorage.getItem("token")
     }
+  },
+
+  mounted() {
+    if (localStorage.getItem("token") == null) {
+      this.$router.push("/event-org/login")
+    }
+    // console.log(localStorage.getItem("token"))
   }
 }
 </script>
