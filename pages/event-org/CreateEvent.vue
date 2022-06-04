@@ -16,8 +16,20 @@
               <v-row class="text-left">
                 <v-col cols="12">
                   <form @submit.prevent="submit" ref="form">
-                    <v-row>
-                      <v-col cols="12">
+                    <v-row no-gutters>
+                      <v-col cols="5">
+                        <v-file-input
+                          :rules="rules"
+                          accept="image/png, image/jpeg, image/bmp"
+                          placeholder="Upload foto"
+                          prepend-icon="mdi-camera"
+                          label="Foto Event"
+                          validate-on-blur
+                          v-model="foto"
+                        ></v-file-input>
+                      </v-col>
+                      <v-spacer></v-spacer>
+                      <v-col cols="6">
                         <v-text-field
                           v-model="eventName"
                           :counter="25"
@@ -377,6 +389,11 @@ export default {
     aturan: "",
     sesi: null,
     timeSesMenu: false,
+    rules: [
+      (value) =>
+        !value || value.size < 2000000 || "Foto Tidak Boleh Lebih dari 2 MB!",
+    ],
+    foto: null,
   }),
 
   // async fetch() {
@@ -401,7 +418,6 @@ export default {
       event_id: eventIdRes.data,
     };
   },
-
   methods: {
     clear() {
       this.birdTypeSelect = "";
