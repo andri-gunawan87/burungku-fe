@@ -75,7 +75,7 @@ export default {
         responseType: "token id_token",
         endpoints: {
           token: "https://api.lombaburung.com/social-login/google/",
-          userInfo: "https://api.lombaburung.com//auth/user/",
+          userInfo: "https://api.lombaburung.com/auth/user/",
         },
       },
       local: {

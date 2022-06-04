@@ -2,8 +2,6 @@
   <v-data-table
     :headers="headers"
     :items="listAllEO"
-    loading
-    loading-text="Loading... Please wait"
     class="elevation-1"
   >
     <template v-slot:top>
@@ -85,12 +83,18 @@
         </v-dialog>
       </v-toolbar>
     </template>
-    <template v-slot:item.actions="{ item }">
+    <template v-slot:item.detail_event="{ item }">
+      <nuxt-link small class="mr-2" :to="'/admin/ListAllEvent/' "> Event </nuxt-link>
+    </template>
+
+    <!-- Action untuk data di tabel -->
+    <!-- <template v-slot:item.actions="{ item }">
       <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
       <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
-    </template>
+    </template> -->
     <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize"> Reset </v-btn>
+      <v-data-table loading
+      loading-text="Loading... Please wait"/>
     </template>
   </v-data-table>
 </template>
@@ -112,7 +116,8 @@ export default {
       { text: "No Handphone", value: "no_hp" },
       { text: "Alamat", value: "alamat" },
       { text: "Terverivikasi", value: "is_verified" },
-      { text: "Actions", value: "actions", sortable: false },
+      { text: "Detail Event", value: "detail_event" },
+      // { text: "Actions", value: "actions", sortable: false },
     ],
     listAllEO: [],
     editedIndex: -1,
