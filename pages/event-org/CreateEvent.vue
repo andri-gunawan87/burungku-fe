@@ -195,8 +195,9 @@
                             format="24hr"
                             full-width
                             @click:minute="$refs.menu.save(eventTimeStartReg)"
-                          ></v-time-picker> </v-menu
-                        ><v-menu
+                          ></v-time-picker>
+                        </v-menu>
+                        <v-menu
                           ref="menu"
                           v-model="watchEndReg"
                           :close-on-content-click="false"
@@ -248,13 +249,41 @@
                           :key="index"
                           :value="data"
                           :label="'Sesi ' + ++index"
+                          prepend-icon="mdi-clock-time-four-outline"
                           filled
                         ></v-text-field>
-                        <v-text-field
-                          v-model="sesi"
-                          label="Tulis sesi"
-                          filled
-                        ></v-text-field>
+                        <!-- Add session time -->
+                        <v-menu
+                          ref="TimeSess"
+                          v-model="timeSesMenu"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          :return-value.sync="sesi"
+                          transition="scale-transition"
+                          offset-y
+                          max-width="290px"
+                          min-width="290px"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="sesi"
+                              label="Waktu Mulai"
+                              prepend-icon="mdi-clock-time-four-outline"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-time-picker
+                            format="24hr"
+                            scrollable
+                            v-if="timeSesMenu"
+                            v-model="sesi"
+                            full-width
+                            @click:minute="$refs.TimeSess.save(sesi)"
+                          ></v-time-picker>
+                        </v-menu>
+                        <!-- END  -->
                         <v-btn color="orange text-right" text @click="add_sesi">
                           Tambah Sesi
                         </v-btn>
@@ -346,7 +375,8 @@ export default {
     lokasiSelect: "",
     numberOfTicket: 0,
     aturan: "",
-    sesi: "",
+    sesi: null,
+    timeSesMenu: false,
   }),
 
   // async fetch() {
@@ -385,7 +415,7 @@ export default {
 
     add_sesi() {
       this.list_sesi.push(this.sesi);
-      this.sesi = "";
+      this.sesi = null;
     },
 
     async submit() {
