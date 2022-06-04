@@ -7,7 +7,7 @@
         </v-btn>
       </v-col>
       <v-col cols="8" class="my-auto text_center text_main_color">
-        <h2>Detail Event</h2>
+        <h2>Detail Event{{eventdata}}</h2>
       </v-col>
     </v-row>
     <v-row>

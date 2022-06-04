@@ -11,14 +11,15 @@
         height="30%"
         width="30%"
       />
-      <h1 class="text-700">Selamat Datang di Lomba Burung</h1>
+      <h1 class="text-700">Selamat Datang di Lomba Burung{{dataLink}}</h1>
       <p class="text-boarding text-400">
         Make payments, transfers, and receive the required information on your
         finances.
       </p>
     </div>
+    <a :href="dataLink"> Masuk </a>
     <div class="block-dua">
-      <button class="btn-putih" @click="login">
+      <v-btn :to="dataLink" class="btn-putih">
         <img
           src="/assets/google.png"
           height="15px"
@@ -26,7 +27,7 @@
           class="icon-google"
         />
         <p class="text-600">MASUK DENGAN GOOGLE</p>
-      </button>
+      </v-btn>
 
       <!-- ===== Login Metode Lain ===== -->
       <!-- <center>
@@ -44,6 +45,17 @@
 
 <script>
 export default {
+  data() {
+    return {
+      dataLink: ""
+    }
+  },
+
+  async fetch() {
+      const response = await this.$axios.get("/user/register/oauth");
+      this.dataLink = response.data;
+    },
+
   methods: {
     async login() {
       try {
@@ -54,5 +66,9 @@ export default {
       }
     },
   },
+
+  mounted() {
+    console.log(this.dataLink)
+  }
 };
 </script>

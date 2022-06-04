@@ -74,8 +74,8 @@ export default {
         codeChallengeMethod: "",
         responseType: "token id_token",
         endpoints: {
-          token: "https://api.lombaburung.com/social-login/google/",
-          userInfo: "https://api.lombaburung.com/auth/user/",
+          token: "/social-login/google/",
+          userInfo: "/auth/user/",
         },
       },
       local: {
