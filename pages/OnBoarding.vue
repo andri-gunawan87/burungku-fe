@@ -22,7 +22,7 @@
     </div>
     <a :href="dataLink"> Masuk </a>
     <div class="block-dua">
-      <v-btn :to="dataLink" class="btn-putih">
+      <v-btn @click="login" class="btn-putih">
         <img
           src="/assets/google.png"
           height="15px"
@@ -63,7 +63,7 @@ export default {
     async login() {
       try {
         await this.$auth.loginWith("google");
-        this.$router.push("");
+        this.$router.push("/event-org");
       } catch (e) {
         this.error = e.response.data.message;
       }

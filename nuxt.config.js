@@ -74,8 +74,9 @@ export default {
         codeChallengeMethod: "",
         responseType: "token id_token",
         endpoints: {
-          token: "/social-login/google/",
-          userInfo: "/auth/user/",
+          // token: "/social-login/google/",
+          register: "/user/register/google/",
+          user: "/usdaas/",
         },
       },
       local: {
@@ -86,6 +87,9 @@ export default {
         },
       },
     },
+    redirect: {
+      home: "/event-org"
+    }
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

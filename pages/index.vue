@@ -47,7 +47,7 @@
     </v-row> -->
     <v-row>
       <v-col cols="3" class="headline font-weight-bold text_main_color"
-        >Event</v-col
+        >Event{{ isAuthenticated }} / {{loggedInUser}}</v-col
       >
       <v-spacer></v-spacer>
       <v-col cols="3"
@@ -117,6 +117,7 @@
 </template>
 <script>
 import EventCard from "@/components/Card/EventCard.vue";
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -187,5 +188,9 @@ export default {
     this.loadApi();
     console.log(this.events);
   },
+
+  computed: {
+...mapGetters(['isAuthenticated', 'loggedInUser'])
+}
 };
 </script>
