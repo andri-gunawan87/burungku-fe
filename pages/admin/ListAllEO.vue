@@ -1,4 +1,13 @@
 <template>
+<template>
+  <v-tabs>
+    <v-tab>Item One</v-tab>
+    <v-tab>Item Two</v-tab>
+    <v-tab>Item Three</v-tab>
+  </v-tabs>
+</template>
+
+<template>
   <v-data-table
     :headers="headers"
     :items="listAllEO"
@@ -88,15 +97,16 @@
     </template>
 
     <!-- Action untuk data di tabel -->
-    <!-- <template v-slot:item.actions="{ item }">
+    <template v-slot:item.actions="{ item }">
       <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
       <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
-    </template> -->
+    </template>
     <template v-slot:no-data>
       <v-data-table loading
       loading-text="Loading... Please wait"/>
     </template>
   </v-data-table>
+</template>
 </template>
 
 <script>
@@ -117,7 +127,7 @@ export default {
       { text: "Alamat", value: "alamat" },
       { text: "Terverivikasi", value: "is_verified" },
       { text: "Detail Event", value: "detail_event" },
-      // { text: "Actions", value: "actions", sortable: false },
+      { text: "Actions", value: "actions", sortable: false },
     ],
     listAllEO: [],
     editedIndex: -1,
@@ -161,7 +171,7 @@ export default {
 
   methods: {
     async initialize() {
-      const response = await this.$axios.get("/eo");
+      const response = await this.$axios.get("/admin/nonconfirm");
       this.listAllEO = response.data;
     },
 
