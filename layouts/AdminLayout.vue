@@ -21,6 +21,12 @@ export default {
     return {
       
     }
+  },
+
+  mounted() {
+    if (localStorage.getItem("token") == null) {
+      this.$router.push("/admin/LoginAdmin");
+    }
   }
 }
 </script>
