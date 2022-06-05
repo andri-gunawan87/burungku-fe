@@ -14,6 +14,8 @@
           <button @click="cekLogin()">
             <v-btn color="#3F3937"  width="100%" class="mt-0 white--text">Pesan Tiket</v-btn>
           </button>
+          <!-- <nuxt-link :to="'/booking-event/'+ data.id">Pesan Tiket
+          </nuxt-link> -->
         </v-col>
       </v-row>
     </v-col>
@@ -23,9 +25,10 @@
 <script>
 export default {
   props: {
-    data: {
-      type: BigInt,
-    },
+    data: [],
+    // data: {
+    //   type: BigInt,
+    // },
   },
 
 
@@ -35,7 +38,7 @@ export default {
       if (cekLogin == null) {
         this.$router.push("/onboarding");
       } else {
-        this.$router.push("'/booking-event/'"+ data.id);
+        this.$router.push('/booking-event/'+ data.id);
       }
     },
 

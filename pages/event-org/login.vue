@@ -2,30 +2,17 @@
   <v-row align="center" justify="center">
     <v-col cols="12" sm="12" md="12">
       <v-card light class="pa-5 ma-5">
+        <v-alert v-if="message == true" type="error">Password Salah</v-alert>
         <v-form
           ref="form"
           v-model="valid"
           lazy-validation
-          @submit.prevent="register"
+          @submit.prevent="login"
         >
           <img src="/logo.png" alt="Kontes Burung Logo" class="center" />
-          <h2 class="text-center mt-4">Daftar Akun Event-Organizer</h2>
+          <h2 class="text-center mt-4">Login Event-Organizer</h2>
           <v-row justify="center">
             <v-col md="12" justify="center" class="text-center">
-              <v-text-field
-                v-model="name"
-                :counter="25"
-                :rules="nameRules"
-                label="Nama"
-                required
-              ></v-text-field>
-
-              <v-text-field
-                v-model="phone"
-                label="No Telephone"
-                required
-              ></v-text-field>
-
               <v-text-field
                 v-model="email"
                 :rules="emailRules"
@@ -79,18 +66,27 @@ export default {
     ],
     phone: "",
     show: false,
+    message: false,
   }),
 
   methods: {
-    async register() {
+    async login() {
       try {
-        await this.$axios.post("/eo/register", {
-          no_hp: this.phone,
-          email: this.email,
-          password: this.password,
-          nama: this.name,
-        });
-        this.$router.push("/event-org");
+        await this.$axios
+          .post("eo/login", {
+            email: this.email,
+            password: this.password,
+          })
+          .then((response) => {
+            if (response.data == "password salah") {
+              window.location.reload();
+            } else {
+              localStorage.setItem("token", response.data.token);
+              this.$router.push("/event-org");
+            }
+          });
+
+        // this.$router.push("/");
       } catch (e) {
         this.error = e.response.data.message;
       }

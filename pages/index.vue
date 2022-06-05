@@ -2,14 +2,16 @@
   <div>
     <v-row class="pa-3">
       <v-col cols="2" class="d-flex justify-center align-center">
-        <nuxt-link to="/user/list-ticket">
-          <img
-            src="/assets/ticket-home.svg"
-            height="20px"
-            width="18px"
-            class="mt-2"
-          />
-        </nuxt-link>
+        <button @click="cekLoginTicket()">
+          <nuxt-link to="">
+            <img
+              src="/assets/ticket-home.svg"
+              height="20px"
+              width="18px"
+              class="mt-2"
+            />
+          </nuxt-link>
+        </button>
       </v-col>
       <v-col cols="8" class="d-flex justify-center">
         <img
@@ -38,6 +40,7 @@
         outlined
         label="Cari Lokasi Kontes"
         prepend-inner-icon="mdi-map-marker"
+        v-model="searchQuery"
       ></v-text-field>
     </v-row>
     <!-- <v-row>
@@ -47,7 +50,7 @@
     </v-row> -->
     <v-row>
       <v-col cols="3" class="headline font-weight-bold text_main_color"
-        >Event</v-col
+        >Event{{ isAuthenticated }} / {{loggedInUser}}</v-col
       >
       <v-spacer></v-spacer>
       <v-col cols="3"
@@ -117,6 +120,7 @@
 </template>
 <script>
 import EventCard from "@/components/Card/EventCard.vue";
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -165,6 +169,7 @@ export default {
       ],
       events: [],
       img: "https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/18222845/unnamed-6.jpg",
+      searchQuery: "",
     };
   },
 
@@ -177,6 +182,14 @@ export default {
         this.$router.push("/user/profilev2");
       }
     },
+    async cekLoginTicket() {
+      const cekLogin = await localStorage.getItem("auth._token.google");
+      if (cekLogin == null) {
+        this.$router.push("/onboarding");
+      } else {
+        this.$router.push("/user/list-ticket");
+      }
+    },
     async loadApi() {
       const response = await this.$axios.get("/event");
       this.events = response.data;
@@ -185,7 +198,10 @@ export default {
   
   mounted() {
     this.loadApi();
-    console.log(this.events);
   },
+
+  computed: {
+...mapGetters(['isAuthenticated', 'loggedInUser'])
+}
 };
 </script>

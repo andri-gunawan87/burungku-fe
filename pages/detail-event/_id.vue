@@ -15,7 +15,7 @@
       <DetailEventCard :data="eventdata" :img="img"/>
       </v-col>
       <v-col cols="12">
-      <RuleEventCard :data="eventdata.aturan" />
+      <RuleEventCard :data="aturanArr" />
       </v-col>
       <v-col cols="12">
       <PriceEventCard :data="eventdata.harga" />
@@ -72,6 +72,12 @@ export default {
   //   },
   mounted() {
     this.loadApi();
+  },
+
+  computed: {
+    aturanArr() {
+      return String(this.eventdata.aturan).split(",")
+    }
   }
 
 };

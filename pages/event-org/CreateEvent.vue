@@ -453,6 +453,7 @@ export default {
           tgl_end: this.dateEndReg,
           jam_start: this.eventTimeStartReg,
           jam_end: this.eventTimeEndReg,
+          eo_id: "3fd37729-5g55-431c-9a43-83a5c12403d2"
         });
         await this.$axios.post("/event/elok/add", {
           lokasi_id: this.lokasiSelect,

@@ -11,7 +11,6 @@
           <div class="remove-padding-col mx-4 text_main_color" v-for="(i, index) in data" :key="index" :data="data">
           {{i}}
           </div>
-          {{ data }}
         </v-col>
       </v-row>
       <v-row>
@@ -24,7 +23,7 @@
 export default {
   props: {
     data: {
-      type: Object
+      type: Array
     },
   },
 };
