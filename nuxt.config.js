@@ -74,15 +74,47 @@ export default {
         codeChallengeMethod: "",
         responseType: "token id_token",
         endpoints: {
-          token: "/social-login/google/",
-          userInfo: "/auth/user/",
+          // token: "/social-login/google/",
+          register: "/user/register/google/",
+          user: "",
         },
       },
       local: {
         endpoints: {
-          login: { url: "login", method: "post", propertyName: "token" },
-          user: { url: "me", method: "get", propertyName: "data" },
-          logout: false,
+          login: {
+            url: '/eo/login',
+            method: 'post',
+            propertyName: false
+          },
+          logout: { 
+            url: '/auth/logout', 
+            method: 'post' 
+          },
+          user: { 
+            url: '/user', 
+            method: 'get', 
+            propertyName: false 
+          }
+        },
+        tokenRequired: false,
+        tokenType: false
+      },
+      cookie: {
+        token: {
+          property: "data.token",
+          required: true,
+          type: "Bearer",
+        },
+        user: {
+          property: "data",
+        },
+        endpoints: {
+          login: {
+            url: "eo/login",
+            method: "post",
+          },
+          logout: { url: "/v1/auth/logout", method: "delete" },
+          // user: { url: "/v1/settings", method: "get" },
         },
       },
     },

@@ -9,14 +9,7 @@
           <v-card>
             <v-card-text class="text-center">
               <div
-                class="
-                  display-2
-                  font-weight-light
-                  col col-12
-                  text--primary
-                  pa-0
-                  mb-8
-                "
+                class="display-2 font-weight-light col col-12 text--primary pa-0 mb-8"
               >
                 <h5 class="font-weight-light">Create Event</h5>
               </div>
@@ -33,11 +26,11 @@
                           filled
                         ></v-text-field>
                         <v-textarea
-                              v-model="description"
-                              auto-grow
-                              label="Deskripsi"
-                              filled
-                            ></v-textarea>
+                          v-model="description"
+                          auto-grow
+                          label="Deskripsi"
+                          filled
+                        ></v-textarea>
                       </v-col>
                     </v-row>
                     <v-row>
@@ -126,13 +119,11 @@
                             @input="calendarEndReg = false"
                           ></v-date-picker>
                         </v-menu>
-                            <v-text-field
-                              v-model="numberOfTicket"
-                              label="Jumlah Kursi"
-                              filled
-                            ></v-text-field>
-
-                        
+                        <v-text-field
+                          v-model="numberOfTicket"
+                          label="Jumlah Kursi"
+                          filled
+                        ></v-text-field>
                       </v-col>
 
                       <v-col cols="6">
@@ -204,8 +195,9 @@
                             format="24hr"
                             full-width
                             @click:minute="$refs.menu.save(eventTimeStartReg)"
-                          ></v-time-picker> </v-menu
-                        ><v-menu
+                          ></v-time-picker>
+                        </v-menu>
+                        <v-menu
                           ref="menu"
                           v-model="watchEndReg"
                           :close-on-content-click="false"
@@ -247,15 +239,7 @@
                     <v-row>
                       <v-col cols="6">
                         <div
-                          class="
-                            display-2
-                            font-weight-light
-                            col col-12
-                            text--primary
-                            pa-0
-                            mb-8
-                            text-center
-                          "
+                          class="display-2 font-weight-light col col-12 text--primary pa-0 mb-8 text-center"
                         >
                           <h6 class="font-weight-light">List Sesi</h6>
                         </div>
@@ -263,25 +247,50 @@
                         <v-text-field
                           v-for="(data, index) in list_sesi"
                           :key="index"
-                          v-model="data.value"
+                          :value="data"
                           :label="'Sesi ' + ++index"
+                          prepend-icon="mdi-clock-time-four-outline"
                           filled
                         ></v-text-field>
+                        <!-- Add session time -->
+                        <v-menu
+                          ref="TimeSess"
+                          v-model="timeSesMenu"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          :return-value.sync="sesi"
+                          transition="scale-transition"
+                          offset-y
+                          max-width="290px"
+                          min-width="290px"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="sesi"
+                              label="Waktu Mulai"
+                              prepend-icon="mdi-clock-time-four-outline"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-time-picker
+                            format="24hr"
+                            scrollable
+                            v-if="timeSesMenu"
+                            v-model="sesi"
+                            full-width
+                            @click:minute="$refs.TimeSess.save(sesi)"
+                          ></v-time-picker>
+                        </v-menu>
+                        <!-- END  -->
                         <v-btn color="orange text-right" text @click="add_sesi">
                           Tambah Sesi
-                        </v-btn>  
+                        </v-btn>
                       </v-col>
                       <v-col cols="6">
                         <div
-                          class="
-                            display-2
-                            font-weight-light
-                            col col-12
-                            text--primary
-                            pa-0
-                            mb-8
-                            text-center
-                          "
+                          class="display-2 font-weight-light col col-12 text--primary pa-0 mb-8 text-center"
                         >
                           <h6 class="font-weight-light">List Aturan</h6>
                         </div>
@@ -289,12 +298,16 @@
                         <v-text-field
                           v-for="(data, index) in list_aturan"
                           :key="index"
-                          v-model="data.value"
-                          :label="'Aturan ' + ++index"
+                          :value="data"
+                          filled
+                        ></v-text-field>
+                        <v-text-field
+                          v-model="aturan"
+                          label="Tulis aturan"
                           filled
                         ></v-text-field>
                         <v-btn color="orange text-right" text @click="add_rule">
-                          Tambah Aturan{{list_aturan}}
+                          Tambah Aturan
                         </v-btn>
                       </v-col>
                     </v-row>
@@ -356,11 +369,14 @@ export default {
     watch: false,
     watchStartReg: false,
     watchEndReg: false,
-    list_aturan: [{}],
-    list_sesi: [{}],
+    list_aturan: [],
+    list_sesi: [],
     // list_lokasi: [],
     lokasiSelect: "",
-    numberOfTicket: 0
+    numberOfTicket: 0,
+    aturan: "",
+    sesi: null,
+    timeSesMenu: false,
   }),
 
   // async fetch() {
@@ -369,22 +385,22 @@ export default {
   //     .then((res) => (this.birdType = res.data))
   //     return this.$axios
   //     .get("/lokasi")
-  //     .then((res) => (this.list_lokasi = res.data)) 
+  //     .then((res) => (this.list_lokasi = res.data))
   // },
 
-  async asyncData ({ $axios }) {
-  const [birdTypeRes, listLokasiRes, eventIdRes] = await Promise.all([ 
-    $axios.get('/jenisBurung'),
-    $axios.get('/lokasi'),
-    $axios.get('/event/get/id'),
-  ])
+  async asyncData({ $axios }) {
+    const [birdTypeRes, listLokasiRes, eventIdRes] = await Promise.all([
+      $axios.get("/jenisBurung"),
+      $axios.get("/lokasi"),
+      $axios.get("/event/get/id"),
+    ]);
 
-  return {
-    birdType: birdTypeRes.data,
-    list_lokasi: listLokasiRes.data,
-    event_id: eventIdRes.data,
-  }
-},
+    return {
+      birdType: birdTypeRes.data,
+      list_lokasi: listLokasiRes.data,
+      event_id: eventIdRes.data,
+    };
+  },
 
   methods: {
     clear() {
@@ -393,11 +409,13 @@ export default {
     },
 
     add_rule() {
-      this.list_aturan.push({});
+      this.list_aturan.push(this.aturan);
+      this.aturan = "";
     },
 
     add_sesi() {
-      this.list_sesi.push({});
+      this.list_sesi.push(this.sesi);
+      this.sesi = null;
     },
 
     async submit() {
@@ -411,18 +429,20 @@ export default {
           jml_tiket: this.numberOfTicket,
           jml_sesi: this.numberOfSession,
           harga: this.ticketPrice,
-          aturan: this.list_aturan,
+          aturan: this.list_aturan.toString(),
+          sesi: this.list_sesi.toString(),
           jenisburung_id: this.birdTypeSelect,
           lokasi: this.lokasiSelect,
           tgl_start: this.dateStartReg,
           tgl_end: this.dateEndReg,
           jam_start: this.eventTimeStartReg,
-          jam_end: this.eventTimeEndReg
+          jam_end: this.eventTimeEndReg,
+          eo_id: "3fd37729-5g55-431c-9a43-83a5c12403d2"
         });
         await this.$axios.post("/event/elok/add", {
           lokasi_id: this.lokasiSelect,
-          event_id: this.event_id
-          });
+          event_id: this.event_id,
+        });
         this.$router.push("/event-org/");
       } catch (e) {
         this.error = e.response;
