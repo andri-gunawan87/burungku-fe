@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <AdminNavbar />
-    <v-main>
+    <v-main class="main">
       <v-container>
         <Nuxt />
       </v-container>
@@ -20,6 +20,12 @@ export default {
   data () {
     return {
       
+    }
+  },
+
+  mounted() {
+    if (localStorage.getItem("token") == null) {
+      this.$router.push("/admin/LoginAdmin");
     }
   }
 }
