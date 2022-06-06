@@ -1,13 +1,4 @@
 <template>
-<template>
-  <v-tabs>
-    <v-tab>Item One</v-tab>
-    <v-tab>Item Two</v-tab>
-    <v-tab>Item Three</v-tab>
-  </v-tabs>
-</template>
-
-<template>
   <v-data-table
     :headers="headers"
     :items="listAllEO"
@@ -106,7 +97,6 @@
       loading-text="Loading... Please wait"/>
     </template>
   </v-data-table>
-</template>
 </template>
 
 <script>
