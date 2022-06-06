@@ -82,6 +82,11 @@ export default {
           title: "List All Event",
           to: "/admin/ListAllEvent",
         },
+        {
+          icon: "mdi-application-settings-outline",
+          title: "List All Banner",
+          to: "/admin/ListAllBanner",
+        },
       ],
       loggedInListMenu: [
         { title: "Profile", to: "/user/Profile" },

@@ -43,15 +43,26 @@
         v-model="searchQuery"
       ></v-text-field>
     </v-row>
+
+    <v-carousel>
+    <v-carousel-item
+      v-for="(item,i) in items"
+      :key="i"
+      :src="item.src"
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    ></v-carousel-item>
+  </v-carousel>
+
     <!-- <v-row>
       <v-col v-for="n in 1" :key="n" cols="12">
         <v-card height="200"></v-card
       ></v-col>
     </v-row> -->
     <v-row>
-      <v-col cols="3" class="headline font-weight-bold text_main_color"
+      <!-- <v-col cols="3" class="headline font-weight-bold text_main_color"
         >Event{{ isAuthenticated }} / {{loggedInUser}}</v-col
-      >
+      > -->
       <v-spacer></v-spacer>
       <v-col cols="3"
         ><nuxt-link
@@ -129,6 +140,20 @@ export default {
 
   data() {
     return {
+      items: [
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+          },
+        ],
       listEvent: [
         {
           id: 1,
