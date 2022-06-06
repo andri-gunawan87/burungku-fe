@@ -1,140 +1,81 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="listAllEO"
-    class="elevation-1"
-  >
-    <template v-slot:top>
-      <v-toolbar flat>
-        <v-toolbar-title>List EO (Event Organizer)</v-toolbar-title>
-        <v-divider class="mx-4" inset vertical></v-divider>
-        <v-spacer></v-spacer>
-        <v-dialog v-model="dialog" max-width="500px">
+  <div class="py-4">
+    <v-row align="center" class="my-2 pl-2">
+      <v-alert
+        v-if="isConfirm == true"
+        elevation="2"
+        shaped
+        dense
+        type="success"
+        >{{ namaEo }} Telah Terkonfirmasi
+      </v-alert>
+      <v-alert v-if="errStatus == true" elevation="2" dense type="error"
+        >{{ errMessage }}
+      </v-alert>
+    </v-row>
+    <v-data-table
+      :headers="headers"
+      :items="listAllEO"
+      sort-by="Nama EO"
+      class="elevation-1"
+    >
+      <template v-slot:top>
+        <v-toolbar flat>
+          <v-toolbar-title>List EO Belum Dikonfirmasi</v-toolbar-title>
+        </v-toolbar>
+      </template>
+      <template v-slot:item.actions="{ item }">
+        <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
-              New Item
+            <v-btn
+              color="primary"
+              fab
+              dark
+              x-small
+              v-bind="attrs"
+              v-on="on"
+              @click="confirmEo(item)"
+            >
+              <v-icon>mdi-check-circle</v-icon>
             </v-btn>
           </template>
-          <v-card>
-            <v-card-title>
-              <span class="text-h5">{{ formTitle }}</span>
-            </v-card-title>
-
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.name"
-                      label="Dessert name"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.calories"
-                      label="Calories"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.fat"
-                      label="Fat (g)"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.carbs"
-                      label="Carbs (g)"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.protein"
-                      label="Protein (g)"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close"> Cancel </v-btn>
-              <v-btn color="blue darken-1" text @click="save"> Save </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-        <v-dialog v-model="dialogDelete" max-width="500px">
-          <v-card>
-            <v-card-title class="text-h5"
-              >Are you sure you want to delete this item?</v-card-title
-            >
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="closeDelete"
-                >Cancel</v-btn
-              >
-              <v-btn color="blue darken-1" text @click="deleteItemConfirm"
-                >OK</v-btn
-              >
-              <v-spacer></v-spacer>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-toolbar>
-    </template>
-    <template v-slot:item.detail_event="{ item }">
-      <nuxt-link small class="mr-2" :to="'/admin/ListAllEvent/' "> Event </nuxt-link>
-    </template>
-
-    <!-- Action untuk data di tabel -->
-    <!-- <template v-slot:item.actions="{ item }">
-      <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-      <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
-    </template> -->
-    <template v-slot:no-data>
-      <v-data-table loading
-      loading-text="Loading... Please wait"/>
-    </template>
-  </v-data-table>
+          <span>Konfirmasi Pendaftaran</span>
+        </v-tooltip>
+        <!-- <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+      <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon> -->
+      </template>
+      <template v-slot:no-data>
+        <v-btn color="primary" @click="initialize"> Reset </v-btn>
+      </template>
+    </v-data-table>
+  </div>
 </template>
 
 <script>
 export default {
   layout: "AdminLayout",
   data: () => ({
-    dialog: false,
-    dialogDelete: false,
     headers: [
       {
         text: "Nama EO",
         align: "start",
-        sortable: false,
+        sortable: true,
         value: "nama",
       },
       { text: "Email", value: "email" },
       { text: "No Handphone", value: "no_hp" },
       { text: "Alamat", value: "alamat" },
       { text: "Terverivikasi", value: "is_verified" },
-      { text: "Detail Event", value: "detail_event" },
-      // { text: "Actions", value: "actions", sortable: false },
+      // { text: "Detail Event", value: "detail_event" },
+      { text: "Actions", value: "actions", sortable: false },
     ],
     listAllEO: [],
+    isConfirm: false,
+    emailEo: "",
+    namaEo: "Bird Racer",
     editedIndex: -1,
-    editedItem: {
-      name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0,
-    },
-    defaultItem: {
-      name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0,
-    },
+    errStatus: false,
+    errMessage: "",
   }),
 
   computed: {
@@ -146,65 +87,34 @@ export default {
     },
   },
 
-  watch: {
-    dialog(val) {
-      val || this.close();
-    },
-    dialogDelete(val) {
-      val || this.closeDelete();
-    },
-  },
-
   created() {
     this.initialize();
   },
 
   methods: {
     async initialize() {
-      const response = await this.$axios.get("/eo");
+      const response = await this.$axios.get("/admin/nonconfirm");
       this.listAllEO = response.data;
     },
-
-    editItem(item) {
-      this.editedIndex = this.listAllEO.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
-    },
-
-    deleteItem(item) {
-      this.editedIndex = this.listAllEO.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialogDelete = true;
-    },
-
-    deleteItemConfirm() {
-      this.listAllEO.splice(this.editedIndex, 1);
-      this.closeDelete();
-    },
-
-    close() {
-      this.dialog = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
-    },
-
-    closeDelete() {
-      this.dialogDelete = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
-    },
-
-    save() {
-      if (this.editedIndex > -1) {
-        Object.assign(this.listAllEO[this.editedIndex], this.editedItem);
-      } else {
-        this.listAllEO.push(this.editedItem);
-      }
-      this.close();
+    async confirmEo(item) {
+      this.namaEo = item.nama;
+      await this.$axios
+        .put("/admin/confirm", {
+          email: item.email,
+        })
+        .then((res) => {
+          if (res.status == 200) {
+            this.isConfirm = true;
+            setTimeout(() => {
+              this.isConfirm = false;
+              this.namaEo = "";
+            }, 3000);
+            this.initialize();
+          } else {
+            this.errStatus = true;
+            this.errMessage = res.statusText;
+          }
+        });
     },
   },
 };
