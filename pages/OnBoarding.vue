@@ -63,7 +63,7 @@ export default {
     async login() {
       try {
         await this.$auth.loginWith("google");
-        this.$router.push("/event-org");
+        this.$router.push("/");
       } catch (e) {
         this.error = e.response.data.message;
       }

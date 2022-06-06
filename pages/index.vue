@@ -47,7 +47,7 @@
     </v-row> -->
     <v-row>
       <v-col cols="3" class="headline font-weight-bold text_main_color"
-        >Event{{ isAuthenticated }} / {{loggedInUser}}</v-col
+        >Event{{loggedInUser}}</v-col
       >
       <v-spacer></v-spacer>
       <v-col cols="3"
@@ -171,11 +171,10 @@ export default {
 
   methods: {
     async cekLogin() {
-      const cekLogin = await localStorage.getItem("auth._token.google");
-      if (cekLogin == null) {
-        this.$router.push("/onboarding");
+      if (!this.$auth.loggedIn) {
+        this.$router.push("/account/login");
       } else {
-        this.$router.push("/user/profilev2");
+        this.$router.push("/profile/" + this.$auth.user.user_id);
       }
     },
     async loadApi() {

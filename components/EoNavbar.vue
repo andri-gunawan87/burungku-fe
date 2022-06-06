@@ -36,14 +36,13 @@
         </template>
 
         <v-list>
-          <v-list-item
-            v-for="(data, i) in loggedInListMenu"
-            :key="i"
-            :to="data.to"
-            router
-            exact
+          <v-list-item to="/user/Profile" 
           >
-            <v-list-item-title>{{ data.title }}</v-list-item-title>
+            <v-list-item-title >Profile</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="logout"
+          >
+            <v-list-item-title >Logout</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -92,8 +91,12 @@ export default {
     };
   },
 
-  computed: {
-    ...mapGetters(["isAuthenticated", "loggedInUser"]),
+  methods: {
+    async logout() {
+      await this.$auth.logout();
+      this.$router.push("/account/login");
+    },
   },
+
 };
 </script>

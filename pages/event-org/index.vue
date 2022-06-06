@@ -12,6 +12,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  middleware: "iseo",
   layout: "EoLayout",
   name: "IndexPage",
   components: {
@@ -26,9 +27,5 @@ export default {
   computed: {
 ...mapGetters(['isAuthenticated', 'loggedInUser'])
 },
-
-beforeCreate() {
-  
-}
 };
 </script>
