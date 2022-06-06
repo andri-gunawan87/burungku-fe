@@ -112,7 +112,8 @@ export default {
             this.initialize();
           } else {
             this.errStatus = true;
-            this.errMessage = res.statusText;
+            this.errMessage = "Error ! Konfimasi Gagal";
+            console.log(res.statusText);
           }
         });
     },
