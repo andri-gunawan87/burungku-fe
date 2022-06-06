@@ -19,6 +19,9 @@ export default {
       {rel:"preconnect", href:"https://fonts.googleapis.com"},
       {rel:"preconnect", href:"https://fonts.gstatic.com"},
       {href:"https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap", rel:"stylesheet"},
+      {
+  href:"https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css",
+  rel:"stylesheet"}
     ],
   },
 

@@ -59,38 +59,41 @@ export default {
       map: {},
     };
   },
+  created() {},
   mounted() {
-    this.createMap();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.createMap);
+    } else {
+      console.log("Izinkan perangkat mengakses Lokasi !");
+    }
+    // this.createMap();
   },
   methods: {
-    async createMap() {
+    async createMap(position) {
+      this.center = [position.coords.longitude, position.coords.latitude];
       try {
         mapboxgl.accessToken = this.access_token;
         this.map = new mapboxgl.Map({
           container: "map",
           style: "mapbox://styles/mapbox/streets-v11",
           center: this.center,
-          zoom: 13,
+          zoom: 18,
         });
-        let geocoder = new MapboxGeocoder({
-          accessToken: this.access_token,
-          mapboxgl: mapboxgl,
-          marker: false,
-        });
+        let geocoder = new mapboxgl.Marker().setLngLat(this.center).addTo(map);
         this.map.addControl(geocoder);
-        geocoder.on("result", (e) => {
-          const marker = new mapboxgl.Marker({
-            draggable: true,
-            color: "#D80739",
-          })
-            .setLngLat(e.result.center)
-            .addTo(this.map);
-          this.center = e.result.center;
-          marker.on("dragend", (e) => {
-            this.center = Object.values(e.target.getLngLat());
-          });
-          console.log("dipanggil saat getLocation", this.center);
-        });
+        //   geocoder.on("result", (e) => {
+        //   const marker = new mapboxgl.Marker({
+        //     draggable: true,
+        //     color: "#D80739",
+        //   })
+        //     .setLngLat(e.result.center)
+        //     .addTo(this.map);
+        //   this.center = e.result.center;
+        //   marker.on("dragend", (e) => {
+        //     this.center = Object.values(e.target.getLngLat());
+        //   });
+        //   console.log("dipanggil saat getLocation", this.center);
+        // });
         console.log("dipanggil saat mounted", this.center);
       } catch (e) {
         console.log("map error ", e);

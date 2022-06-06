@@ -1,20 +1,45 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="listAllEO"
-    class="elevation-1"
-  >
-    <template v-slot:top>
-      <v-toolbar flat>
-        <v-toolbar-title>List EO (Event Organizer)</v-toolbar-title>
-        <v-divider class="mx-4" inset vertical></v-divider>
-        <v-spacer></v-spacer>
-        <v-dialog v-model="dialog" max-width="500px">
+  <div class="py-4">
+    <v-row align="center" class="my-2 pl-2">
+      <v-alert
+        v-if="isConfirm == true"
+        elevation="2"
+        shaped
+        dense
+        type="success"
+        >{{ namaEo }} Telah Terkonfirmasi
+      </v-alert>
+      <v-alert v-if="errStatus == true" elevation="2" dense type="error"
+        >{{ errMessage }}
+      </v-alert>
+    </v-row>
+    <v-data-table
+      :headers="headers"
+      :items="listAllEO"
+      sort-by="Nama EO"
+      class="elevation-1"
+    >
+      <template v-slot:top>
+        <v-toolbar flat>
+          <v-toolbar-title>List EO Belum Dikonfirmasi</v-toolbar-title>
+        </v-toolbar>
+      </template>
+      <template v-slot:item.actions="{ item }">
+        <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
-              New Item
+            <v-btn
+              color="primary"
+              fab
+              dark
+              x-small
+              v-bind="attrs"
+              v-on="on"
+              @click="confirmEo(item)"
+            >
+              <v-icon>mdi-check-circle</v-icon>
             </v-btn>
           </template>
+
           <v-card>
             <v-card-title>
               <span class="text-h5">{{ formTitle }}</span>
@@ -97,19 +122,18 @@
       loading-text="Loading... Please wait"/>
     </template>
   </v-data-table>
+
 </template>
 
 <script>
 export default {
   layout: "AdminLayout",
   data: () => ({
-    dialog: false,
-    dialogDelete: false,
     headers: [
       {
         text: "Nama EO",
         align: "start",
-        sortable: false,
+        sortable: true,
         value: "nama",
       },
       { text: "Email", value: "email" },
@@ -120,21 +144,12 @@ export default {
       { text: "Actions", value: "actions", sortable: false },
     ],
     listAllEO: [],
+    isConfirm: false,
+    emailEo: "",
+    namaEo: "Bird Racer",
     editedIndex: -1,
-    editedItem: {
-      name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0,
-    },
-    defaultItem: {
-      name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0,
-    },
+    errStatus: false,
+    errMessage: "",
   }),
 
   computed: {
@@ -143,15 +158,6 @@ export default {
     },
     verified() {
       return this.editedIndex === 1 ? "verified" : "not verified";
-    },
-  },
-
-  watch: {
-    dialog(val) {
-      val || this.close();
-    },
-    dialogDelete(val) {
-      val || this.closeDelete();
     },
   },
 
@@ -164,47 +170,26 @@ export default {
       const response = await this.$axios.get("/admin/nonconfirm");
       this.listAllEO = response.data;
     },
-
-    editItem(item) {
-      this.editedIndex = this.listAllEO.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
-    },
-
-    deleteItem(item) {
-      this.editedIndex = this.listAllEO.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialogDelete = true;
-    },
-
-    deleteItemConfirm() {
-      this.listAllEO.splice(this.editedIndex, 1);
-      this.closeDelete();
-    },
-
-    close() {
-      this.dialog = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
-    },
-
-    closeDelete() {
-      this.dialogDelete = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
-    },
-
-    save() {
-      if (this.editedIndex > -1) {
-        Object.assign(this.listAllEO[this.editedIndex], this.editedItem);
-      } else {
-        this.listAllEO.push(this.editedItem);
-      }
-      this.close();
+    async confirmEo(item) {
+      this.namaEo = item.nama;
+      await this.$axios
+        .put("/admin/confirm", {
+          email: item.email,
+        })
+        .then((res) => {
+          if (res.status == 200) {
+            this.isConfirm = true;
+            setTimeout(() => {
+              this.isConfirm = false;
+              this.namaEo = "";
+            }, 3000);
+            this.initialize();
+          } else {
+            this.errStatus = true;
+            this.errMessage = "Error ! Konfimasi Gagal";
+            console.log(res.statusText);
+          }
+        });
     },
   },
 };
