@@ -88,6 +88,7 @@
               <v-btn color="blue darken-1" text @click="save"> Save </v-btn>
             </v-card-actions>
           </v-card>
+        </v-tooltip>
         </v-dialog>
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
@@ -122,6 +123,7 @@
       loading-text="Loading... Please wait"/>
     </template>
   </v-data-table>
+  </div>
 
 </template>
 

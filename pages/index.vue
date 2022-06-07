@@ -61,7 +61,7 @@
     </v-row> -->
     <v-row>
       <v-col cols="3" class="headline font-weight-bold text_main_color"
-        >Event{{loggedInUser}}</v-col
+        >Event</v-col
       >
       <v-spacer></v-spacer>
       <v-col cols="3"
