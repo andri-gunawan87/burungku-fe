@@ -2,7 +2,7 @@
   <v-row align="center" justify="center">
     <v-col cols="12" sm="12" md="12">
       <v-card light class="pa-5 ma-5">
-        <v-alert v-if="message == true" type="error">Password Salah</v-alert>
+        <v-alert v-if="message == true" type="error">Email dan/atau password Salah</v-alert>
         <v-form
           ref="form"
           v-model="valid"
@@ -10,7 +10,9 @@
           @submit.prevent="login"
         >
           <img src="/logo.png" alt="Kontes Burung Logo" class="center" />
-          <h2 class="text-center mt-4">Login Event-Organizer</h2>
+          <h2 class="text-center mt-4">
+            Login Event-Organizer {{ isAuthenticated }} / {{ loggedInUser }}
+          </h2>
           <v-row justify="center">
             <v-col md="12" justify="center" class="text-center">
               <v-text-field
@@ -37,6 +39,7 @@
                   Register
                 </v-btn>
               </v-card-actions>
+              <v-btn @click="logout">Logout</v-btn>
             </v-col>
           </v-row>
         </v-form>
@@ -46,8 +49,11 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data: () => ({
+    show: false,
     valid: true,
     name: "",
     nameRules: [
@@ -65,32 +71,75 @@ export default {
       (v) => v.length >= 8 || "Password minimal 8 huruf",
     ],
     phone: "",
-    show: false,
     message: false,
+    show: false
   }),
+
+  // methods: {
+  //   async login() {
+  //     try {
+  //       await this.$axios
+  //         .post("eo/login", {
+  //           email: this.email,
+  //           password: this.password,
+  //         })
+  //         .then((response) => {
+  //           if (response.data == "password salah") {
+  //             window.location.reload();
+  //           } else {
+  //             localStorage.setItem("token", response.data.token);
+  //             this.$router.push("/event-org");
+  //           }
+  //         });
+
+  //       // this.$router.push("/");
+  //     } catch (e) {
+  //       this.error = e.response.data.message;
+  //     }
+  //   },
+  // },
 
   methods: {
     async login() {
       try {
-        await this.$axios
-          .post("eo/login", {
+        await this.$auth.loginWith("local", {
+          data: {
             email: this.email,
             password: this.password,
-          })
-          .then((response) => {
-            if (response.data == "password salah") {
-              window.location.reload();
-            } else {
-              localStorage.setItem("token", response.data.token);
-              this.$router.push("/event-org");
-            }
-          });
-
-        // this.$router.push("/");
-      } catch (e) {
-        this.error = e.response.data.message;
+          },
+        });
+        if (this.$auth.user.role == "2") {
+          this.$router.push("/");
+        } else if (this.$auth.user.role == "1") {
+          this.$router.push("/event-org");
+        } else {
+          this.$router.push("/admin");
+        }
+      } catch (err) {
+        if (err.response) {
+          // There is an error response from the server
+          // You can anticipate error.response.data here
+          const error = err.response.data;
+          this.message = true;
+        } else if (err.request) {
+          // The request was made but no response was received
+          // Error details are stored in error.reqeust
+          console.log(err.request);
+        } else {
+          // Some other errors
+          console.log("Error", err.message);
+        }
       }
     },
+
+    async logout() {
+      await this.$auth.logout();
+      this.$router.push("/event-org/login");
+    },
+  },
+
+  computed: {
+    ...mapGetters(["isAuthenticated", "loggedInUser"]),
   },
 };
 </script>

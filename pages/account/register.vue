@@ -1,29 +1,26 @@
 <template>
-  <v-row align="center" justify="center">
-    <v-col cols="12" sm="12" md="12">
-      <v-card light class="pa-5 ma-5">
-        <v-form
-          ref="form"
-          v-model="valid"
-          lazy-validation
+    <div>
+        <center>
+            <img src="/assets/logoTop.svg" height="75px" width="85%" class="logo-top">
+            <v-form
           @submit.prevent="register"
         >
-          <img src="/logo.png" alt="Kontes Burung Logo" class="center" />
-          <h2 class="text-center mt-4">Daftar Akun Event-Organizer</h2>
-          <v-row justify="center">
-            <v-col md="12" justify="center" class="text-center">
-              <v-text-field
+            <v-text-field
                 v-model="name"
                 :counter="25"
                 :rules="nameRules"
                 label="Nama"
                 required
+                outlined
+                dense
               ></v-text-field>
 
               <v-text-field
                 v-model="phone"
                 label="No Telephone"
                 required
+                outlined
+                dense
               ></v-text-field>
 
               <v-text-field
@@ -31,6 +28,8 @@
                 :rules="emailRules"
                 label="E-mail"
                 required
+                outlined
+                dense
               ></v-text-field>
 
               <v-text-field
@@ -43,24 +42,26 @@
                 hint="At least 8 characters"
                 counter
                 @click:append="show = !show"
+                outlined
+                dense
               ></v-text-field>
-
-              <v-card-actions class="justify-center">
-                <v-btn type="submit" color="primary" class="mr-4">
-                  Register
-                </v-btn>
-              </v-card-actions>
-            </v-col>
-          </v-row>
-        </v-form>
-      </v-card>
-    </v-col>
-  </v-row>
+            <nuxt-link
+                style="text-decoration: none; color: inherit"
+                :to="'/account/login'"
+            >
+                <p style="text-align: right; font-weight: 700; font-size: 16px; line-height: 22px;">
+                    Sudah punya akun?
+                </p>
+            </nuxt-link>
+                <button type="submit" class="btn-dark white--text">Daftar Akun</button>
+            </v-form>
+        </center>
+    </div>
 </template>
 
 <script>
-export default {
-  data: () => ({
+    export default {
+        data: () => ({
     valid: true,
     name: "",
     nameRules: [
@@ -78,19 +79,19 @@ export default {
       (v) => v.length >= 8 || "Password minimal 8 huruf",
     ],
     phone: "",
-    show: false, 
+    show: false,
   }),
 
   methods: {
     async register() {
       try {
-        await this.$axios.post("/eo/register", {
+        await this.$axios.post("/user/register/manual", {
           no_hp: this.phone,
           email: this.email,
           password: this.password,
           nama: this.name,
         });
-        this.$router.push("/event-org");
+        this.$router.push("/account/login");
       } catch (e) {
         this.error = e.response.data.message;
       }

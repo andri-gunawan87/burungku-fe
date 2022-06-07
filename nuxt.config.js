@@ -87,20 +87,20 @@ export default {
           login: {
             url: '/eo/login',
             method: 'post',
-            propertyName: false
           },
           logout: { 
             url: '/auth/logout', 
             method: 'post' 
           },
           user: { 
-            url: '/user', 
-            method: 'get', 
-            propertyName: false 
+            url: '/eo/me',
+            method: 'get',
+            property: ''
           }
         },
-        tokenRequired: false,
-        tokenType: false
+        user: {
+          property: 'data'
+        },
       },
       cookie: {
         token: {
