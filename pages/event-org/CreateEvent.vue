@@ -433,28 +433,36 @@ export default {
       this.list_sesi.push(this.sesi);
       this.sesi = null;
     },
-
     async submit() {
       try {
-        await this.$axios.post("/event/add", {
-          id: this.event_id,
-          nama: this.eventName,
-          deskripsi: this.description,
-          tgl: this.date,
-          jam: this.eventTime,
-          jml_tiket: this.numberOfTicket,
-          jml_sesi: this.numberOfSession,
-          harga: this.ticketPrice,
-          aturan: this.list_aturan.toString(),
-          sesi: this.list_sesi.toString(),
-          jenisburung_id: this.birdTypeSelect,
-          lokasi: this.lokasiSelect,
-          tgl_start: this.dateStartReg,
-          tgl_end: this.dateEndReg,
-          jam_start: this.eventTimeStartReg,
-          jam_end: this.eventTimeEndReg,
-          eo_id: "3fd37729-5g55-431c-9a43-83a5c12403d2"
-        });
+        await this.$axios.post(
+          "/event/add",
+          {
+            id: this.event_id,
+            nama: this.eventName,
+            deskripsi: this.description,
+            tgl: this.date,
+            jam: this.eventTime,
+            jml_tiket: this.numberOfTicket,
+            jml_sesi: this.numberOfSession,
+            harga: this.ticketPrice,
+            aturan: this.list_aturan.toString(),
+            sesi: this.list_sesi.toString(),
+            jenisburung_id: this.birdTypeSelect,
+            lokasi: this.lokasiSelect,
+            tgl_start: this.dateStartReg,
+            tgl_end: this.dateEndReg,
+            jam_start: this.eventTimeStartReg,
+            jam_end: this.eventTimeEndReg,
+            eo_id: this.$auth.user.user_id,
+            image: this.foto,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         await this.$axios.post("/event/elok/add", {
           lokasi_id: this.lokasiSelect,
           event_id: this.event_id,
