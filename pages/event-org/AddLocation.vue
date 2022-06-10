@@ -4,19 +4,12 @@
       <v-row>
         <v-col cols="12" sm="12" md="12">
           <v-card>
-            <MapBox />
+            <MapBox @mapLngLat="getLngLat" />
           </v-card>
           <v-card>
             <v-card-text class="text-center">
               <div
-                class="
-                  display-2
-                  font-weight-light
-                  col col-12
-                  text--primary
-                  pa-0
-                  mb-8
-                "
+                class="display-2 font-weight-light col col-12 text--primary pa-0 mb-8"
               >
                 <h5 class="font-weight-light">Add Location</h5>
               </div>
@@ -51,6 +44,7 @@
                           label="Longatitude"
                           required
                           filled
+                          readonly
                         ></v-text-field>
                         <v-textarea
                           v-model="locationAddress"
@@ -77,6 +71,7 @@
                           label="Altitude"
                           filled
                           required
+                          readonly
                         ></v-text-field>
                       </v-col>
                     </v-row>
@@ -116,10 +111,10 @@ export default {
   async fetch() {
     await this.$axios
       .get("/lokasi/kota")
-      .then((res) => (this.listKota = res.data))
-      return this.$axios 
+      .then((res) => (this.listKota = res.data));
+    return this.$axios
       .get("/lokasi/provinsi")
-      .then((res) => (this.listProvinsi = res.data))
+      .then((res) => (this.listProvinsi = res.data));
   },
 
   methods: {
@@ -136,13 +131,16 @@ export default {
           provinsi_id: this.provinsiSelect,
           longitut: this.locationLong,
           latitut: this.locationAlt,
-
         });
         this.$router.push("/event-org");
       } catch (e) {
         this.error = e.response;
         console.log(this.error);
       }
+    },
+    getLngLat: function (value) {
+      this.locationLong = value[0];
+      this.locationAlt = value[1];
     },
   },
 };
